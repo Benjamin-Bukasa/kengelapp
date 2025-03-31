@@ -7,11 +7,11 @@ const Navbar = () => {
   const { toggleIsOpen } = useOpen()
 
   return (
-    <div className='flex justify-end items-center gap-10 px-2 py-2 border-b border-b-zinc-300'>
+    <div className='z-5 flex justify-end items-center gap-10 px-2 py-2 border-b border-b-zinc-300 shadow-md'>
 
       {/* block du formulaire de recherche */}
-      <form action="" className='w-[50%] p-1 flex items-center gap-1 border border-zinc-400 rounded-full'>
-        <input type="text" placeholder='Recherche...' className='w-full px-2 py-1 bg-transparent outline-none rounded-full'/>
+      <form action="" className='w-[50%] p-1 flex items-center gap-1 border border-zinc-400 rounded-lg'>
+        <input type="text" placeholder='Recherche...' className='w-full px-2 py-1 bg-transparent outline-0 rounded-full border-none'/>
         <button className='p-2 bg-zinc-200 text-zinc-600 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-150'><Search size={20}/></button>
       </form>
 
