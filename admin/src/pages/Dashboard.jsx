@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../components/Dashboard/Banner.jsx'
 import Resumes from '../components/Dashboard/Resumes'
-import Datatable from '../components/Dashboard/Datatable'
+import DataCharts from '../components/Dashboard/DataCharts.jsx'
 
 
 function Dashboard() {
@@ -10,7 +10,7 @@ function Dashboard() {
     <div className='w-full p-4 flex flex-col gap-4 font-poppins'>
       <Banner/>
       <Resumes/>
-      <Datatable/>
+      <DataCharts/>
     </div>
   )
 }
