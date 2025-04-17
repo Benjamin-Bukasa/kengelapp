@@ -1,7 +1,6 @@
 // backend/models/orm/generique.orm.js
 const { DataTypes } = require('sequelize');
 const sequelize  = require('../../config/sequelize');
-const CategorieGenerique = require('./categorieGenerique.orm');
 
 const Generique = sequelize.define('Generique', {
   IdGenerique: {type: DataTypes.INTEGER,primaryKey: true,autoIncrement: true,field: 'IdGenerique'},
@@ -13,9 +12,8 @@ const Generique = sequelize.define('Generique', {
 }, 
 {
   tableName: 'T_Generique',
-  timestamps: false
+  timestamps: false,
+  freezeTableName: true,
 });
-// Associations
-CategorieGenerique.belongsTo(Entite, {foreignKey: 'IdEntiteFk',onUpdate: 'CASCADE',onDelete: 'SET NULL'});
 
 module.exports = Generique;

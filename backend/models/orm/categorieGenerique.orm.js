@@ -10,7 +10,8 @@ const CategorieGenerique = sequelize.define('CategorieGenerique', {
 }, 
 {
   tableName: 'T_CategorieGenerique',
-  timestamps: false
+  timestamps: false,
+  freezeTableName: true,
 });
 
 module.exports = CategorieGenerique;

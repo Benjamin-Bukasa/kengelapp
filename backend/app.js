@@ -1,19 +1,28 @@
-// backend/app.js
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
+
 const app = express();
 
 // Middleware global pour parser les requêtes JSON
 app.use(express.json());
 
-// Import des fichiers de routes
-const categorieGeneriqueOrmRoutes = require('./routes/orm/categorieGenerique.routes.orm');
-const categorieGeneriqueDbaRoutes = require('./routes/dba/categorieGenerique.routes.dba');
+// Dynamically load all ORM route files
+const ormRoutesDir = path.join(__dirname, 'routes', 'orm');
 
-// Définition des routes pour ORM
-app.use('/api/orm/categories-generiques', categorieGeneriqueOrmRoutes);
+fs.readdirSync(ormRoutesDir).forEach(file => {
+  if (file.endsWith('.routes.orm.js')) {
+    const route = require(path.join(ormRoutesDir, file));
 
-// Définition des routes pour DBA
-app.use('/api/dba/categories-generiques', categorieGeneriqueDbaRoutes);
+    // Exemple : vGenerique.routes.orm.js → /api/orm/v-generique
+    const routeName = file
+      .replace('.routes.orm.js', '')
+      .replace(/([A-Z])/g, '-$1') // camelCase → kebab-case (vGenerique → v-generique)
+      .toLowerCase();
+
+    app.use(`/api/orm/${routeName}`, route);
+  }
+});
 
 // Middleware de fallback (404 Not Found)
 app.use((req, res) => {

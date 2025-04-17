@@ -9,9 +9,9 @@ const Utilisateurs = sequelize.define('Utilisateurs', {
   IdUser: {type: DataTypes.INTEGER,primaryKey: true,autoIncrement: true,allowNull: false,field: 'IdUser'},
   NomUser: {type: DataTypes.STRING(100),allowNull: false,field: 'NomUser'},
   PrenomUser: {type: DataTypes.STRING(100),allowNull: false,field: 'PrenomUser'},
-  EmailUser: {type: DataTypes.STRING(150),allowNull: false,unique: true,field: 'EmailUser'},
+  EmailUser: {type: DataTypes.STRING(150),allowNull: false,unique: true,  validate: {isEmail: true},field: 'EmailUser'},
   MotdepasseUser: {type: DataTypes.TEXT,allowNull: false,field: 'MotdepasseUser'},
-  PhoneUser: {type: DataTypes.STRING(20),allowNull: true,field: 'PhoneUser'},
+  PhoneUser: {type: DataTypes.STRING(20),allowNull: true,  validate: {is: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9\- \(\)]{5,20}$/i },field: 'PhoneUser'},
   DatecreationUser: {type: DataTypes.DATE,defaultValue: DataTypes.NOW,field: 'DatecreationUser'},
   IdRoleFk: {type: DataTypes.INTEGER,allowNull: true,field: 'IdRoleFk'},
   ValideUser: {type: DataTypes.BOOLEAN,allowNull: false,defaultValue: true,field: 'ValideUser'},
@@ -24,7 +24,8 @@ const Utilisateurs = sequelize.define('Utilisateurs', {
 }, 
 {
   tableName: 'T_Utilisateurs',
-  timestamps: false
+  timestamps: false,
+  freezeTableName: true,
 });
 
 // Associations
