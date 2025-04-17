@@ -69,4 +69,5 @@ const ApprenantController = {
   }
 };
 
+
 module.exports = ApprenantController;
