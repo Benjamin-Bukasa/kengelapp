@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 export const useOpen = create((set) => ({
-  isOpen: true,
-  setIsOpen: (value) => set({ isOpen: value }), // on met à jour avec un objet
-  toggleIsOpen: () => set((state) => ({ isOpen: !state.isOpen })) // une fonction pour toggle
+  isOpen: false,
+  setIsOpen: (value) => set({ isOpen: value }),
+  toggleIsOpen: () => set((state) => ({ isOpen: !state.isOpen })) // fonction toggle pour ouvrir et fermer le Rightbar
 }))
