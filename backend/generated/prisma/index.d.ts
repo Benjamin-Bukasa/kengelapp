@@ -108,6 +108,11 @@ export type T_Salle = $Result.DefaultSelection<Prisma.$T_SallePayload>
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type T_Utilisateurs = $Result.DefaultSelection<Prisma.$T_UtilisateursPayload>
+/**
+ * Model VS_ApprenantAge
+ * 
+ */
+export type VS_ApprenantAge = $Result.DefaultSelection<Prisma.$VS_ApprenantAgePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -423,6 +428,16 @@ export class PrismaClient<
     * ```
     */
   get t_Utilisateurs(): Prisma.T_UtilisateursDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vS_ApprenantAge`: Exposes CRUD operations for the **VS_ApprenantAge** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VS_ApprenantAges
+    * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany()
+    * ```
+    */
+  get vS_ApprenantAge(): Prisma.VS_ApprenantAgeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -881,7 +896,8 @@ export namespace Prisma {
     T_Paiement: 'T_Paiement',
     T_Presence: 'T_Presence',
     T_Salle: 'T_Salle',
-    T_Utilisateurs: 'T_Utilisateurs'
+    T_Utilisateurs: 'T_Utilisateurs',
+    VS_ApprenantAge: 'VS_ApprenantAge'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -900,7 +916,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "t_ActiviteParticipants" | "t_ActivitesParascolaires" | "t_Apprenant" | "t_Audit_Log" | "t_Caisse" | "t_CategorieGenerique" | "t_Communication" | "t_Cours" | "t_EmploisTemps" | "t_Enseignant" | "t_Entite" | "t_Evaluations" | "t_Generique" | "t_Licence" | "t_Login" | "t_Paiement" | "t_Presence" | "t_Salle" | "t_Utilisateurs"
+      modelProps: "t_ActiviteParticipants" | "t_ActivitesParascolaires" | "t_Apprenant" | "t_Audit_Log" | "t_Caisse" | "t_CategorieGenerique" | "t_Communication" | "t_Cours" | "t_EmploisTemps" | "t_Enseignant" | "t_Entite" | "t_Evaluations" | "t_Generique" | "t_Licence" | "t_Login" | "t_Paiement" | "t_Presence" | "t_Salle" | "t_Utilisateurs" | "vS_ApprenantAge"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2310,6 +2326,80 @@ export namespace Prisma {
           }
         }
       }
+      VS_ApprenantAge: {
+        payload: Prisma.$VS_ApprenantAgePayload<ExtArgs>
+        fields: Prisma.VS_ApprenantAgeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VS_ApprenantAgeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          findFirst: {
+            args: Prisma.VS_ApprenantAgeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          findMany: {
+            args: Prisma.VS_ApprenantAgeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
+          }
+          create: {
+            args: Prisma.VS_ApprenantAgeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          createMany: {
+            args: Prisma.VS_ApprenantAgeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
+          }
+          delete: {
+            args: Prisma.VS_ApprenantAgeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          update: {
+            args: Prisma.VS_ApprenantAgeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          deleteMany: {
+            args: Prisma.VS_ApprenantAgeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VS_ApprenantAgeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
+          }
+          upsert: {
+            args: Prisma.VS_ApprenantAgeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
+          }
+          aggregate: {
+            args: Prisma.VS_ApprenantAgeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVS_ApprenantAge>
+          }
+          groupBy: {
+            args: Prisma.VS_ApprenantAgeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VS_ApprenantAgeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VS_ApprenantAgeCountArgs<ExtArgs>
+            result: $Utils.Optional<VS_ApprenantAgeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2413,6 +2503,7 @@ export namespace Prisma {
     t_Presence?: T_PresenceOmit
     t_Salle?: T_SalleOmit
     t_Utilisateurs?: T_UtilisateursOmit
+    vS_ApprenantAge?: VS_ApprenantAgeOmit
   }
 
   /* Types for Logging */
@@ -27323,6 +27414,1031 @@ export namespace Prisma {
 
 
   /**
+   * Model VS_ApprenantAge
+   */
+
+  export type AggregateVS_ApprenantAge = {
+    _count: VS_ApprenantAgeCountAggregateOutputType | null
+    _avg: VS_ApprenantAgeAvgAggregateOutputType | null
+    _sum: VS_ApprenantAgeSumAggregateOutputType | null
+    _min: VS_ApprenantAgeMinAggregateOutputType | null
+    _max: VS_ApprenantAgeMaxAggregateOutputType | null
+  }
+
+  export type VS_ApprenantAgeAvgAggregateOutputType = {
+    nombre_apprenants: number | null
+    IdEntiteFk: number | null
+  }
+
+  export type VS_ApprenantAgeSumAggregateOutputType = {
+    nombre_apprenants: number | null
+    IdEntiteFk: number | null
+  }
+
+  export type VS_ApprenantAgeMinAggregateOutputType = {
+    tranche_age: string | null
+    nombre_apprenants: number | null
+    IdEntiteFk: number | null
+    NomEntite: string | null
+  }
+
+  export type VS_ApprenantAgeMaxAggregateOutputType = {
+    tranche_age: string | null
+    nombre_apprenants: number | null
+    IdEntiteFk: number | null
+    NomEntite: string | null
+  }
+
+  export type VS_ApprenantAgeCountAggregateOutputType = {
+    fakeId: number
+    tranche_age: number
+    nombre_apprenants: number
+    IdEntiteFk: number
+    NomEntite: number
+    _all: number
+  }
+
+
+  export type VS_ApprenantAgeAvgAggregateInputType = {
+    nombre_apprenants?: true
+    IdEntiteFk?: true
+  }
+
+  export type VS_ApprenantAgeSumAggregateInputType = {
+    nombre_apprenants?: true
+    IdEntiteFk?: true
+  }
+
+  export type VS_ApprenantAgeMinAggregateInputType = {
+    tranche_age?: true
+    nombre_apprenants?: true
+    IdEntiteFk?: true
+    NomEntite?: true
+  }
+
+  export type VS_ApprenantAgeMaxAggregateInputType = {
+    tranche_age?: true
+    nombre_apprenants?: true
+    IdEntiteFk?: true
+    NomEntite?: true
+  }
+
+  export type VS_ApprenantAgeCountAggregateInputType = {
+    fakeId?: true
+    tranche_age?: true
+    nombre_apprenants?: true
+    IdEntiteFk?: true
+    NomEntite?: true
+    _all?: true
+  }
+
+  export type VS_ApprenantAgeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VS_ApprenantAge to aggregate.
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VS_ApprenantAges to fetch.
+     */
+    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VS_ApprenantAgeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VS_ApprenantAges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VS_ApprenantAges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VS_ApprenantAges
+    **/
+    _count?: true | VS_ApprenantAgeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VS_ApprenantAgeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VS_ApprenantAgeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VS_ApprenantAgeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VS_ApprenantAgeMaxAggregateInputType
+  }
+
+  export type GetVS_ApprenantAgeAggregateType<T extends VS_ApprenantAgeAggregateArgs> = {
+        [P in keyof T & keyof AggregateVS_ApprenantAge]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVS_ApprenantAge[P]>
+      : GetScalarType<T[P], AggregateVS_ApprenantAge[P]>
+  }
+
+
+
+
+  export type VS_ApprenantAgeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VS_ApprenantAgeWhereInput
+    orderBy?: VS_ApprenantAgeOrderByWithAggregationInput | VS_ApprenantAgeOrderByWithAggregationInput[]
+    by: VS_ApprenantAgeScalarFieldEnum[] | VS_ApprenantAgeScalarFieldEnum
+    having?: VS_ApprenantAgeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VS_ApprenantAgeCountAggregateInputType | true
+    _avg?: VS_ApprenantAgeAvgAggregateInputType
+    _sum?: VS_ApprenantAgeSumAggregateInputType
+    _min?: VS_ApprenantAgeMinAggregateInputType
+    _max?: VS_ApprenantAgeMaxAggregateInputType
+  }
+
+  export type VS_ApprenantAgeGroupByOutputType = {
+    fakeId: number
+    tranche_age: string
+    nombre_apprenants: number
+    IdEntiteFk: number
+    NomEntite: string
+    _count: VS_ApprenantAgeCountAggregateOutputType | null
+    _avg: VS_ApprenantAgeAvgAggregateOutputType | null
+    _sum: VS_ApprenantAgeSumAggregateOutputType | null
+    _min: VS_ApprenantAgeMinAggregateOutputType | null
+    _max: VS_ApprenantAgeMaxAggregateOutputType | null
+  }
+
+  type GetVS_ApprenantAgeGroupByPayload<T extends VS_ApprenantAgeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VS_ApprenantAgeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VS_ApprenantAgeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VS_ApprenantAgeGroupByOutputType[P]>
+            : GetScalarType<T[P], VS_ApprenantAgeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VS_ApprenantAgeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tranche_age?: boolean
+    nombre_apprenants?: boolean
+    IdEntiteFk?: boolean
+    NomEntite?: boolean
+  }, ExtArgs["result"]["vS_ApprenantAge"]>
+
+  export type VS_ApprenantAgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    fakeId?: boolean
+    tranche_age?: boolean
+    nombre_apprenants?: boolean
+    IdEntiteFk?: boolean
+    NomEntite?: boolean
+  }, ExtArgs["result"]["vS_ApprenantAge"]>
+
+  export type VS_ApprenantAgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    fakeId?: boolean
+    tranche_age?: boolean
+    nombre_apprenants?: boolean
+    IdEntiteFk?: boolean
+    NomEntite?: boolean
+  }, ExtArgs["result"]["vS_ApprenantAge"]>
+
+  export type VS_ApprenantAgeSelectScalar = {
+    tranche_age?: boolean
+    nombre_apprenants?: boolean
+    IdEntiteFk?: boolean
+    NomEntite?: boolean
+  }
+
+  export type VS_ApprenantAgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tranche_age" | "nombre_apprenants" | "IdEntiteFk" | "NomEntite", ExtArgs["result"]["vS_ApprenantAge"]>
+
+  export type $VS_ApprenantAgePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VS_ApprenantAge"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      tranche_age: string
+      nombre_apprenants: number
+      IdEntiteFk: number
+      NomEntite: string
+    }, ExtArgs["result"]["vS_ApprenantAge"]>
+    composites: {}
+  }
+
+  type VS_ApprenantAgeGetPayload<S extends boolean | null | undefined | VS_ApprenantAgeDefaultArgs> = $Result.GetResult<Prisma.$VS_ApprenantAgePayload, S>
+
+  type VS_ApprenantAgeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VS_ApprenantAgeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VS_ApprenantAgeCountAggregateInputType | true
+    }
+
+  export interface VS_ApprenantAgeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VS_ApprenantAge'], meta: { name: 'VS_ApprenantAge' } }
+    /**
+     * Find zero or one VS_ApprenantAge that matches the filter.
+     * @param {VS_ApprenantAgeFindUniqueArgs} args - Arguments to find a VS_ApprenantAge
+     * @example
+     * // Get one VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VS_ApprenantAgeFindUniqueArgs>(args: SelectSubset<T, VS_ApprenantAgeFindUniqueArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VS_ApprenantAge that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VS_ApprenantAgeFindUniqueOrThrowArgs} args - Arguments to find a VS_ApprenantAge
+     * @example
+     * // Get one VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VS_ApprenantAgeFindUniqueOrThrowArgs>(args: SelectSubset<T, VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VS_ApprenantAge that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeFindFirstArgs} args - Arguments to find a VS_ApprenantAge
+     * @example
+     * // Get one VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VS_ApprenantAgeFindFirstArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindFirstArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VS_ApprenantAge that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeFindFirstOrThrowArgs} args - Arguments to find a VS_ApprenantAge
+     * @example
+     * // Get one VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VS_ApprenantAgeFindFirstOrThrowArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VS_ApprenantAges that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VS_ApprenantAges
+     * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany()
+     * 
+     * // Get first 10 VS_ApprenantAges
+     * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany({ take: 10 })
+     * 
+     * // Only select the `tranche_age`
+     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.findMany({ select: { tranche_age: true } })
+     * 
+     */
+    findMany<T extends VS_ApprenantAgeFindManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VS_ApprenantAge.
+     * @param {VS_ApprenantAgeCreateArgs} args - Arguments to create a VS_ApprenantAge.
+     * @example
+     * // Create one VS_ApprenantAge
+     * const VS_ApprenantAge = await prisma.vS_ApprenantAge.create({
+     *   data: {
+     *     // ... data to create a VS_ApprenantAge
+     *   }
+     * })
+     * 
+     */
+    create<T extends VS_ApprenantAgeCreateArgs>(args: SelectSubset<T, VS_ApprenantAgeCreateArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VS_ApprenantAges.
+     * @param {VS_ApprenantAgeCreateManyArgs} args - Arguments to create many VS_ApprenantAges.
+     * @example
+     * // Create many VS_ApprenantAges
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VS_ApprenantAgeCreateManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VS_ApprenantAges and returns the data saved in the database.
+     * @param {VS_ApprenantAgeCreateManyAndReturnArgs} args - Arguments to create many VS_ApprenantAges.
+     * @example
+     * // Create many VS_ApprenantAges
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VS_ApprenantAges and only return the `tranche_age`
+     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.createManyAndReturn({
+     *   select: { tranche_age: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VS_ApprenantAgeCreateManyAndReturnArgs>(args?: SelectSubset<T, VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VS_ApprenantAge.
+     * @param {VS_ApprenantAgeDeleteArgs} args - Arguments to delete one VS_ApprenantAge.
+     * @example
+     * // Delete one VS_ApprenantAge
+     * const VS_ApprenantAge = await prisma.vS_ApprenantAge.delete({
+     *   where: {
+     *     // ... filter to delete one VS_ApprenantAge
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VS_ApprenantAgeDeleteArgs>(args: SelectSubset<T, VS_ApprenantAgeDeleteArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VS_ApprenantAge.
+     * @param {VS_ApprenantAgeUpdateArgs} args - Arguments to update one VS_ApprenantAge.
+     * @example
+     * // Update one VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VS_ApprenantAgeUpdateArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VS_ApprenantAges.
+     * @param {VS_ApprenantAgeDeleteManyArgs} args - Arguments to filter VS_ApprenantAges to delete.
+     * @example
+     * // Delete a few VS_ApprenantAges
+     * const { count } = await prisma.vS_ApprenantAge.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VS_ApprenantAgeDeleteManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VS_ApprenantAges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VS_ApprenantAges
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VS_ApprenantAgeUpdateManyArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VS_ApprenantAges and returns the data updated in the database.
+     * @param {VS_ApprenantAgeUpdateManyAndReturnArgs} args - Arguments to update many VS_ApprenantAges.
+     * @example
+     * // Update many VS_ApprenantAges
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VS_ApprenantAges and only return the `tranche_age`
+     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.updateManyAndReturn({
+     *   select: { tranche_age: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VS_ApprenantAgeUpdateManyAndReturnArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VS_ApprenantAge.
+     * @param {VS_ApprenantAgeUpsertArgs} args - Arguments to update or create a VS_ApprenantAge.
+     * @example
+     * // Update or create a VS_ApprenantAge
+     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.upsert({
+     *   create: {
+     *     // ... data to create a VS_ApprenantAge
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VS_ApprenantAge we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VS_ApprenantAgeUpsertArgs>(args: SelectSubset<T, VS_ApprenantAgeUpsertArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VS_ApprenantAges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeCountArgs} args - Arguments to filter VS_ApprenantAges to count.
+     * @example
+     * // Count the number of VS_ApprenantAges
+     * const count = await prisma.vS_ApprenantAge.count({
+     *   where: {
+     *     // ... the filter for the VS_ApprenantAges we want to count
+     *   }
+     * })
+    **/
+    count<T extends VS_ApprenantAgeCountArgs>(
+      args?: Subset<T, VS_ApprenantAgeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VS_ApprenantAgeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VS_ApprenantAge.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VS_ApprenantAgeAggregateArgs>(args: Subset<T, VS_ApprenantAgeAggregateArgs>): Prisma.PrismaPromise<GetVS_ApprenantAgeAggregateType<T>>
+
+    /**
+     * Group by VS_ApprenantAge.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VS_ApprenantAgeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VS_ApprenantAgeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VS_ApprenantAgeGroupByArgs['orderBy'] }
+        : { orderBy?: VS_ApprenantAgeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VS_ApprenantAgeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVS_ApprenantAgeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VS_ApprenantAge model
+   */
+  readonly fields: VS_ApprenantAgeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VS_ApprenantAge.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VS_ApprenantAgeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VS_ApprenantAge model
+   */
+  interface VS_ApprenantAgeFieldRefs {
+    readonly tranche_age: FieldRef<"VS_ApprenantAge", 'String'>
+    readonly nombre_apprenants: FieldRef<"VS_ApprenantAge", 'Int'>
+    readonly IdEntiteFk: FieldRef<"VS_ApprenantAge", 'Int'>
+    readonly NomEntite: FieldRef<"VS_ApprenantAge", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VS_ApprenantAge findUnique
+   */
+  export type VS_ApprenantAgeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter, which VS_ApprenantAge to fetch.
+     */
+    where: VS_ApprenantAgeWhereUniqueInput
+  }
+
+  /**
+   * VS_ApprenantAge findUniqueOrThrow
+   */
+  export type VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter, which VS_ApprenantAge to fetch.
+     */
+    where: VS_ApprenantAgeWhereUniqueInput
+  }
+
+  /**
+   * VS_ApprenantAge findFirst
+   */
+  export type VS_ApprenantAgeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter, which VS_ApprenantAge to fetch.
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VS_ApprenantAges to fetch.
+     */
+    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VS_ApprenantAges.
+     */
+    cursor?: VS_ApprenantAgeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VS_ApprenantAges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VS_ApprenantAges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VS_ApprenantAges.
+     */
+    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
+  }
+
+  /**
+   * VS_ApprenantAge findFirstOrThrow
+   */
+  export type VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter, which VS_ApprenantAge to fetch.
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VS_ApprenantAges to fetch.
+     */
+    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VS_ApprenantAges.
+     */
+    cursor?: VS_ApprenantAgeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VS_ApprenantAges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VS_ApprenantAges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VS_ApprenantAges.
+     */
+    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
+  }
+
+  /**
+   * VS_ApprenantAge findMany
+   */
+  export type VS_ApprenantAgeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter, which VS_ApprenantAges to fetch.
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VS_ApprenantAges to fetch.
+     */
+    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VS_ApprenantAges.
+     */
+    cursor?: VS_ApprenantAgeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VS_ApprenantAges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VS_ApprenantAges.
+     */
+    skip?: number
+    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
+  }
+
+  /**
+   * VS_ApprenantAge create
+   */
+  export type VS_ApprenantAgeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VS_ApprenantAge.
+     */
+    data: XOR<VS_ApprenantAgeCreateInput, VS_ApprenantAgeUncheckedCreateInput>
+  }
+
+  /**
+   * VS_ApprenantAge createMany
+   */
+  export type VS_ApprenantAgeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VS_ApprenantAges.
+     */
+    data: VS_ApprenantAgeCreateManyInput | VS_ApprenantAgeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VS_ApprenantAge createManyAndReturn
+   */
+  export type VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * The data used to create many VS_ApprenantAges.
+     */
+    data: VS_ApprenantAgeCreateManyInput | VS_ApprenantAgeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VS_ApprenantAge update
+   */
+  export type VS_ApprenantAgeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VS_ApprenantAge.
+     */
+    data: XOR<VS_ApprenantAgeUpdateInput, VS_ApprenantAgeUncheckedUpdateInput>
+    /**
+     * Choose, which VS_ApprenantAge to update.
+     */
+    where: VS_ApprenantAgeWhereUniqueInput
+  }
+
+  /**
+   * VS_ApprenantAge updateMany
+   */
+  export type VS_ApprenantAgeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VS_ApprenantAges.
+     */
+    data: XOR<VS_ApprenantAgeUpdateManyMutationInput, VS_ApprenantAgeUncheckedUpdateManyInput>
+    /**
+     * Filter which VS_ApprenantAges to update
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * Limit how many VS_ApprenantAges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VS_ApprenantAge updateManyAndReturn
+   */
+  export type VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * The data used to update VS_ApprenantAges.
+     */
+    data: XOR<VS_ApprenantAgeUpdateManyMutationInput, VS_ApprenantAgeUncheckedUpdateManyInput>
+    /**
+     * Filter which VS_ApprenantAges to update
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * Limit how many VS_ApprenantAges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VS_ApprenantAge upsert
+   */
+  export type VS_ApprenantAgeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VS_ApprenantAge to update in case it exists.
+     */
+    where: VS_ApprenantAgeWhereUniqueInput
+    /**
+     * In case the VS_ApprenantAge found by the `where` argument doesn't exist, create a new VS_ApprenantAge with this data.
+     */
+    create: XOR<VS_ApprenantAgeCreateInput, VS_ApprenantAgeUncheckedCreateInput>
+    /**
+     * In case the VS_ApprenantAge was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VS_ApprenantAgeUpdateInput, VS_ApprenantAgeUncheckedUpdateInput>
+  }
+
+  /**
+   * VS_ApprenantAge delete
+   */
+  export type VS_ApprenantAgeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+    /**
+     * Filter which VS_ApprenantAge to delete.
+     */
+    where: VS_ApprenantAgeWhereUniqueInput
+  }
+
+  /**
+   * VS_ApprenantAge deleteMany
+   */
+  export type VS_ApprenantAgeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VS_ApprenantAges to delete
+     */
+    where?: VS_ApprenantAgeWhereInput
+    /**
+     * Limit how many VS_ApprenantAges to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VS_ApprenantAge without action
+   */
+  export type VS_ApprenantAgeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VS_ApprenantAge
+     */
+    select?: VS_ApprenantAgeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VS_ApprenantAge
+     */
+    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -27601,6 +28717,17 @@ export namespace Prisma {
   };
 
   export type T_UtilisateursScalarFieldEnum = (typeof T_UtilisateursScalarFieldEnum)[keyof typeof T_UtilisateursScalarFieldEnum]
+
+
+  export const VS_ApprenantAgeScalarFieldEnum: {
+    fakeId: 'fakeId',
+    tranche_age: 'tranche_age',
+    nombre_apprenants: 'nombre_apprenants',
+    IdEntiteFk: 'IdEntiteFk',
+    NomEntite: 'NomEntite'
+  };
+
+  export type VS_ApprenantAgeScalarFieldEnum = (typeof VS_ApprenantAgeScalarFieldEnum)[keyof typeof VS_ApprenantAgeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -29371,6 +30498,55 @@ export namespace Prisma {
     Is_Admin?: BoolWithAggregatesFilter<"T_Utilisateurs"> | boolean
   }
 
+  export type VS_ApprenantAgeWhereInput = {
+    AND?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
+    OR?: VS_ApprenantAgeWhereInput[]
+    NOT?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
+    tranche_age?: StringFilter<"VS_ApprenantAge"> | string
+    nombre_apprenants?: IntFilter<"VS_ApprenantAge"> | number
+    IdEntiteFk?: IntFilter<"VS_ApprenantAge"> | number
+    NomEntite?: StringFilter<"VS_ApprenantAge"> | string
+  }
+
+  export type VS_ApprenantAgeOrderByWithRelationInput = {
+    tranche_age?: SortOrder
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+    NomEntite?: SortOrder
+  }
+
+  export type VS_ApprenantAgeWhereUniqueInput = Prisma.AtLeast<{
+    AND?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
+    OR?: VS_ApprenantAgeWhereInput[]
+    NOT?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
+    tranche_age?: StringFilter<"VS_ApprenantAge"> | string
+    nombre_apprenants?: IntFilter<"VS_ApprenantAge"> | number
+    IdEntiteFk?: IntFilter<"VS_ApprenantAge"> | number
+    NomEntite?: StringFilter<"VS_ApprenantAge"> | string
+  }, "fakeId">
+
+  export type VS_ApprenantAgeOrderByWithAggregationInput = {
+    tranche_age?: SortOrder
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+    NomEntite?: SortOrder
+    _count?: VS_ApprenantAgeCountOrderByAggregateInput
+    _avg?: VS_ApprenantAgeAvgOrderByAggregateInput
+    _max?: VS_ApprenantAgeMaxOrderByAggregateInput
+    _min?: VS_ApprenantAgeMinOrderByAggregateInput
+    _sum?: VS_ApprenantAgeSumOrderByAggregateInput
+  }
+
+  export type VS_ApprenantAgeScalarWhereWithAggregatesInput = {
+    AND?: VS_ApprenantAgeScalarWhereWithAggregatesInput | VS_ApprenantAgeScalarWhereWithAggregatesInput[]
+    OR?: VS_ApprenantAgeScalarWhereWithAggregatesInput[]
+    NOT?: VS_ApprenantAgeScalarWhereWithAggregatesInput | VS_ApprenantAgeScalarWhereWithAggregatesInput[]
+    tranche_age?: StringWithAggregatesFilter<"VS_ApprenantAge"> | string
+    nombre_apprenants?: IntWithAggregatesFilter<"VS_ApprenantAge"> | number
+    IdEntiteFk?: IntWithAggregatesFilter<"VS_ApprenantAge"> | number
+    NomEntite?: StringWithAggregatesFilter<"VS_ApprenantAge"> | string
+  }
+
   export type T_ActiviteParticipantsCreateInput = {
     DateInscription?: Date | string | null
     T_ActivitesParascolaires: T_ActivitesParascolairesCreateNestedOneWithoutT_ActiviteParticipantsInput
@@ -30943,6 +32119,55 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type VS_ApprenantAgeCreateInput = {
+    tranche_age: string
+    nombre_apprenants: number
+    IdEntiteFk: number
+    NomEntite: string
+  }
+
+  export type VS_ApprenantAgeUncheckedCreateInput = {
+    tranche_age: string
+    nombre_apprenants: number
+    IdEntiteFk: number
+    NomEntite: string
+  }
+
+  export type VS_ApprenantAgeUpdateInput = {
+    tranche_age?: StringFieldUpdateOperationsInput | string
+    nombre_apprenants?: IntFieldUpdateOperationsInput | number
+    IdEntiteFk?: IntFieldUpdateOperationsInput | number
+    NomEntite?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VS_ApprenantAgeUncheckedUpdateInput = {
+    tranche_age?: StringFieldUpdateOperationsInput | string
+    nombre_apprenants?: IntFieldUpdateOperationsInput | number
+    IdEntiteFk?: IntFieldUpdateOperationsInput | number
+    NomEntite?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VS_ApprenantAgeCreateManyInput = {
+    tranche_age: string
+    nombre_apprenants: number
+    IdEntiteFk: number
+    NomEntite: string
+  }
+
+  export type VS_ApprenantAgeUpdateManyMutationInput = {
+    tranche_age?: StringFieldUpdateOperationsInput | string
+    nombre_apprenants?: IntFieldUpdateOperationsInput | number
+    IdEntiteFk?: IntFieldUpdateOperationsInput | number
+    NomEntite?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VS_ApprenantAgeUncheckedUpdateManyInput = {
+    tranche_age?: StringFieldUpdateOperationsInput | string
+    nombre_apprenants?: IntFieldUpdateOperationsInput | number
+    IdEntiteFk?: IntFieldUpdateOperationsInput | number
+    NomEntite?: StringFieldUpdateOperationsInput | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -32411,6 +33636,37 @@ export namespace Prisma {
   export type T_UtilisateursSumOrderByAggregateInput = {
     IdUser?: SortOrder
     IdRoleFk?: SortOrder
+    IdEntiteFk?: SortOrder
+  }
+
+  export type VS_ApprenantAgeCountOrderByAggregateInput = {
+    tranche_age?: SortOrder
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+    NomEntite?: SortOrder
+  }
+
+  export type VS_ApprenantAgeAvgOrderByAggregateInput = {
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+  }
+
+  export type VS_ApprenantAgeMaxOrderByAggregateInput = {
+    tranche_age?: SortOrder
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+    NomEntite?: SortOrder
+  }
+
+  export type VS_ApprenantAgeMinOrderByAggregateInput = {
+    tranche_age?: SortOrder
+    nombre_apprenants?: SortOrder
+    IdEntiteFk?: SortOrder
+    NomEntite?: SortOrder
+  }
+
+  export type VS_ApprenantAgeSumOrderByAggregateInput = {
+    nombre_apprenants?: SortOrder
     IdEntiteFk?: SortOrder
   }
 

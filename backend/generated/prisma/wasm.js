@@ -327,6 +327,14 @@ exports.Prisma.T_UtilisateursScalarFieldEnum = {
   Is_Admin: 'Is_Admin'
 };
 
+exports.Prisma.VS_ApprenantAgeScalarFieldEnum = {
+  fakeId: 'fakeId',
+  tranche_age: 'tranche_age',
+  nombre_apprenants: 'nombre_apprenants',
+  IdEntiteFk: 'IdEntiteFk',
+  NomEntite: 'NomEntite'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -373,7 +381,8 @@ exports.Prisma.ModelName = {
   T_Paiement: 'T_Paiement',
   T_Presence: 'T_Presence',
   T_Salle: 'T_Salle',
-  T_Utilisateurs: 'T_Utilisateurs'
+  T_Utilisateurs: 'T_Utilisateurs',
+  VS_ApprenantAge: 'VS_ApprenantAge'
 };
 
 /**

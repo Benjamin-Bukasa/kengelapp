@@ -390,3 +390,6 @@ model T_Utilisateurs {
   @@index([PhoneUser], map: "idx_utilisateur_phone")
   @@index([IdRoleFk], map: "idx_utilisateur_role")
 }
+
+
+

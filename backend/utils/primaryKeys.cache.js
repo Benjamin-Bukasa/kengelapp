@@ -1,0 +1,21 @@
+module.exports = {
+  "T_ActiviteParticipants": "IdParticipant",
+  "T_ActivitesParascolaires": "IdActivite",
+  "T_Apprenant": "IdApprenant",
+  "T_Audit_Log": "IdLog",
+  "T_Caisse": "IdCaisse",
+  "T_CategorieGenerique": "IdCategorieGenerique",
+  "T_Communication": "IdCommunication",
+  "T_Cours": "IdCours",
+  "T_EmploisTemps": "IdEmploisTemps",
+  "T_Enseignant": "IdEnseignant",
+  "T_Entite": "IdEntite",
+  "T_Evaluations": "IdEvaluation",
+  "T_Generique": "IdGenerique",
+  "T_Licence": "IdLicence",
+  "T_Login": "IdLogin",
+  "T_Paiement": "IdPaiement",
+  "T_Presence": "IdPresence",
+  "T_Salle": "IdSalle",
+  "T_Utilisateurs": "IdUser"
+};

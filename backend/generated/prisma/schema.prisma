@@ -390,3 +390,14 @@ model T_Utilisateurs {
   @@index([PhoneUser], map: "idx_utilisateur_phone")
   @@index([IdRoleFk], map: "idx_utilisateur_role")
 }
+
+// LES VUES
+model VS_ApprenantAge {
+  fakeId            Int    @id @default(autoincrement()) @ignore
+  tranche_age       String
+  nombre_apprenants Int
+  IdEntiteFk        Int
+  NomEntite         String
+
+  @@map("VS_ApprenantAge")
+}

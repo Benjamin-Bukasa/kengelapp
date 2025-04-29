@@ -1,4 +1,5 @@
 //backend/utils/getPrismaModels.js
+// pour récupérer dynamiquement les modèles Prisma à partir du fichier schema.prisma
 const fs = require('fs');
 const path = require('path');
 
