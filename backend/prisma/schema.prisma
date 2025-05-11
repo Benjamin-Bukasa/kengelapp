@@ -185,7 +185,7 @@ model T_Entite {
   T_Licence                T_Licence[]
   T_Login                  T_Login[]
   T_Paiement               T_Paiement[]
-  T_Paiement_Archive       T_Paiement_Archive[]       @ignore
+  T_Paiement_Archive       T_Paiement_Archive[]
   T_Presence               T_Presence[]
   T_Salle                  T_Salle[]
   T_Utilisateurs           T_Utilisateurs[]
@@ -372,6 +372,7 @@ model T_Utilisateurs {
   Is_Admin                                                    Boolean           @default(false)
   T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs T_Apprenant[]     @relation("T_Apprenant_IdParentApprenantFkToT_Utilisateurs")
   T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs            T_Apprenant?      @relation("T_Apprenant_IdUserFkToT_Utilisateurs")
+  T_Chat                                                      T_Chat[]
   T_Communication                                             T_Communication[]
   T_Enseignant                                                T_Enseignant[]
   T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs       T_Evaluations[]   @relation("T_Evaluations_IdCibleFkToT_Utilisateurs")
@@ -391,5 +392,11 @@ model T_Utilisateurs {
   @@index([IdRoleFk], map: "idx_utilisateur_role")
 }
 
-
-
+model T_Chat {
+  IdChat         BigInt          @id @default(autoincrement())
+  TextChat       String?
+  ChatFile       String?
+  ChatLink       String?
+  AuthorIdFk     BigInt?
+  T_Utilisateurs T_Utilisateurs? @relation(fields: [AuthorIdFk], references: [IdUser], onUpdate: SetNull, map: "AuthorIdFk")
+}
