@@ -1,0 +1,386 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model T_ActiviteParticipants {
+  IdParticipant            Int                      @id @default(autoincrement())
+  IdActiviteFk             Int
+  IdApprenantFk            Int
+  DateInscription          DateTime?                @default(now()) @db.Timestamp(6)
+  IdEntiteFk               Int?
+  T_ActivitesParascolaires T_ActivitesParascolaires @relation(fields: [IdActiviteFk], references: [IdActivite], onDelete: Cascade, map: "Fk_IdActivite")
+  T_Apprenant              T_Apprenant              @relation(fields: [IdApprenantFk], references: [IdApprenant], onDelete: Cascade, map: "Fk_IdApprenant")
+  T_Entite                 T_Entite?                @relation(fields: [IdEntiteFk], references: [IdEntite], onDelete: Cascade, map: "Fk_IdEntite")
+}
+
+model T_ActivitesParascolaires {
+  IdActivite             Int                      @id @default(autoincrement())
+  NomActivite            String                   @db.VarChar(100)
+  DescriptionActivite    String?
+  DateActivite           DateTime                 @db.Date
+  HeureDebut             DateTime?                @db.Time(6)
+  HeureFin               DateTime?                @db.Time(6)
+  IdEncadrantFk          Int?
+  ValideActivite         Boolean?                 @default(true)
+  IdEntiteFk             Int?
+  T_ActiviteParticipants T_ActiviteParticipants[]
+  T_Enseignant           T_Enseignant?            @relation(fields: [IdEncadrantFk], references: [IdEnseignant], map: "Fk_IdEncadrant")
+  T_Entite               T_Entite?                @relation(fields: [IdEntiteFk], references: [IdEntite], onDelete: Cascade, map: "Fk_IdEntite")
+}
+
+model T_Apprenant {
+  IdApprenant                                                    Int                      @id(map: "Pk_IdApprenant") @unique(map: "idx_pk_apprenant") @default(autoincrement())
+  CodeApprenant                                                  String?                  @db.VarChar(25)
+  DateNaissanceApprenant                                         DateTime?                @db.Date
+  IdParentApprenantFk                                            Int?
+  IdUserFk                                                       Int?                     @unique(map: "T_Enseignes_IdUserFk_key")
+  ValideApprenant                                                Boolean                  @default(true)
+  AgeApprenant                                                   Int?
+  IdNiveauApprenantFk                                            Int?
+  IdEntiteFk                                                     Int?
+  T_ActiviteParticipants                                         T_ActiviteParticipants[]
+  T_Entite                                                       T_Entite?                @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_Utilisateurs T_Utilisateurs?          @relation("T_Apprenant_IdParentApprenantFkToT_Utilisateurs", fields: [IdParentApprenantFk], references: [IdUser], map: "Fk_IdParentApprenant")
+  T_Utilisateurs_T_Apprenant_IdUserFkToT_Utilisateurs            T_Utilisateurs?          @relation("T_Apprenant_IdUserFkToT_Utilisateurs", fields: [IdUserFk], references: [IdUser], map: "Fk_IdUser")
+  T_Generique                                                    T_Generique?             @relation(fields: [IdNiveauApprenantFk], references: [IdGenerique], map: "Fk_NiveauApprenant")
+
+  @@index([IdParentApprenantFk], map: "idx_fk_apprenant_parent")
+  @@index([IdUserFk], map: "idx_fk_apprenant_user")
+}
+
+model T_Audit_Log {
+  IdLog      Int       @id @default(autoincrement())
+  TableName  String?
+  Operation  String?
+  OldData    Json?
+  NewData    Json?
+  ChangedAt  DateTime? @default(now()) @db.Timestamp(6)
+  IdEntiteFk Int?
+  T_Entite   T_Entite? @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+
+  @@index([ChangedAt], map: "idx_audit_log_changed_at")
+  @@index([IdEntiteFk], map: "idx_audit_log_entite")
+}
+
+model T_Caisse {
+  IdCaisse      Int         @id @default(autoincrement())
+  IdDeviseFk    Int         @unique(map: "UQ_IdDeviseFk")
+  MontantCaisse Decimal?    @default(0) @db.Decimal(10, 2)
+  IdEntiteFk    Int?
+  T_Generique   T_Generique @relation(fields: [IdDeviseFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdDevise")
+  T_Entite      T_Entite?   @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+}
+
+model T_CategorieGenerique {
+  IdCategorieGenerique     Int           @id(map: "Pk_IdCategorieGenerique") @default(autoincrement())
+  NomCategorieGenerique    String        @db.VarChar(25)
+  ModuleCategorieGenerique String?       @db.VarChar(100)
+  ValideCategorieGenerique Boolean       @default(true)
+  T_Generique              T_Generique[]
+}
+
+model T_Communication {
+  IdCommunication      Int             @id(map: "Pk_IdCommunication") @default(autoincrement())
+  IdUserFk             Int?
+  IdTypeCommunication  Int?
+  ContenuCommunication String?
+  DateCommunication    DateTime        @default(now()) @db.Timestamp(6)
+  ObsCommunication     String?
+  ValideCommunication  Boolean         @default(true)
+  LectureCommunication Boolean         @default(false)
+  IdEntiteFk           Int?
+  T_Entite             T_Entite?       @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique          T_Generique?    @relation(fields: [IdTypeCommunication], references: [IdGenerique], map: "Fk_IdTypeCommunication")
+  T_Utilisateurs       T_Utilisateurs? @relation(fields: [IdUserFk], references: [IdUser], map: "Fk_IdUser")
+}
+
+model T_Cours {
+  IdCours                                          Int           @id(map: "Pk_IdCours") @default(autoincrement())
+  DescriptionCours                                 String?
+  IdEnseignantFk                                   Int?
+  ObsCours                                         String?
+  ValideCours                                      Boolean       @default(true)
+  PonderationCours                                 Int?
+  PointMax                                         Int
+  IdNiveauCoursFk                                  Int?
+  IdNomCoursFk                                     Int?
+  IdEntiteFk                                       Int?
+  T_Enseignant                                     T_Enseignant? @relation(fields: [IdEnseignantFk], references: [IdEnseignant], map: "Fk_IdEnseignant")
+  T_Entite                                         T_Entite?     @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique_T_Cours_IdNiveauCoursFkToT_Generique T_Generique?  @relation("T_Cours_IdNiveauCoursFkToT_Generique", fields: [IdNiveauCoursFk], references: [IdGenerique], map: "Fk_IdNiveauCours")
+  T_Generique_T_Cours_IdNomCoursFkToT_Generique    T_Generique?  @relation("T_Cours_IdNomCoursFkToT_Generique", fields: [IdNomCoursFk], references: [IdGenerique], map: "Fk_IdNomCours")
+
+  @@index([IdEnseignantFk], map: "idx_fk_cours_enseignant")
+}
+
+model T_EmploisTemps {
+  IdEmploisTemps                                       Int          @id(map: "Pk_IdEmploisTemps") @default(autoincrement())
+  IdNomCoursFk                                         Int?
+  JourSemaine                                          String?
+  HeureDebut                                           DateTime?    @db.Time(6)
+  HeureFin                                             DateTime?    @db.Time(6)
+  ObsEmploisTemps                                      String?
+  ValideEmploisTemps                                   Boolean?     @default(true)
+  IdNiveauFk                                           Int?
+  IdEntiteFk                                           Int?
+  T_Entite                                             T_Entite?    @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique_T_EmploisTemps_IdNiveauFkToT_Generique   T_Generique? @relation("T_EmploisTemps_IdNiveauFkToT_Generique", fields: [IdNiveauFk], references: [IdGenerique], map: "Fk_IdNiveau")
+  T_Generique_T_EmploisTemps_IdNomCoursFkToT_Generique T_Generique? @relation("T_EmploisTemps_IdNomCoursFkToT_Generique", fields: [IdNomCoursFk], references: [IdGenerique], map: "Fk_IdNomCours")
+
+  @@index([IdEntiteFk], map: "idx_fk_emplois_temps_entite")
+  @@index([IdNiveauFk], map: "idx_fk_emplois_temps_niveau")
+  @@index([IdNomCoursFk], map: "idx_fk_emplois_temps_nom_cours")
+}
+
+model T_Enseignant {
+  IdEnseignant                                                   Int                        @id(map: "Pk_Enseignant") @unique(map: "idx_pk_enseignant") @default(autoincrement())
+  IdUserFk                                                       Int?
+  IdSpecialiteEnseignantFk                                       Int?
+  SalaireEnseignant                                              Int?
+  DateEmbaucheEnseignant                                         DateTime?                  @db.Date
+  ValideEnseignant                                               Boolean                    @default(true)
+  CodeEnseignant                                                 String?                    @db.VarChar(25)
+  IdDeviseFk                                                     Int
+  IdEntiteFk                                                     Int?
+  T_ActivitesParascolaires                                       T_ActivitesParascolaires[]
+  T_Cours                                                        T_Cours[]
+  T_Generique_T_Enseignant_IdDeviseFkToT_Generique               T_Generique                @relation("T_Enseignant_IdDeviseFkToT_Generique", fields: [IdDeviseFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdDevise")
+  T_Entite                                                       T_Entite?                  @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Utilisateurs                                                 T_Utilisateurs?            @relation(fields: [IdUserFk], references: [IdUser], map: "Fk_IdUser")
+  T_Generique_T_Enseignant_IdSpecialiteEnseignantFkToT_Generique T_Generique?               @relation("T_Enseignant_IdSpecialiteEnseignantFkToT_Generique", fields: [IdSpecialiteEnseignantFk], references: [IdGenerique], map: "Fk_SpecialiteEnseignant")
+
+  @@index([IdUserFk], map: "idx_enseignant_nom")
+  @@index([IdSpecialiteEnseignantFk], map: "idx_enseignant_specialite")
+  @@index([IdUserFk], map: "idx_fk_enseignant_user")
+}
+
+model T_Entite {
+  IdEntite                 Int                        @id(map: "Pk_IdEntite") @default(autoincrement())
+  NomEntite                String
+  PhoneEntite              String?                    @unique
+  EmailEntite              String                     @unique @db.VarChar(255)
+  AdresseEntite            String?
+  DateCreationEntite       DateTime?                  @default(now()) @db.Timestamp(6)
+  IdTypeEntiteFk           Int?
+  ValideEntite             Boolean?                   @default(true)
+  T_ActiviteParticipants   T_ActiviteParticipants[]
+  T_ActivitesParascolaires T_ActivitesParascolaires[]
+  T_Apprenant              T_Apprenant[]
+  T_Audit_Log              T_Audit_Log[]
+  T_Caisse                 T_Caisse[]
+  T_Communication          T_Communication[]
+  T_Cours                  T_Cours[]
+  T_EmploisTemps           T_EmploisTemps[]
+  T_Enseignant             T_Enseignant[]
+  T_Generique              T_Generique?               @relation(fields: [IdTypeEntiteFk], references: [IdGenerique], map: "Fk_TypeEntite")
+  T_Evaluations            T_Evaluations[]
+  T_Licence                T_Licence[]
+  T_Login                  T_Login[]
+  T_Paiement               T_Paiement[]
+  T_Paiement_Archive       T_Paiement_Archive[]       @ignore
+  T_Presence               T_Presence[]
+  T_Salle                  T_Salle[]
+  T_Utilisateurs           T_Utilisateurs[]
+}
+
+model T_Evaluations {
+  IdEvaluation                                                Int             @id(map: "Pk_IdEvaluation") @default(autoincrement())
+  IdCibleFk                                                   Int?
+  IdEvaluateurFk                                              Int?
+  NoteEvaluation                                              Decimal?        @db.Decimal
+  ObsEvaluation                                               String?
+  DateEvaluation                                              DateTime?       @default(now()) @db.Timestamp(6)
+  IdTypeEvaluationFk                                          Int?
+  CodeEvaluation                                              String?
+  ValideEvaluation                                            Boolean         @default(true)
+  IdCoursFk                                                   Int?
+  MaxNoteEvaluation                                           Int?
+  IdEntiteFk                                                  Int?
+  T_Utilisateurs_T_Evaluations_IdCibleFkToT_Utilisateurs      T_Utilisateurs? @relation("T_Evaluations_IdCibleFkToT_Utilisateurs", fields: [IdCibleFk], references: [IdUser], map: "Fk_IdCibleFk")
+  T_Generique_T_Evaluations_IdCoursFkToT_Generique            T_Generique?    @relation("T_Evaluations_IdCoursFkToT_Generique", fields: [IdCoursFk], references: [IdGenerique], map: "Fk_IdCours")
+  T_Entite                                                    T_Entite?       @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_Utilisateurs T_Utilisateurs? @relation("T_Evaluations_IdEvaluateurFkToT_Utilisateurs", fields: [IdEvaluateurFk], references: [IdUser], map: "Fk_IdEvaluateur")
+  T_Generique_T_Evaluations_IdTypeEvaluationFkToT_Generique   T_Generique?    @relation("T_Evaluations_IdTypeEvaluationFkToT_Generique", fields: [IdTypeEvaluationFk], references: [IdGenerique], map: "Fk_IdTypeEvaluation")
+
+  @@index([DateEvaluation], map: "idx_evaluations_date")
+  @@index([IdTypeEvaluationFk], map: "idx_evaluations_type")
+  @@index([IdCibleFk], map: "idx_fk_evaluations_cible")
+  @@index([IdEvaluateurFk], map: "idx_fk_evaluations_evaluateur")
+}
+
+model T_Generique {
+  IdGenerique                                                     Int                   @id(map: "Pk_IdGenerique") @default(autoincrement())
+  NomGenerique                                                    String                @db.VarChar(25)
+  CodeGenerique                                                   String                @db.VarChar(25)
+  ObsGenerique                                                    String?               @db.VarChar
+  ValideGenerique                                                 Boolean               @default(true)
+  IdCategorieGeneriqueFk                                          Int?
+  T_Apprenant                                                     T_Apprenant[]
+  T_Caisse                                                        T_Caisse?
+  T_Communication                                                 T_Communication[]
+  T_Cours_T_Cours_IdNiveauCoursFkToT_Generique                    T_Cours[]             @relation("T_Cours_IdNiveauCoursFkToT_Generique")
+  T_Cours_T_Cours_IdNomCoursFkToT_Generique                       T_Cours[]             @relation("T_Cours_IdNomCoursFkToT_Generique")
+  T_EmploisTemps_T_EmploisTemps_IdNiveauFkToT_Generique           T_EmploisTemps[]      @relation("T_EmploisTemps_IdNiveauFkToT_Generique")
+  T_EmploisTemps_T_EmploisTemps_IdNomCoursFkToT_Generique         T_EmploisTemps[]      @relation("T_EmploisTemps_IdNomCoursFkToT_Generique")
+  T_Enseignant_T_Enseignant_IdDeviseFkToT_Generique               T_Enseignant[]        @relation("T_Enseignant_IdDeviseFkToT_Generique")
+  T_Enseignant_T_Enseignant_IdSpecialiteEnseignantFkToT_Generique T_Enseignant[]        @relation("T_Enseignant_IdSpecialiteEnseignantFkToT_Generique")
+  T_Entite                                                        T_Entite[]
+  T_Evaluations_T_Evaluations_IdCoursFkToT_Generique              T_Evaluations[]       @relation("T_Evaluations_IdCoursFkToT_Generique")
+  T_Evaluations_T_Evaluations_IdTypeEvaluationFkToT_Generique     T_Evaluations[]       @relation("T_Evaluations_IdTypeEvaluationFkToT_Generique")
+  T_CategorieGenerique                                            T_CategorieGenerique? @relation(fields: [IdCategorieGeneriqueFk], references: [IdCategorieGenerique], map: "Fk_IdCategorieGenerique")
+  T_Licence                                                       T_Licence[]
+  T_Login                                                         T_Login[]
+  T_Paiement_T_Paiement_IdDeviseFkToT_Generique                   T_Paiement[]          @relation("T_Paiement_IdDeviseFkToT_Generique")
+  T_Paiement_T_Paiement_IdStatutPaiementFkToT_Generique           T_Paiement[]          @relation("T_Paiement_IdStatutPaiementFkToT_Generique")
+  T_Paiement_T_Paiement_IdTypeMouvementFkToT_Generique            T_Paiement[]          @relation("T_Paiement_IdTypeMouvementFkToT_Generique")
+  T_Paiement_T_Paiement_IdTypePaiementFkToT_Generique             T_Paiement[]          @relation("T_Paiement_IdTypePaiementFkToT_Generique")
+  T_Presence                                                      T_Presence[]
+  T_Utilisateurs                                                  T_Utilisateurs[]
+}
+
+model T_Licence {
+  IdLicence         Int         @id(map: "Pk_IdLicence")
+  IdEntiteFk        Int
+  CleLicence        String?     @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  DateDebut         DateTime?   @default(now()) @db.Timestamp(6)
+  DateFin           DateTime    @db.Timestamp(6)
+  IdStatutLicenceFk Int
+  ValideLicence     Boolean?    @default(true)
+  ExpireeLicence    Boolean?    @default(false)
+  T_Entite          T_Entite    @relation(fields: [IdEntiteFk], references: [IdEntite], onDelete: SetDefault, map: "Fk_Entite")
+  T_Generique       T_Generique @relation(fields: [IdStatutLicenceFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_StatutLicence")
+
+  @@index([IdEntiteFk], map: "idx_fk_licence_entite")
+  @@index([IdStatutLicenceFk], map: "idx_fk_licence_statut")
+}
+
+model T_Login {
+  IdLogin        Int            @id(map: "Pk_IdLogin") @default(autoincrement())
+  IdUserFk       Int
+  IdTypeLoginFk  Int
+  DateLogin      DateTime       @default(now()) @db.Timestamptz(6)
+  IdEntiteFk     Int?
+  T_Entite       T_Entite?      @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique    T_Generique    @relation(fields: [IdTypeLoginFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdTypeLogin")
+  T_Utilisateurs T_Utilisateurs @relation(fields: [IdUserFk], references: [IdUser], onDelete: SetDefault, map: "Fk_IdUserFk")
+}
+
+model T_Paiement {
+  IdPaiement                                             Int             @id(map: "Pk_IdPaiement") @unique(map: "idx_pk_paiement") @default(autoincrement())
+  CodePaiement                                           String?         @db.Char(25)
+  IdUserFk                                               Int
+  IdTypePaiementFk                                       Int
+  MontantPaiement                                        Decimal         @db.Decimal(10, 2)
+  IdStatutPaiementFk                                     Int?
+  DatePaiement                                           DateTime?       @default(now()) @db.Timestamp(6)
+  ObsPaiement                                            String?
+  ValidePaiement                                         Boolean         @default(true)
+  IdDeviseFk                                             Int
+  IdPayeurFk                                             Int?
+  IdTypeMouvementFk                                      Int?
+  IdEntiteFk                                             Int?
+  T_Generique_T_Paiement_IdDeviseFkToT_Generique         T_Generique     @relation("T_Paiement_IdDeviseFkToT_Generique", fields: [IdDeviseFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdDevise")
+  T_Entite                                               T_Entite?       @relation(fields: [IdEntiteFk], references: [IdEntite], onDelete: Cascade, map: "Fk_IdEntite")
+  T_Utilisateurs_T_Paiement_IdPayeurFkToT_Utilisateurs   T_Utilisateurs? @relation("T_Paiement_IdPayeurFkToT_Utilisateurs", fields: [IdPayeurFk], references: [IdUser], map: "Fk_IdPayeurFk")
+  T_Generique_T_Paiement_IdStatutPaiementFkToT_Generique T_Generique?    @relation("T_Paiement_IdStatutPaiementFkToT_Generique", fields: [IdStatutPaiementFk], references: [IdGenerique], map: "Fk_IdStatut")
+  T_Generique_T_Paiement_IdTypeMouvementFkToT_Generique  T_Generique?    @relation("T_Paiement_IdTypeMouvementFkToT_Generique", fields: [IdTypeMouvementFk], references: [IdGenerique], map: "Fk_IdTypeMouvement")
+  T_Generique_T_Paiement_IdTypePaiementFkToT_Generique   T_Generique     @relation("T_Paiement_IdTypePaiementFkToT_Generique", fields: [IdTypePaiementFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdTypePaiement")
+  T_Utilisateurs_T_Paiement_IdUserFkToT_Utilisateurs     T_Utilisateurs  @relation("T_Paiement_IdUserFkToT_Utilisateurs", fields: [IdUserFk], references: [IdUser], onDelete: SetDefault, map: "Fk_IdUserFk")
+
+  @@index([IdStatutPaiementFk], map: "idx_fk_paiement_statut")
+  @@index([IdUserFk], map: "idx_fk_paiement_user")
+  @@index([DatePaiement], map: "idx_paiement_date")
+  @@index([IdDeviseFk], map: "idx_paiement_devise")
+  @@index([IdStatutPaiementFk], map: "idx_paiement_statut")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model T_Paiement_Archive {
+  IdPaiement         Int?
+  CodePaiement       String?   @db.Char(25)
+  IdUserFk           Int?
+  IdTypePaiementFk   Int?
+  MontantPaiement    Decimal?  @db.Decimal(10, 2)
+  IdStatutPaiementFk Int?
+  DatePaiement       DateTime? @db.Timestamp(6)
+  ObsPaiement        String?
+  ValidePaiement     Boolean?
+  IdDeviseFk         Int?
+  IdPayeurFk         Int?
+  IdTypeMouvementFk  Int?
+  DateArchivage      DateTime? @default(now()) @db.Timestamp(6)
+  IdEntiteFk         Int?
+  T_Entite           T_Entite? @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+
+  @@ignore
+}
+
+model T_Presence {
+  IdPresence                                               Int             @id(map: "Pk_IdPresence") @unique(map: "idx_pk_presence") @default(autoincrement())
+  IdControleurFk                                           Int?
+  IdControleFk                                             Int?
+  IdStatutPresenceFk                                       Int
+  DatePresence                                             DateTime        @db.Date
+  ValidePresence                                           Boolean         @default(true)
+  IdEntiteFk                                               Int?
+  T_Utilisateurs_T_Presence_IdControleFkToT_Utilisateurs   T_Utilisateurs? @relation("T_Presence_IdControleFkToT_Utilisateurs", fields: [IdControleFk], references: [IdUser], map: "Fk_IdControle")
+  T_Utilisateurs_T_Presence_IdControleurFkToT_Utilisateurs T_Utilisateurs? @relation("T_Presence_IdControleurFkToT_Utilisateurs", fields: [IdControleurFk], references: [IdUser], map: "Fk_IdControleur")
+  T_Entite                                                 T_Entite?       @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique                                              T_Generique     @relation(fields: [IdStatutPresenceFk], references: [IdGenerique], onDelete: SetDefault, map: "Fk_IdStatutPresence")
+
+  @@index([IdStatutPresenceFk], map: "idx_fk_presence_statut")
+  @@index([IdControleFk], map: "idx_fk_presence_user")
+  @@index([DatePresence], map: "idx_presence_date")
+  @@index([IdStatutPresenceFk], map: "idx_presence_statut")
+}
+
+model T_Salle {
+  IdSalle       Int       @id @default(autoincrement())
+  NomSalle      String    @db.VarChar(25)
+  CapaciteSalle Decimal   @db.Decimal
+  IdEntiteFk    Int?
+  T_Entite      T_Entite? @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+}
+
+model T_Utilisateurs {
+  IdUser                                                      Int               @id(map: "Pk_IdUser") @unique(map: "idx_pk_utilisateur") @default(autoincrement())
+  NomUser                                                     String            @db.VarChar(100)
+  PrenomUser                                                  String            @db.VarChar(100)
+  EmailUser                                                   String            @unique(map: "utilisateurs_emailuser_key") @db.VarChar(150)
+  MotdepasseUser                                              String
+  PhoneUser                                                   String?           @db.VarChar(20)
+  DatecreationUser                                            DateTime?         @default(now()) @db.Timestamp(6)
+  IdRoleFk                                                    Int?
+  ValideUser                                                  Boolean           @default(true)
+  SexeUser                                                    String            @db.Char(1)
+  DateModificationUser                                        DateTime          @default(now()) @db.Timestamp(6)
+  UrlPhoto                                                    String?
+  IdEntiteFk                                                  Int?
+  Is_staff                                                    Boolean           @default(false)
+  Is_Admin                                                    Boolean           @default(false)
+  T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs T_Apprenant[]     @relation("T_Apprenant_IdParentApprenantFkToT_Utilisateurs")
+  T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs            T_Apprenant?      @relation("T_Apprenant_IdUserFkToT_Utilisateurs")
+  T_Communication                                             T_Communication[]
+  T_Enseignant                                                T_Enseignant[]
+  T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs       T_Evaluations[]   @relation("T_Evaluations_IdCibleFkToT_Utilisateurs")
+  T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs  T_Evaluations[]   @relation("T_Evaluations_IdEvaluateurFkToT_Utilisateurs")
+  T_Login                                                     T_Login[]
+  T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs            T_Paiement[]      @relation("T_Paiement_IdPayeurFkToT_Utilisateurs")
+  T_Paiement_T_Paiement_IdUserFkToT_Utilisateurs              T_Paiement[]      @relation("T_Paiement_IdUserFkToT_Utilisateurs")
+  T_Presence_T_Presence_IdControleFkToT_Utilisateurs          T_Presence[]      @relation("T_Presence_IdControleFkToT_Utilisateurs")
+  T_Presence_T_Presence_IdControleurFkToT_Utilisateurs        T_Presence[]      @relation("T_Presence_IdControleurFkToT_Utilisateurs")
+  T_Entite                                                    T_Entite?         @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
+  T_Generique                                                 T_Generique?      @relation(fields: [IdRoleFk], references: [IdGenerique], map: "Fk_RoleFk")
+
+  @@index([IdRoleFk], map: "fki_Fk_RoleFk")
+  @@index([DatecreationUser], map: "idx_utilisateur_date_creation")
+  @@index([NomUser, PrenomUser], map: "idx_utilisateur_nom")
+  @@index([PhoneUser], map: "idx_utilisateur_phone")
+  @@index([IdRoleFk], map: "idx_utilisateur_role")
+}
