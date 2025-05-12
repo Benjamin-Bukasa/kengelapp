@@ -34,7 +34,7 @@ export function DonutChart() {
   }, [])
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col h-full">
       <CardHeader className="items-center pb-0">
         <CardTitle>Répartitions</CardTitle>
         <CardDescription>Janvier - Juin 2024</CardDescription>
