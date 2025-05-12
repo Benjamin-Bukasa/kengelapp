@@ -85,6 +85,15 @@ model T_CategorieGenerique {
   T_Generique              T_Generique[]
 }
 
+model T_Chat {
+  IdChat         Int             @id @default(autoincrement())
+  TextChat       String?
+  ChatFile       String?
+  ChatLink       String?
+  AuthorIdFk     Int?
+  T_Utilisateurs T_Utilisateurs? @relation(fields: [AuthorIdFk], references: [IdUser], onUpdate: SetNull, map: "AuthorIdFk")
+}
+
 model T_Communication {
   IdCommunication      Int             @id(map: "Pk_IdCommunication") @default(autoincrement())
   IdUserFk             Int?
@@ -185,7 +194,7 @@ model T_Entite {
   T_Licence                T_Licence[]
   T_Login                  T_Login[]
   T_Paiement               T_Paiement[]
-  T_Paiement_Archive       T_Paiement_Archive[]       @ignore
+  T_Paiement_Archive       T_Paiement_Archive[]
   T_Presence               T_Presence[]
   T_Salle                  T_Salle[]
   T_Utilisateurs           T_Utilisateurs[]
@@ -305,7 +314,6 @@ model T_Paiement {
   @@index([IdStatutPaiementFk], map: "idx_paiement_statut")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model T_Paiement_Archive {
   IdPaiement         Int?
   CodePaiement       String?   @db.Char(25)
@@ -321,9 +329,8 @@ model T_Paiement_Archive {
   IdTypeMouvementFk  Int?
   DateArchivage      DateTime? @default(now()) @db.Timestamp(6)
   IdEntiteFk         Int?
+  IdPaiementArchive  Int       @id @default(autoincrement())
   T_Entite           T_Entite? @relation(fields: [IdEntiteFk], references: [IdEntite], map: "Fk_IdEntite")
-
-  @@ignore
 }
 
 model T_Presence {
@@ -372,6 +379,7 @@ model T_Utilisateurs {
   Is_Admin                                                    Boolean           @default(false)
   T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs T_Apprenant[]     @relation("T_Apprenant_IdParentApprenantFkToT_Utilisateurs")
   T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs            T_Apprenant?      @relation("T_Apprenant_IdUserFkToT_Utilisateurs")
+  T_Chat                                                      T_Chat[]
   T_Communication                                             T_Communication[]
   T_Enseignant                                                T_Enseignant[]
   T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs       T_Evaluations[]   @relation("T_Evaluations_IdCibleFkToT_Utilisateurs")
@@ -389,15 +397,4 @@ model T_Utilisateurs {
   @@index([NomUser, PrenomUser], map: "idx_utilisateur_nom")
   @@index([PhoneUser], map: "idx_utilisateur_phone")
   @@index([IdRoleFk], map: "idx_utilisateur_role")
-}
-
-// LES VUES
-model VS_ApprenantAge {
-  fakeId            Int    @id @default(autoincrement()) @ignore
-  tranche_age       String
-  nombre_apprenants Int
-  IdEntiteFk        Int
-  NomEntite         String
-
-  @@map("VS_ApprenantAge")
 }

@@ -173,6 +173,14 @@ exports.Prisma.T_CategorieGeneriqueScalarFieldEnum = {
   ValideCategorieGenerique: 'ValideCategorieGenerique'
 };
 
+exports.Prisma.T_ChatScalarFieldEnum = {
+  IdChat: 'IdChat',
+  TextChat: 'TextChat',
+  ChatFile: 'ChatFile',
+  ChatLink: 'ChatLink',
+  AuthorIdFk: 'AuthorIdFk'
+};
+
 exports.Prisma.T_CommunicationScalarFieldEnum = {
   IdCommunication: 'IdCommunication',
   IdUserFk: 'IdUserFk',
@@ -292,6 +300,24 @@ exports.Prisma.T_PaiementScalarFieldEnum = {
   IdEntiteFk: 'IdEntiteFk'
 };
 
+exports.Prisma.T_Paiement_ArchiveScalarFieldEnum = {
+  IdPaiement: 'IdPaiement',
+  CodePaiement: 'CodePaiement',
+  IdUserFk: 'IdUserFk',
+  IdTypePaiementFk: 'IdTypePaiementFk',
+  MontantPaiement: 'MontantPaiement',
+  IdStatutPaiementFk: 'IdStatutPaiementFk',
+  DatePaiement: 'DatePaiement',
+  ObsPaiement: 'ObsPaiement',
+  ValidePaiement: 'ValidePaiement',
+  IdDeviseFk: 'IdDeviseFk',
+  IdPayeurFk: 'IdPayeurFk',
+  IdTypeMouvementFk: 'IdTypeMouvementFk',
+  DateArchivage: 'DateArchivage',
+  IdEntiteFk: 'IdEntiteFk',
+  IdPaiementArchive: 'IdPaiementArchive'
+};
+
 exports.Prisma.T_PresenceScalarFieldEnum = {
   IdPresence: 'IdPresence',
   IdControleurFk: 'IdControleurFk',
@@ -325,14 +351,6 @@ exports.Prisma.T_UtilisateursScalarFieldEnum = {
   IdEntiteFk: 'IdEntiteFk',
   Is_staff: 'Is_staff',
   Is_Admin: 'Is_Admin'
-};
-
-exports.Prisma.VS_ApprenantAgeScalarFieldEnum = {
-  fakeId: 'fakeId',
-  tranche_age: 'tranche_age',
-  nombre_apprenants: 'nombre_apprenants',
-  IdEntiteFk: 'IdEntiteFk',
-  NomEntite: 'NomEntite'
 };
 
 exports.Prisma.SortOrder = {
@@ -369,6 +387,7 @@ exports.Prisma.ModelName = {
   T_Audit_Log: 'T_Audit_Log',
   T_Caisse: 'T_Caisse',
   T_CategorieGenerique: 'T_CategorieGenerique',
+  T_Chat: 'T_Chat',
   T_Communication: 'T_Communication',
   T_Cours: 'T_Cours',
   T_EmploisTemps: 'T_EmploisTemps',
@@ -379,10 +398,10 @@ exports.Prisma.ModelName = {
   T_Licence: 'T_Licence',
   T_Login: 'T_Login',
   T_Paiement: 'T_Paiement',
+  T_Paiement_Archive: 'T_Paiement_Archive',
   T_Presence: 'T_Presence',
   T_Salle: 'T_Salle',
-  T_Utilisateurs: 'T_Utilisateurs',
-  VS_ApprenantAge: 'VS_ApprenantAge'
+  T_Utilisateurs: 'T_Utilisateurs'
 };
 
 /**

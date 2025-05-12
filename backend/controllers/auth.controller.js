@@ -1,42 +1,48 @@
+// Backend/controllers/auth.controller.js
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const {PrismaClient} = require('../generated/prisma');
 const prisma = new PrismaClient();
-const {createToken} = require('../utils/jwt');
+const { createToken, createRefreshToken, verifyTokenJWT } = require('../utils/jwt');
+
+
 // Function to login a user
 
 const login = async (req, res) => {
-    const { EmailUser, MotdepasseUser } = req.body;
-  
-    try {
-      const user = await prisma.t_Utilisateurs.findUnique({
-        where: { EmailUser }
-      });
-  
-      if (!user) {
-        return res.status(404).json({ message: "Adresse email ou mot de passe incorrect" });
+  const { EmailUser, MotdepasseUser } = req.body;
+
+  try {
+    const user = await prisma.t_Utilisateurs.findUnique({ where: { EmailUser } });
+    if (!user) return res.status(404).json({ message: "Adresse email ou mot de passe incorrect" });
+
+    const isValid = await bcrypt.compare(MotdepasseUser, user.MotdepasseUser);
+    if (!isValid) return res.status(401).json({ message: "Mot de passe incorrect" });
+
+    const accessToken = createToken(user.IdUser);
+    const refreshToken = createRefreshToken(user.IdUser);
+
+    await prisma.t_Utilisateurs.update({
+      where: { IdUser: user.IdUser },
+      data: { RefreshToken: refreshToken }
+    });
+
+    res.status(200).json({
+      accessToken,
+      refreshToken,
+      user: {
+        id: user.IdUser,
+        nom: user.NomUser,
+        prenom: user.PrenomUser,
+        email: user.EmailUser
       }
-  
-      const isValid = await bcrypt.compare(MotdepasseUser, user.MotdepasseUser);
-      if (!isValid) {
-        return res.status(401).json({ message: "Mot de passe incorrect" });
-      }
-  
-      const token = createToken(user.IdUser); 
-      res.status(200).json({
-        token,
-        user: {
-          id: user.IdUser,
-          nom: user.NomUser,
-          prenom: user.PrenomUser,
-          email: user.EmailUser
-        }
-      });
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  };
-  
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
 
   // Function to register a new user
 const register = async (req, res) => {
@@ -91,6 +97,52 @@ const currentUser = async (req, res) => {
     }
   }
 
+// refresh token
+const refresh = async (req, res) => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) return res.status(400).json({ message: "Token requis" });
+
+  try {
+    const decoded = verifyTokenJWT(refreshToken);
+    const user = await prisma.t_Utilisateurs.findUnique({
+      where: { IdUser: decoded.userId }
+    });
+
+    if (!user || user.RefreshToken !== refreshToken) {
+      return res.status(403).json({ message: "Token invalide" });
+    }
+
+    const newAccessToken = createToken(user.IdUser);
+    const newRefreshToken = createRefreshToken(user.IdUser);
+
+    await prisma.t_Utilisateurs.update({
+      where: { IdUser: user.IdUser },
+      data: { RefreshToken: newRefreshToken }
+    });
+
+    res.status(200).json({
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken
+    });
+
+  } catch (err) {
+    res.status(403).json({ message: "Token invalide ou expiré" });
+  }
+}
+
+// Logout function
+const logout = async (req, res) => {
+  const userId = req.userId;
+  try {
+    await prisma.t_Utilisateurs.update({
+      where: { IdUser: userId },
+      data: { RefreshToken: null }
+    });
+    res.status(200).json({ message: "Déconnexion réussie" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 // Export the functions
-module.exports = { login, register, currentUser }
+module.exports = { login, register, currentUser, refresh, logout }

@@ -44,6 +44,11 @@ export type T_Caisse = $Result.DefaultSelection<Prisma.$T_CaissePayload>
  */
 export type T_CategorieGenerique = $Result.DefaultSelection<Prisma.$T_CategorieGeneriquePayload>
 /**
+ * Model T_Chat
+ * 
+ */
+export type T_Chat = $Result.DefaultSelection<Prisma.$T_ChatPayload>
+/**
  * Model T_Communication
  * 
  */
@@ -94,6 +99,11 @@ export type T_Login = $Result.DefaultSelection<Prisma.$T_LoginPayload>
  */
 export type T_Paiement = $Result.DefaultSelection<Prisma.$T_PaiementPayload>
 /**
+ * Model T_Paiement_Archive
+ * 
+ */
+export type T_Paiement_Archive = $Result.DefaultSelection<Prisma.$T_Paiement_ArchivePayload>
+/**
  * Model T_Presence
  * 
  */
@@ -108,11 +118,6 @@ export type T_Salle = $Result.DefaultSelection<Prisma.$T_SallePayload>
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type T_Utilisateurs = $Result.DefaultSelection<Prisma.$T_UtilisateursPayload>
-/**
- * Model VS_ApprenantAge
- * 
- */
-export type VS_ApprenantAge = $Result.DefaultSelection<Prisma.$VS_ApprenantAgePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -300,6 +305,16 @@ export class PrismaClient<
   get t_CategorieGenerique(): Prisma.T_CategorieGeneriqueDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.t_Chat`: Exposes CRUD operations for the **T_Chat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more T_Chats
+    * const t_Chats = await prisma.t_Chat.findMany()
+    * ```
+    */
+  get t_Chat(): Prisma.T_ChatDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.t_Communication`: Exposes CRUD operations for the **T_Communication** model.
     * Example usage:
     * ```ts
@@ -400,6 +415,16 @@ export class PrismaClient<
   get t_Paiement(): Prisma.T_PaiementDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.t_Paiement_Archive`: Exposes CRUD operations for the **T_Paiement_Archive** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more T_Paiement_Archives
+    * const t_Paiement_Archives = await prisma.t_Paiement_Archive.findMany()
+    * ```
+    */
+  get t_Paiement_Archive(): Prisma.T_Paiement_ArchiveDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.t_Presence`: Exposes CRUD operations for the **T_Presence** model.
     * Example usage:
     * ```ts
@@ -428,16 +453,6 @@ export class PrismaClient<
     * ```
     */
   get t_Utilisateurs(): Prisma.T_UtilisateursDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.vS_ApprenantAge`: Exposes CRUD operations for the **VS_ApprenantAge** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more VS_ApprenantAges
-    * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany()
-    * ```
-    */
-  get vS_ApprenantAge(): Prisma.VS_ApprenantAgeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -884,6 +899,7 @@ export namespace Prisma {
     T_Audit_Log: 'T_Audit_Log',
     T_Caisse: 'T_Caisse',
     T_CategorieGenerique: 'T_CategorieGenerique',
+    T_Chat: 'T_Chat',
     T_Communication: 'T_Communication',
     T_Cours: 'T_Cours',
     T_EmploisTemps: 'T_EmploisTemps',
@@ -894,10 +910,10 @@ export namespace Prisma {
     T_Licence: 'T_Licence',
     T_Login: 'T_Login',
     T_Paiement: 'T_Paiement',
+    T_Paiement_Archive: 'T_Paiement_Archive',
     T_Presence: 'T_Presence',
     T_Salle: 'T_Salle',
-    T_Utilisateurs: 'T_Utilisateurs',
-    VS_ApprenantAge: 'VS_ApprenantAge'
+    T_Utilisateurs: 'T_Utilisateurs'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -916,7 +932,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "t_ActiviteParticipants" | "t_ActivitesParascolaires" | "t_Apprenant" | "t_Audit_Log" | "t_Caisse" | "t_CategorieGenerique" | "t_Communication" | "t_Cours" | "t_EmploisTemps" | "t_Enseignant" | "t_Entite" | "t_Evaluations" | "t_Generique" | "t_Licence" | "t_Login" | "t_Paiement" | "t_Presence" | "t_Salle" | "t_Utilisateurs" | "vS_ApprenantAge"
+      modelProps: "t_ActiviteParticipants" | "t_ActivitesParascolaires" | "t_Apprenant" | "t_Audit_Log" | "t_Caisse" | "t_CategorieGenerique" | "t_Chat" | "t_Communication" | "t_Cours" | "t_EmploisTemps" | "t_Enseignant" | "t_Entite" | "t_Evaluations" | "t_Generique" | "t_Licence" | "t_Login" | "t_Paiement" | "t_Paiement_Archive" | "t_Presence" | "t_Salle" | "t_Utilisateurs"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1361,6 +1377,80 @@ export namespace Prisma {
           count: {
             args: Prisma.T_CategorieGeneriqueCountArgs<ExtArgs>
             result: $Utils.Optional<T_CategorieGeneriqueCountAggregateOutputType> | number
+          }
+        }
+      }
+      T_Chat: {
+        payload: Prisma.$T_ChatPayload<ExtArgs>
+        fields: Prisma.T_ChatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.T_ChatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.T_ChatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          findFirst: {
+            args: Prisma.T_ChatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.T_ChatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          findMany: {
+            args: Prisma.T_ChatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>[]
+          }
+          create: {
+            args: Prisma.T_ChatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          createMany: {
+            args: Prisma.T_ChatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.T_ChatCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>[]
+          }
+          delete: {
+            args: Prisma.T_ChatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          update: {
+            args: Prisma.T_ChatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          deleteMany: {
+            args: Prisma.T_ChatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.T_ChatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.T_ChatUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>[]
+          }
+          upsert: {
+            args: Prisma.T_ChatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_ChatPayload>
+          }
+          aggregate: {
+            args: Prisma.T_ChatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateT_Chat>
+          }
+          groupBy: {
+            args: Prisma.T_ChatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<T_ChatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.T_ChatCountArgs<ExtArgs>
+            result: $Utils.Optional<T_ChatCountAggregateOutputType> | number
           }
         }
       }
@@ -2104,6 +2194,80 @@ export namespace Prisma {
           }
         }
       }
+      T_Paiement_Archive: {
+        payload: Prisma.$T_Paiement_ArchivePayload<ExtArgs>
+        fields: Prisma.T_Paiement_ArchiveFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.T_Paiement_ArchiveFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.T_Paiement_ArchiveFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          findFirst: {
+            args: Prisma.T_Paiement_ArchiveFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.T_Paiement_ArchiveFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          findMany: {
+            args: Prisma.T_Paiement_ArchiveFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>[]
+          }
+          create: {
+            args: Prisma.T_Paiement_ArchiveCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          createMany: {
+            args: Prisma.T_Paiement_ArchiveCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.T_Paiement_ArchiveCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>[]
+          }
+          delete: {
+            args: Prisma.T_Paiement_ArchiveDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          update: {
+            args: Prisma.T_Paiement_ArchiveUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          deleteMany: {
+            args: Prisma.T_Paiement_ArchiveDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.T_Paiement_ArchiveUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.T_Paiement_ArchiveUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>[]
+          }
+          upsert: {
+            args: Prisma.T_Paiement_ArchiveUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$T_Paiement_ArchivePayload>
+          }
+          aggregate: {
+            args: Prisma.T_Paiement_ArchiveAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateT_Paiement_Archive>
+          }
+          groupBy: {
+            args: Prisma.T_Paiement_ArchiveGroupByArgs<ExtArgs>
+            result: $Utils.Optional<T_Paiement_ArchiveGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.T_Paiement_ArchiveCountArgs<ExtArgs>
+            result: $Utils.Optional<T_Paiement_ArchiveCountAggregateOutputType> | number
+          }
+        }
+      }
       T_Presence: {
         payload: Prisma.$T_PresencePayload<ExtArgs>
         fields: Prisma.T_PresenceFieldRefs
@@ -2326,80 +2490,6 @@ export namespace Prisma {
           }
         }
       }
-      VS_ApprenantAge: {
-        payload: Prisma.$VS_ApprenantAgePayload<ExtArgs>
-        fields: Prisma.VS_ApprenantAgeFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.VS_ApprenantAgeFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          findFirst: {
-            args: Prisma.VS_ApprenantAgeFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          findMany: {
-            args: Prisma.VS_ApprenantAgeFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
-          }
-          create: {
-            args: Prisma.VS_ApprenantAgeCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          createMany: {
-            args: Prisma.VS_ApprenantAgeCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
-          }
-          delete: {
-            args: Prisma.VS_ApprenantAgeDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          update: {
-            args: Prisma.VS_ApprenantAgeUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          deleteMany: {
-            args: Prisma.VS_ApprenantAgeDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.VS_ApprenantAgeUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>[]
-          }
-          upsert: {
-            args: Prisma.VS_ApprenantAgeUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VS_ApprenantAgePayload>
-          }
-          aggregate: {
-            args: Prisma.VS_ApprenantAgeAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVS_ApprenantAge>
-          }
-          groupBy: {
-            args: Prisma.VS_ApprenantAgeGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VS_ApprenantAgeGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.VS_ApprenantAgeCountArgs<ExtArgs>
-            result: $Utils.Optional<VS_ApprenantAgeCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -2490,6 +2580,7 @@ export namespace Prisma {
     t_Audit_Log?: T_Audit_LogOmit
     t_Caisse?: T_CaisseOmit
     t_CategorieGenerique?: T_CategorieGeneriqueOmit
+    t_Chat?: T_ChatOmit
     t_Communication?: T_CommunicationOmit
     t_Cours?: T_CoursOmit
     t_EmploisTemps?: T_EmploisTempsOmit
@@ -2500,10 +2591,10 @@ export namespace Prisma {
     t_Licence?: T_LicenceOmit
     t_Login?: T_LoginOmit
     t_Paiement?: T_PaiementOmit
+    t_Paiement_Archive?: T_Paiement_ArchiveOmit
     t_Presence?: T_PresenceOmit
     t_Salle?: T_SalleOmit
     t_Utilisateurs?: T_UtilisateursOmit
-    vS_ApprenantAge?: VS_ApprenantAgeOmit
   }
 
   /* Types for Logging */
@@ -2744,6 +2835,7 @@ export namespace Prisma {
     T_Licence: number
     T_Login: number
     T_Paiement: number
+    T_Paiement_Archive: number
     T_Presence: number
     T_Salle: number
     T_Utilisateurs: number
@@ -2763,6 +2855,7 @@ export namespace Prisma {
     T_Licence?: boolean | T_EntiteCountOutputTypeCountT_LicenceArgs
     T_Login?: boolean | T_EntiteCountOutputTypeCountT_LoginArgs
     T_Paiement?: boolean | T_EntiteCountOutputTypeCountT_PaiementArgs
+    T_Paiement_Archive?: boolean | T_EntiteCountOutputTypeCountT_Paiement_ArchiveArgs
     T_Presence?: boolean | T_EntiteCountOutputTypeCountT_PresenceArgs
     T_Salle?: boolean | T_EntiteCountOutputTypeCountT_SalleArgs
     T_Utilisateurs?: boolean | T_EntiteCountOutputTypeCountT_UtilisateursArgs
@@ -2868,6 +2961,13 @@ export namespace Prisma {
    */
   export type T_EntiteCountOutputTypeCountT_PaiementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: T_PaiementWhereInput
+  }
+
+  /**
+   * T_EntiteCountOutputType without action
+   */
+  export type T_EntiteCountOutputTypeCountT_Paiement_ArchiveArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: T_Paiement_ArchiveWhereInput
   }
 
   /**
@@ -3091,6 +3191,7 @@ export namespace Prisma {
 
   export type T_UtilisateursCountOutputType = {
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs: number
+    T_Chat: number
     T_Communication: number
     T_Enseignant: number
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs: number
@@ -3104,6 +3205,7 @@ export namespace Prisma {
 
   export type T_UtilisateursCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: boolean | T_UtilisateursCountOutputTypeCountT_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs
+    T_Chat?: boolean | T_UtilisateursCountOutputTypeCountT_ChatArgs
     T_Communication?: boolean | T_UtilisateursCountOutputTypeCountT_CommunicationArgs
     T_Enseignant?: boolean | T_UtilisateursCountOutputTypeCountT_EnseignantArgs
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: boolean | T_UtilisateursCountOutputTypeCountT_Evaluations_T_Evaluations_IdCibleFkToT_UtilisateursArgs
@@ -3131,6 +3233,13 @@ export namespace Prisma {
    */
   export type T_UtilisateursCountOutputTypeCountT_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: T_ApprenantWhereInput
+  }
+
+  /**
+   * T_UtilisateursCountOutputType without action
+   */
+  export type T_UtilisateursCountOutputTypeCountT_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: T_ChatWhereInput
   }
 
   /**
@@ -10205,6 +10314,1121 @@ export namespace Prisma {
 
 
   /**
+   * Model T_Chat
+   */
+
+  export type AggregateT_Chat = {
+    _count: T_ChatCountAggregateOutputType | null
+    _avg: T_ChatAvgAggregateOutputType | null
+    _sum: T_ChatSumAggregateOutputType | null
+    _min: T_ChatMinAggregateOutputType | null
+    _max: T_ChatMaxAggregateOutputType | null
+  }
+
+  export type T_ChatAvgAggregateOutputType = {
+    IdChat: number | null
+    AuthorIdFk: number | null
+  }
+
+  export type T_ChatSumAggregateOutputType = {
+    IdChat: number | null
+    AuthorIdFk: number | null
+  }
+
+  export type T_ChatMinAggregateOutputType = {
+    IdChat: number | null
+    TextChat: string | null
+    ChatFile: string | null
+    ChatLink: string | null
+    AuthorIdFk: number | null
+  }
+
+  export type T_ChatMaxAggregateOutputType = {
+    IdChat: number | null
+    TextChat: string | null
+    ChatFile: string | null
+    ChatLink: string | null
+    AuthorIdFk: number | null
+  }
+
+  export type T_ChatCountAggregateOutputType = {
+    IdChat: number
+    TextChat: number
+    ChatFile: number
+    ChatLink: number
+    AuthorIdFk: number
+    _all: number
+  }
+
+
+  export type T_ChatAvgAggregateInputType = {
+    IdChat?: true
+    AuthorIdFk?: true
+  }
+
+  export type T_ChatSumAggregateInputType = {
+    IdChat?: true
+    AuthorIdFk?: true
+  }
+
+  export type T_ChatMinAggregateInputType = {
+    IdChat?: true
+    TextChat?: true
+    ChatFile?: true
+    ChatLink?: true
+    AuthorIdFk?: true
+  }
+
+  export type T_ChatMaxAggregateInputType = {
+    IdChat?: true
+    TextChat?: true
+    ChatFile?: true
+    ChatLink?: true
+    AuthorIdFk?: true
+  }
+
+  export type T_ChatCountAggregateInputType = {
+    IdChat?: true
+    TextChat?: true
+    ChatFile?: true
+    ChatLink?: true
+    AuthorIdFk?: true
+    _all?: true
+  }
+
+  export type T_ChatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which T_Chat to aggregate.
+     */
+    where?: T_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Chats to fetch.
+     */
+    orderBy?: T_ChatOrderByWithRelationInput | T_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: T_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned T_Chats
+    **/
+    _count?: true | T_ChatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: T_ChatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: T_ChatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: T_ChatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: T_ChatMaxAggregateInputType
+  }
+
+  export type GetT_ChatAggregateType<T extends T_ChatAggregateArgs> = {
+        [P in keyof T & keyof AggregateT_Chat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateT_Chat[P]>
+      : GetScalarType<T[P], AggregateT_Chat[P]>
+  }
+
+
+
+
+  export type T_ChatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: T_ChatWhereInput
+    orderBy?: T_ChatOrderByWithAggregationInput | T_ChatOrderByWithAggregationInput[]
+    by: T_ChatScalarFieldEnum[] | T_ChatScalarFieldEnum
+    having?: T_ChatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: T_ChatCountAggregateInputType | true
+    _avg?: T_ChatAvgAggregateInputType
+    _sum?: T_ChatSumAggregateInputType
+    _min?: T_ChatMinAggregateInputType
+    _max?: T_ChatMaxAggregateInputType
+  }
+
+  export type T_ChatGroupByOutputType = {
+    IdChat: number
+    TextChat: string | null
+    ChatFile: string | null
+    ChatLink: string | null
+    AuthorIdFk: number | null
+    _count: T_ChatCountAggregateOutputType | null
+    _avg: T_ChatAvgAggregateOutputType | null
+    _sum: T_ChatSumAggregateOutputType | null
+    _min: T_ChatMinAggregateOutputType | null
+    _max: T_ChatMaxAggregateOutputType | null
+  }
+
+  type GetT_ChatGroupByPayload<T extends T_ChatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<T_ChatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof T_ChatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], T_ChatGroupByOutputType[P]>
+            : GetScalarType<T[P], T_ChatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type T_ChatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdChat?: boolean
+    TextChat?: boolean
+    ChatFile?: boolean
+    ChatLink?: boolean
+    AuthorIdFk?: boolean
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Chat"]>
+
+  export type T_ChatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdChat?: boolean
+    TextChat?: boolean
+    ChatFile?: boolean
+    ChatLink?: boolean
+    AuthorIdFk?: boolean
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Chat"]>
+
+  export type T_ChatSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdChat?: boolean
+    TextChat?: boolean
+    ChatFile?: boolean
+    ChatLink?: boolean
+    AuthorIdFk?: boolean
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Chat"]>
+
+  export type T_ChatSelectScalar = {
+    IdChat?: boolean
+    TextChat?: boolean
+    ChatFile?: boolean
+    ChatLink?: boolean
+    AuthorIdFk?: boolean
+  }
+
+  export type T_ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"IdChat" | "TextChat" | "ChatFile" | "ChatLink" | "AuthorIdFk", ExtArgs["result"]["t_Chat"]>
+  export type T_ChatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }
+  export type T_ChatIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }
+  export type T_ChatIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Utilisateurs?: boolean | T_Chat$T_UtilisateursArgs<ExtArgs>
+  }
+
+  export type $T_ChatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "T_Chat"
+    objects: {
+      T_Utilisateurs: Prisma.$T_UtilisateursPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      IdChat: number
+      TextChat: string | null
+      ChatFile: string | null
+      ChatLink: string | null
+      AuthorIdFk: number | null
+    }, ExtArgs["result"]["t_Chat"]>
+    composites: {}
+  }
+
+  type T_ChatGetPayload<S extends boolean | null | undefined | T_ChatDefaultArgs> = $Result.GetResult<Prisma.$T_ChatPayload, S>
+
+  type T_ChatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<T_ChatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: T_ChatCountAggregateInputType | true
+    }
+
+  export interface T_ChatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['T_Chat'], meta: { name: 'T_Chat' } }
+    /**
+     * Find zero or one T_Chat that matches the filter.
+     * @param {T_ChatFindUniqueArgs} args - Arguments to find a T_Chat
+     * @example
+     * // Get one T_Chat
+     * const t_Chat = await prisma.t_Chat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends T_ChatFindUniqueArgs>(args: SelectSubset<T, T_ChatFindUniqueArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one T_Chat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {T_ChatFindUniqueOrThrowArgs} args - Arguments to find a T_Chat
+     * @example
+     * // Get one T_Chat
+     * const t_Chat = await prisma.t_Chat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends T_ChatFindUniqueOrThrowArgs>(args: SelectSubset<T, T_ChatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first T_Chat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatFindFirstArgs} args - Arguments to find a T_Chat
+     * @example
+     * // Get one T_Chat
+     * const t_Chat = await prisma.t_Chat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends T_ChatFindFirstArgs>(args?: SelectSubset<T, T_ChatFindFirstArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first T_Chat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatFindFirstOrThrowArgs} args - Arguments to find a T_Chat
+     * @example
+     * // Get one T_Chat
+     * const t_Chat = await prisma.t_Chat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends T_ChatFindFirstOrThrowArgs>(args?: SelectSubset<T, T_ChatFindFirstOrThrowArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more T_Chats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all T_Chats
+     * const t_Chats = await prisma.t_Chat.findMany()
+     * 
+     * // Get first 10 T_Chats
+     * const t_Chats = await prisma.t_Chat.findMany({ take: 10 })
+     * 
+     * // Only select the `IdChat`
+     * const t_ChatWithIdChatOnly = await prisma.t_Chat.findMany({ select: { IdChat: true } })
+     * 
+     */
+    findMany<T extends T_ChatFindManyArgs>(args?: SelectSubset<T, T_ChatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a T_Chat.
+     * @param {T_ChatCreateArgs} args - Arguments to create a T_Chat.
+     * @example
+     * // Create one T_Chat
+     * const T_Chat = await prisma.t_Chat.create({
+     *   data: {
+     *     // ... data to create a T_Chat
+     *   }
+     * })
+     * 
+     */
+    create<T extends T_ChatCreateArgs>(args: SelectSubset<T, T_ChatCreateArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many T_Chats.
+     * @param {T_ChatCreateManyArgs} args - Arguments to create many T_Chats.
+     * @example
+     * // Create many T_Chats
+     * const t_Chat = await prisma.t_Chat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends T_ChatCreateManyArgs>(args?: SelectSubset<T, T_ChatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many T_Chats and returns the data saved in the database.
+     * @param {T_ChatCreateManyAndReturnArgs} args - Arguments to create many T_Chats.
+     * @example
+     * // Create many T_Chats
+     * const t_Chat = await prisma.t_Chat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many T_Chats and only return the `IdChat`
+     * const t_ChatWithIdChatOnly = await prisma.t_Chat.createManyAndReturn({
+     *   select: { IdChat: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends T_ChatCreateManyAndReturnArgs>(args?: SelectSubset<T, T_ChatCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a T_Chat.
+     * @param {T_ChatDeleteArgs} args - Arguments to delete one T_Chat.
+     * @example
+     * // Delete one T_Chat
+     * const T_Chat = await prisma.t_Chat.delete({
+     *   where: {
+     *     // ... filter to delete one T_Chat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends T_ChatDeleteArgs>(args: SelectSubset<T, T_ChatDeleteArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one T_Chat.
+     * @param {T_ChatUpdateArgs} args - Arguments to update one T_Chat.
+     * @example
+     * // Update one T_Chat
+     * const t_Chat = await prisma.t_Chat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends T_ChatUpdateArgs>(args: SelectSubset<T, T_ChatUpdateArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more T_Chats.
+     * @param {T_ChatDeleteManyArgs} args - Arguments to filter T_Chats to delete.
+     * @example
+     * // Delete a few T_Chats
+     * const { count } = await prisma.t_Chat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends T_ChatDeleteManyArgs>(args?: SelectSubset<T, T_ChatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more T_Chats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many T_Chats
+     * const t_Chat = await prisma.t_Chat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends T_ChatUpdateManyArgs>(args: SelectSubset<T, T_ChatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more T_Chats and returns the data updated in the database.
+     * @param {T_ChatUpdateManyAndReturnArgs} args - Arguments to update many T_Chats.
+     * @example
+     * // Update many T_Chats
+     * const t_Chat = await prisma.t_Chat.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more T_Chats and only return the `IdChat`
+     * const t_ChatWithIdChatOnly = await prisma.t_Chat.updateManyAndReturn({
+     *   select: { IdChat: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends T_ChatUpdateManyAndReturnArgs>(args: SelectSubset<T, T_ChatUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one T_Chat.
+     * @param {T_ChatUpsertArgs} args - Arguments to update or create a T_Chat.
+     * @example
+     * // Update or create a T_Chat
+     * const t_Chat = await prisma.t_Chat.upsert({
+     *   create: {
+     *     // ... data to create a T_Chat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the T_Chat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends T_ChatUpsertArgs>(args: SelectSubset<T, T_ChatUpsertArgs<ExtArgs>>): Prisma__T_ChatClient<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of T_Chats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatCountArgs} args - Arguments to filter T_Chats to count.
+     * @example
+     * // Count the number of T_Chats
+     * const count = await prisma.t_Chat.count({
+     *   where: {
+     *     // ... the filter for the T_Chats we want to count
+     *   }
+     * })
+    **/
+    count<T extends T_ChatCountArgs>(
+      args?: Subset<T, T_ChatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], T_ChatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a T_Chat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends T_ChatAggregateArgs>(args: Subset<T, T_ChatAggregateArgs>): Prisma.PrismaPromise<GetT_ChatAggregateType<T>>
+
+    /**
+     * Group by T_Chat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_ChatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends T_ChatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: T_ChatGroupByArgs['orderBy'] }
+        : { orderBy?: T_ChatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, T_ChatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetT_ChatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the T_Chat model
+   */
+  readonly fields: T_ChatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for T_Chat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__T_ChatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    T_Utilisateurs<T extends T_Chat$T_UtilisateursArgs<ExtArgs> = {}>(args?: Subset<T, T_Chat$T_UtilisateursArgs<ExtArgs>>): Prisma__T_UtilisateursClient<$Result.GetResult<Prisma.$T_UtilisateursPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the T_Chat model
+   */
+  interface T_ChatFieldRefs {
+    readonly IdChat: FieldRef<"T_Chat", 'Int'>
+    readonly TextChat: FieldRef<"T_Chat", 'String'>
+    readonly ChatFile: FieldRef<"T_Chat", 'String'>
+    readonly ChatLink: FieldRef<"T_Chat", 'String'>
+    readonly AuthorIdFk: FieldRef<"T_Chat", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * T_Chat findUnique
+   */
+  export type T_ChatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Chat to fetch.
+     */
+    where: T_ChatWhereUniqueInput
+  }
+
+  /**
+   * T_Chat findUniqueOrThrow
+   */
+  export type T_ChatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Chat to fetch.
+     */
+    where: T_ChatWhereUniqueInput
+  }
+
+  /**
+   * T_Chat findFirst
+   */
+  export type T_ChatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Chat to fetch.
+     */
+    where?: T_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Chats to fetch.
+     */
+    orderBy?: T_ChatOrderByWithRelationInput | T_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for T_Chats.
+     */
+    cursor?: T_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of T_Chats.
+     */
+    distinct?: T_ChatScalarFieldEnum | T_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * T_Chat findFirstOrThrow
+   */
+  export type T_ChatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Chat to fetch.
+     */
+    where?: T_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Chats to fetch.
+     */
+    orderBy?: T_ChatOrderByWithRelationInput | T_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for T_Chats.
+     */
+    cursor?: T_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Chats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of T_Chats.
+     */
+    distinct?: T_ChatScalarFieldEnum | T_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * T_Chat findMany
+   */
+  export type T_ChatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Chats to fetch.
+     */
+    where?: T_ChatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Chats to fetch.
+     */
+    orderBy?: T_ChatOrderByWithRelationInput | T_ChatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing T_Chats.
+     */
+    cursor?: T_ChatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Chats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Chats.
+     */
+    skip?: number
+    distinct?: T_ChatScalarFieldEnum | T_ChatScalarFieldEnum[]
+  }
+
+  /**
+   * T_Chat create
+   */
+  export type T_ChatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a T_Chat.
+     */
+    data?: XOR<T_ChatCreateInput, T_ChatUncheckedCreateInput>
+  }
+
+  /**
+   * T_Chat createMany
+   */
+  export type T_ChatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many T_Chats.
+     */
+    data: T_ChatCreateManyInput | T_ChatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * T_Chat createManyAndReturn
+   */
+  export type T_ChatCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * The data used to create many T_Chats.
+     */
+    data: T_ChatCreateManyInput | T_ChatCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * T_Chat update
+   */
+  export type T_ChatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a T_Chat.
+     */
+    data: XOR<T_ChatUpdateInput, T_ChatUncheckedUpdateInput>
+    /**
+     * Choose, which T_Chat to update.
+     */
+    where: T_ChatWhereUniqueInput
+  }
+
+  /**
+   * T_Chat updateMany
+   */
+  export type T_ChatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update T_Chats.
+     */
+    data: XOR<T_ChatUpdateManyMutationInput, T_ChatUncheckedUpdateManyInput>
+    /**
+     * Filter which T_Chats to update
+     */
+    where?: T_ChatWhereInput
+    /**
+     * Limit how many T_Chats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * T_Chat updateManyAndReturn
+   */
+  export type T_ChatUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * The data used to update T_Chats.
+     */
+    data: XOR<T_ChatUpdateManyMutationInput, T_ChatUncheckedUpdateManyInput>
+    /**
+     * Filter which T_Chats to update
+     */
+    where?: T_ChatWhereInput
+    /**
+     * Limit how many T_Chats to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * T_Chat upsert
+   */
+  export type T_ChatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the T_Chat to update in case it exists.
+     */
+    where: T_ChatWhereUniqueInput
+    /**
+     * In case the T_Chat found by the `where` argument doesn't exist, create a new T_Chat with this data.
+     */
+    create: XOR<T_ChatCreateInput, T_ChatUncheckedCreateInput>
+    /**
+     * In case the T_Chat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<T_ChatUpdateInput, T_ChatUncheckedUpdateInput>
+  }
+
+  /**
+   * T_Chat delete
+   */
+  export type T_ChatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    /**
+     * Filter which T_Chat to delete.
+     */
+    where: T_ChatWhereUniqueInput
+  }
+
+  /**
+   * T_Chat deleteMany
+   */
+  export type T_ChatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which T_Chats to delete
+     */
+    where?: T_ChatWhereInput
+    /**
+     * Limit how many T_Chats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * T_Chat.T_Utilisateurs
+   */
+  export type T_Chat$T_UtilisateursArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Utilisateurs
+     */
+    select?: T_UtilisateursSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Utilisateurs
+     */
+    omit?: T_UtilisateursOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_UtilisateursInclude<ExtArgs> | null
+    where?: T_UtilisateursWhereInput
+  }
+
+  /**
+   * T_Chat without action
+   */
+  export type T_ChatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model T_Communication
    */
 
@@ -15486,6 +16710,7 @@ export namespace Prisma {
     T_Licence?: boolean | T_Entite$T_LicenceArgs<ExtArgs>
     T_Login?: boolean | T_Entite$T_LoginArgs<ExtArgs>
     T_Paiement?: boolean | T_Entite$T_PaiementArgs<ExtArgs>
+    T_Paiement_Archive?: boolean | T_Entite$T_Paiement_ArchiveArgs<ExtArgs>
     T_Presence?: boolean | T_Entite$T_PresenceArgs<ExtArgs>
     T_Salle?: boolean | T_Entite$T_SalleArgs<ExtArgs>
     T_Utilisateurs?: boolean | T_Entite$T_UtilisateursArgs<ExtArgs>
@@ -15543,6 +16768,7 @@ export namespace Prisma {
     T_Licence?: boolean | T_Entite$T_LicenceArgs<ExtArgs>
     T_Login?: boolean | T_Entite$T_LoginArgs<ExtArgs>
     T_Paiement?: boolean | T_Entite$T_PaiementArgs<ExtArgs>
+    T_Paiement_Archive?: boolean | T_Entite$T_Paiement_ArchiveArgs<ExtArgs>
     T_Presence?: boolean | T_Entite$T_PresenceArgs<ExtArgs>
     T_Salle?: boolean | T_Entite$T_SalleArgs<ExtArgs>
     T_Utilisateurs?: boolean | T_Entite$T_UtilisateursArgs<ExtArgs>
@@ -15572,6 +16798,7 @@ export namespace Prisma {
       T_Licence: Prisma.$T_LicencePayload<ExtArgs>[]
       T_Login: Prisma.$T_LoginPayload<ExtArgs>[]
       T_Paiement: Prisma.$T_PaiementPayload<ExtArgs>[]
+      T_Paiement_Archive: Prisma.$T_Paiement_ArchivePayload<ExtArgs>[]
       T_Presence: Prisma.$T_PresencePayload<ExtArgs>[]
       T_Salle: Prisma.$T_SallePayload<ExtArgs>[]
       T_Utilisateurs: Prisma.$T_UtilisateursPayload<ExtArgs>[]
@@ -15993,6 +17220,7 @@ export namespace Prisma {
     T_Licence<T extends T_Entite$T_LicenceArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_LicenceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_LicencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Login<T extends T_Entite$T_LoginArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_LoginArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_LoginPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Paiement<T extends T_Entite$T_PaiementArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_PaiementArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_PaiementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    T_Paiement_Archive<T extends T_Entite$T_Paiement_ArchiveArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_Paiement_ArchiveArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Presence<T extends T_Entite$T_PresenceArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_PresenceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_PresencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Salle<T extends T_Entite$T_SalleArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_SalleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_SallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Utilisateurs<T extends T_Entite$T_UtilisateursArgs<ExtArgs> = {}>(args?: Subset<T, T_Entite$T_UtilisateursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_UtilisateursPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -16757,6 +17985,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: T_PaiementScalarFieldEnum | T_PaiementScalarFieldEnum[]
+  }
+
+  /**
+   * T_Entite.T_Paiement_Archive
+   */
+  export type T_Entite$T_Paiement_ArchiveArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    where?: T_Paiement_ArchiveWhereInput
+    orderBy?: T_Paiement_ArchiveOrderByWithRelationInput | T_Paiement_ArchiveOrderByWithRelationInput[]
+    cursor?: T_Paiement_ArchiveWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: T_Paiement_ArchiveScalarFieldEnum | T_Paiement_ArchiveScalarFieldEnum[]
   }
 
   /**
@@ -23512,6 +24764,1283 @@ export namespace Prisma {
 
 
   /**
+   * Model T_Paiement_Archive
+   */
+
+  export type AggregateT_Paiement_Archive = {
+    _count: T_Paiement_ArchiveCountAggregateOutputType | null
+    _avg: T_Paiement_ArchiveAvgAggregateOutputType | null
+    _sum: T_Paiement_ArchiveSumAggregateOutputType | null
+    _min: T_Paiement_ArchiveMinAggregateOutputType | null
+    _max: T_Paiement_ArchiveMaxAggregateOutputType | null
+  }
+
+  export type T_Paiement_ArchiveAvgAggregateOutputType = {
+    IdPaiement: number | null
+    IdUserFk: number | null
+    IdTypePaiementFk: number | null
+    MontantPaiement: Decimal | null
+    IdStatutPaiementFk: number | null
+    IdDeviseFk: number | null
+    IdPayeurFk: number | null
+    IdTypeMouvementFk: number | null
+    IdEntiteFk: number | null
+    IdPaiementArchive: number | null
+  }
+
+  export type T_Paiement_ArchiveSumAggregateOutputType = {
+    IdPaiement: number | null
+    IdUserFk: number | null
+    IdTypePaiementFk: number | null
+    MontantPaiement: Decimal | null
+    IdStatutPaiementFk: number | null
+    IdDeviseFk: number | null
+    IdPayeurFk: number | null
+    IdTypeMouvementFk: number | null
+    IdEntiteFk: number | null
+    IdPaiementArchive: number | null
+  }
+
+  export type T_Paiement_ArchiveMinAggregateOutputType = {
+    IdPaiement: number | null
+    CodePaiement: string | null
+    IdUserFk: number | null
+    IdTypePaiementFk: number | null
+    MontantPaiement: Decimal | null
+    IdStatutPaiementFk: number | null
+    DatePaiement: Date | null
+    ObsPaiement: string | null
+    ValidePaiement: boolean | null
+    IdDeviseFk: number | null
+    IdPayeurFk: number | null
+    IdTypeMouvementFk: number | null
+    DateArchivage: Date | null
+    IdEntiteFk: number | null
+    IdPaiementArchive: number | null
+  }
+
+  export type T_Paiement_ArchiveMaxAggregateOutputType = {
+    IdPaiement: number | null
+    CodePaiement: string | null
+    IdUserFk: number | null
+    IdTypePaiementFk: number | null
+    MontantPaiement: Decimal | null
+    IdStatutPaiementFk: number | null
+    DatePaiement: Date | null
+    ObsPaiement: string | null
+    ValidePaiement: boolean | null
+    IdDeviseFk: number | null
+    IdPayeurFk: number | null
+    IdTypeMouvementFk: number | null
+    DateArchivage: Date | null
+    IdEntiteFk: number | null
+    IdPaiementArchive: number | null
+  }
+
+  export type T_Paiement_ArchiveCountAggregateOutputType = {
+    IdPaiement: number
+    CodePaiement: number
+    IdUserFk: number
+    IdTypePaiementFk: number
+    MontantPaiement: number
+    IdStatutPaiementFk: number
+    DatePaiement: number
+    ObsPaiement: number
+    ValidePaiement: number
+    IdDeviseFk: number
+    IdPayeurFk: number
+    IdTypeMouvementFk: number
+    DateArchivage: number
+    IdEntiteFk: number
+    IdPaiementArchive: number
+    _all: number
+  }
+
+
+  export type T_Paiement_ArchiveAvgAggregateInputType = {
+    IdPaiement?: true
+    IdUserFk?: true
+    IdTypePaiementFk?: true
+    MontantPaiement?: true
+    IdStatutPaiementFk?: true
+    IdDeviseFk?: true
+    IdPayeurFk?: true
+    IdTypeMouvementFk?: true
+    IdEntiteFk?: true
+    IdPaiementArchive?: true
+  }
+
+  export type T_Paiement_ArchiveSumAggregateInputType = {
+    IdPaiement?: true
+    IdUserFk?: true
+    IdTypePaiementFk?: true
+    MontantPaiement?: true
+    IdStatutPaiementFk?: true
+    IdDeviseFk?: true
+    IdPayeurFk?: true
+    IdTypeMouvementFk?: true
+    IdEntiteFk?: true
+    IdPaiementArchive?: true
+  }
+
+  export type T_Paiement_ArchiveMinAggregateInputType = {
+    IdPaiement?: true
+    CodePaiement?: true
+    IdUserFk?: true
+    IdTypePaiementFk?: true
+    MontantPaiement?: true
+    IdStatutPaiementFk?: true
+    DatePaiement?: true
+    ObsPaiement?: true
+    ValidePaiement?: true
+    IdDeviseFk?: true
+    IdPayeurFk?: true
+    IdTypeMouvementFk?: true
+    DateArchivage?: true
+    IdEntiteFk?: true
+    IdPaiementArchive?: true
+  }
+
+  export type T_Paiement_ArchiveMaxAggregateInputType = {
+    IdPaiement?: true
+    CodePaiement?: true
+    IdUserFk?: true
+    IdTypePaiementFk?: true
+    MontantPaiement?: true
+    IdStatutPaiementFk?: true
+    DatePaiement?: true
+    ObsPaiement?: true
+    ValidePaiement?: true
+    IdDeviseFk?: true
+    IdPayeurFk?: true
+    IdTypeMouvementFk?: true
+    DateArchivage?: true
+    IdEntiteFk?: true
+    IdPaiementArchive?: true
+  }
+
+  export type T_Paiement_ArchiveCountAggregateInputType = {
+    IdPaiement?: true
+    CodePaiement?: true
+    IdUserFk?: true
+    IdTypePaiementFk?: true
+    MontantPaiement?: true
+    IdStatutPaiementFk?: true
+    DatePaiement?: true
+    ObsPaiement?: true
+    ValidePaiement?: true
+    IdDeviseFk?: true
+    IdPayeurFk?: true
+    IdTypeMouvementFk?: true
+    DateArchivage?: true
+    IdEntiteFk?: true
+    IdPaiementArchive?: true
+    _all?: true
+  }
+
+  export type T_Paiement_ArchiveAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which T_Paiement_Archive to aggregate.
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Paiement_Archives to fetch.
+     */
+    orderBy?: T_Paiement_ArchiveOrderByWithRelationInput | T_Paiement_ArchiveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: T_Paiement_ArchiveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Paiement_Archives from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Paiement_Archives.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned T_Paiement_Archives
+    **/
+    _count?: true | T_Paiement_ArchiveCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: T_Paiement_ArchiveAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: T_Paiement_ArchiveSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: T_Paiement_ArchiveMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: T_Paiement_ArchiveMaxAggregateInputType
+  }
+
+  export type GetT_Paiement_ArchiveAggregateType<T extends T_Paiement_ArchiveAggregateArgs> = {
+        [P in keyof T & keyof AggregateT_Paiement_Archive]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateT_Paiement_Archive[P]>
+      : GetScalarType<T[P], AggregateT_Paiement_Archive[P]>
+  }
+
+
+
+
+  export type T_Paiement_ArchiveGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: T_Paiement_ArchiveWhereInput
+    orderBy?: T_Paiement_ArchiveOrderByWithAggregationInput | T_Paiement_ArchiveOrderByWithAggregationInput[]
+    by: T_Paiement_ArchiveScalarFieldEnum[] | T_Paiement_ArchiveScalarFieldEnum
+    having?: T_Paiement_ArchiveScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: T_Paiement_ArchiveCountAggregateInputType | true
+    _avg?: T_Paiement_ArchiveAvgAggregateInputType
+    _sum?: T_Paiement_ArchiveSumAggregateInputType
+    _min?: T_Paiement_ArchiveMinAggregateInputType
+    _max?: T_Paiement_ArchiveMaxAggregateInputType
+  }
+
+  export type T_Paiement_ArchiveGroupByOutputType = {
+    IdPaiement: number | null
+    CodePaiement: string | null
+    IdUserFk: number | null
+    IdTypePaiementFk: number | null
+    MontantPaiement: Decimal | null
+    IdStatutPaiementFk: number | null
+    DatePaiement: Date | null
+    ObsPaiement: string | null
+    ValidePaiement: boolean | null
+    IdDeviseFk: number | null
+    IdPayeurFk: number | null
+    IdTypeMouvementFk: number | null
+    DateArchivage: Date | null
+    IdEntiteFk: number | null
+    IdPaiementArchive: number
+    _count: T_Paiement_ArchiveCountAggregateOutputType | null
+    _avg: T_Paiement_ArchiveAvgAggregateOutputType | null
+    _sum: T_Paiement_ArchiveSumAggregateOutputType | null
+    _min: T_Paiement_ArchiveMinAggregateOutputType | null
+    _max: T_Paiement_ArchiveMaxAggregateOutputType | null
+  }
+
+  type GetT_Paiement_ArchiveGroupByPayload<T extends T_Paiement_ArchiveGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<T_Paiement_ArchiveGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof T_Paiement_ArchiveGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], T_Paiement_ArchiveGroupByOutputType[P]>
+            : GetScalarType<T[P], T_Paiement_ArchiveGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type T_Paiement_ArchiveSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdPaiement?: boolean
+    CodePaiement?: boolean
+    IdUserFk?: boolean
+    IdTypePaiementFk?: boolean
+    MontantPaiement?: boolean
+    IdStatutPaiementFk?: boolean
+    DatePaiement?: boolean
+    ObsPaiement?: boolean
+    ValidePaiement?: boolean
+    IdDeviseFk?: boolean
+    IdPayeurFk?: boolean
+    IdTypeMouvementFk?: boolean
+    DateArchivage?: boolean
+    IdEntiteFk?: boolean
+    IdPaiementArchive?: boolean
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Paiement_Archive"]>
+
+  export type T_Paiement_ArchiveSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdPaiement?: boolean
+    CodePaiement?: boolean
+    IdUserFk?: boolean
+    IdTypePaiementFk?: boolean
+    MontantPaiement?: boolean
+    IdStatutPaiementFk?: boolean
+    DatePaiement?: boolean
+    ObsPaiement?: boolean
+    ValidePaiement?: boolean
+    IdDeviseFk?: boolean
+    IdPayeurFk?: boolean
+    IdTypeMouvementFk?: boolean
+    DateArchivage?: boolean
+    IdEntiteFk?: boolean
+    IdPaiementArchive?: boolean
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Paiement_Archive"]>
+
+  export type T_Paiement_ArchiveSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    IdPaiement?: boolean
+    CodePaiement?: boolean
+    IdUserFk?: boolean
+    IdTypePaiementFk?: boolean
+    MontantPaiement?: boolean
+    IdStatutPaiementFk?: boolean
+    DatePaiement?: boolean
+    ObsPaiement?: boolean
+    ValidePaiement?: boolean
+    IdDeviseFk?: boolean
+    IdPayeurFk?: boolean
+    IdTypeMouvementFk?: boolean
+    DateArchivage?: boolean
+    IdEntiteFk?: boolean
+    IdPaiementArchive?: boolean
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }, ExtArgs["result"]["t_Paiement_Archive"]>
+
+  export type T_Paiement_ArchiveSelectScalar = {
+    IdPaiement?: boolean
+    CodePaiement?: boolean
+    IdUserFk?: boolean
+    IdTypePaiementFk?: boolean
+    MontantPaiement?: boolean
+    IdStatutPaiementFk?: boolean
+    DatePaiement?: boolean
+    ObsPaiement?: boolean
+    ValidePaiement?: boolean
+    IdDeviseFk?: boolean
+    IdPayeurFk?: boolean
+    IdTypeMouvementFk?: boolean
+    DateArchivage?: boolean
+    IdEntiteFk?: boolean
+    IdPaiementArchive?: boolean
+  }
+
+  export type T_Paiement_ArchiveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"IdPaiement" | "CodePaiement" | "IdUserFk" | "IdTypePaiementFk" | "MontantPaiement" | "IdStatutPaiementFk" | "DatePaiement" | "ObsPaiement" | "ValidePaiement" | "IdDeviseFk" | "IdPayeurFk" | "IdTypeMouvementFk" | "DateArchivage" | "IdEntiteFk" | "IdPaiementArchive", ExtArgs["result"]["t_Paiement_Archive"]>
+  export type T_Paiement_ArchiveInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }
+  export type T_Paiement_ArchiveIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }
+  export type T_Paiement_ArchiveIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    T_Entite?: boolean | T_Paiement_Archive$T_EntiteArgs<ExtArgs>
+  }
+
+  export type $T_Paiement_ArchivePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "T_Paiement_Archive"
+    objects: {
+      T_Entite: Prisma.$T_EntitePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      IdPaiement: number | null
+      CodePaiement: string | null
+      IdUserFk: number | null
+      IdTypePaiementFk: number | null
+      MontantPaiement: Prisma.Decimal | null
+      IdStatutPaiementFk: number | null
+      DatePaiement: Date | null
+      ObsPaiement: string | null
+      ValidePaiement: boolean | null
+      IdDeviseFk: number | null
+      IdPayeurFk: number | null
+      IdTypeMouvementFk: number | null
+      DateArchivage: Date | null
+      IdEntiteFk: number | null
+      IdPaiementArchive: number
+    }, ExtArgs["result"]["t_Paiement_Archive"]>
+    composites: {}
+  }
+
+  type T_Paiement_ArchiveGetPayload<S extends boolean | null | undefined | T_Paiement_ArchiveDefaultArgs> = $Result.GetResult<Prisma.$T_Paiement_ArchivePayload, S>
+
+  type T_Paiement_ArchiveCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<T_Paiement_ArchiveFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: T_Paiement_ArchiveCountAggregateInputType | true
+    }
+
+  export interface T_Paiement_ArchiveDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['T_Paiement_Archive'], meta: { name: 'T_Paiement_Archive' } }
+    /**
+     * Find zero or one T_Paiement_Archive that matches the filter.
+     * @param {T_Paiement_ArchiveFindUniqueArgs} args - Arguments to find a T_Paiement_Archive
+     * @example
+     * // Get one T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends T_Paiement_ArchiveFindUniqueArgs>(args: SelectSubset<T, T_Paiement_ArchiveFindUniqueArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one T_Paiement_Archive that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {T_Paiement_ArchiveFindUniqueOrThrowArgs} args - Arguments to find a T_Paiement_Archive
+     * @example
+     * // Get one T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends T_Paiement_ArchiveFindUniqueOrThrowArgs>(args: SelectSubset<T, T_Paiement_ArchiveFindUniqueOrThrowArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first T_Paiement_Archive that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveFindFirstArgs} args - Arguments to find a T_Paiement_Archive
+     * @example
+     * // Get one T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends T_Paiement_ArchiveFindFirstArgs>(args?: SelectSubset<T, T_Paiement_ArchiveFindFirstArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first T_Paiement_Archive that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveFindFirstOrThrowArgs} args - Arguments to find a T_Paiement_Archive
+     * @example
+     * // Get one T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends T_Paiement_ArchiveFindFirstOrThrowArgs>(args?: SelectSubset<T, T_Paiement_ArchiveFindFirstOrThrowArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more T_Paiement_Archives that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all T_Paiement_Archives
+     * const t_Paiement_Archives = await prisma.t_Paiement_Archive.findMany()
+     * 
+     * // Get first 10 T_Paiement_Archives
+     * const t_Paiement_Archives = await prisma.t_Paiement_Archive.findMany({ take: 10 })
+     * 
+     * // Only select the `IdPaiement`
+     * const t_Paiement_ArchiveWithIdPaiementOnly = await prisma.t_Paiement_Archive.findMany({ select: { IdPaiement: true } })
+     * 
+     */
+    findMany<T extends T_Paiement_ArchiveFindManyArgs>(args?: SelectSubset<T, T_Paiement_ArchiveFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a T_Paiement_Archive.
+     * @param {T_Paiement_ArchiveCreateArgs} args - Arguments to create a T_Paiement_Archive.
+     * @example
+     * // Create one T_Paiement_Archive
+     * const T_Paiement_Archive = await prisma.t_Paiement_Archive.create({
+     *   data: {
+     *     // ... data to create a T_Paiement_Archive
+     *   }
+     * })
+     * 
+     */
+    create<T extends T_Paiement_ArchiveCreateArgs>(args: SelectSubset<T, T_Paiement_ArchiveCreateArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many T_Paiement_Archives.
+     * @param {T_Paiement_ArchiveCreateManyArgs} args - Arguments to create many T_Paiement_Archives.
+     * @example
+     * // Create many T_Paiement_Archives
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends T_Paiement_ArchiveCreateManyArgs>(args?: SelectSubset<T, T_Paiement_ArchiveCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many T_Paiement_Archives and returns the data saved in the database.
+     * @param {T_Paiement_ArchiveCreateManyAndReturnArgs} args - Arguments to create many T_Paiement_Archives.
+     * @example
+     * // Create many T_Paiement_Archives
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many T_Paiement_Archives and only return the `IdPaiement`
+     * const t_Paiement_ArchiveWithIdPaiementOnly = await prisma.t_Paiement_Archive.createManyAndReturn({
+     *   select: { IdPaiement: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends T_Paiement_ArchiveCreateManyAndReturnArgs>(args?: SelectSubset<T, T_Paiement_ArchiveCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a T_Paiement_Archive.
+     * @param {T_Paiement_ArchiveDeleteArgs} args - Arguments to delete one T_Paiement_Archive.
+     * @example
+     * // Delete one T_Paiement_Archive
+     * const T_Paiement_Archive = await prisma.t_Paiement_Archive.delete({
+     *   where: {
+     *     // ... filter to delete one T_Paiement_Archive
+     *   }
+     * })
+     * 
+     */
+    delete<T extends T_Paiement_ArchiveDeleteArgs>(args: SelectSubset<T, T_Paiement_ArchiveDeleteArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one T_Paiement_Archive.
+     * @param {T_Paiement_ArchiveUpdateArgs} args - Arguments to update one T_Paiement_Archive.
+     * @example
+     * // Update one T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends T_Paiement_ArchiveUpdateArgs>(args: SelectSubset<T, T_Paiement_ArchiveUpdateArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more T_Paiement_Archives.
+     * @param {T_Paiement_ArchiveDeleteManyArgs} args - Arguments to filter T_Paiement_Archives to delete.
+     * @example
+     * // Delete a few T_Paiement_Archives
+     * const { count } = await prisma.t_Paiement_Archive.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends T_Paiement_ArchiveDeleteManyArgs>(args?: SelectSubset<T, T_Paiement_ArchiveDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more T_Paiement_Archives.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many T_Paiement_Archives
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends T_Paiement_ArchiveUpdateManyArgs>(args: SelectSubset<T, T_Paiement_ArchiveUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more T_Paiement_Archives and returns the data updated in the database.
+     * @param {T_Paiement_ArchiveUpdateManyAndReturnArgs} args - Arguments to update many T_Paiement_Archives.
+     * @example
+     * // Update many T_Paiement_Archives
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more T_Paiement_Archives and only return the `IdPaiement`
+     * const t_Paiement_ArchiveWithIdPaiementOnly = await prisma.t_Paiement_Archive.updateManyAndReturn({
+     *   select: { IdPaiement: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends T_Paiement_ArchiveUpdateManyAndReturnArgs>(args: SelectSubset<T, T_Paiement_ArchiveUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one T_Paiement_Archive.
+     * @param {T_Paiement_ArchiveUpsertArgs} args - Arguments to update or create a T_Paiement_Archive.
+     * @example
+     * // Update or create a T_Paiement_Archive
+     * const t_Paiement_Archive = await prisma.t_Paiement_Archive.upsert({
+     *   create: {
+     *     // ... data to create a T_Paiement_Archive
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the T_Paiement_Archive we want to update
+     *   }
+     * })
+     */
+    upsert<T extends T_Paiement_ArchiveUpsertArgs>(args: SelectSubset<T, T_Paiement_ArchiveUpsertArgs<ExtArgs>>): Prisma__T_Paiement_ArchiveClient<$Result.GetResult<Prisma.$T_Paiement_ArchivePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of T_Paiement_Archives.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveCountArgs} args - Arguments to filter T_Paiement_Archives to count.
+     * @example
+     * // Count the number of T_Paiement_Archives
+     * const count = await prisma.t_Paiement_Archive.count({
+     *   where: {
+     *     // ... the filter for the T_Paiement_Archives we want to count
+     *   }
+     * })
+    **/
+    count<T extends T_Paiement_ArchiveCountArgs>(
+      args?: Subset<T, T_Paiement_ArchiveCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], T_Paiement_ArchiveCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a T_Paiement_Archive.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends T_Paiement_ArchiveAggregateArgs>(args: Subset<T, T_Paiement_ArchiveAggregateArgs>): Prisma.PrismaPromise<GetT_Paiement_ArchiveAggregateType<T>>
+
+    /**
+     * Group by T_Paiement_Archive.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {T_Paiement_ArchiveGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends T_Paiement_ArchiveGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: T_Paiement_ArchiveGroupByArgs['orderBy'] }
+        : { orderBy?: T_Paiement_ArchiveGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, T_Paiement_ArchiveGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetT_Paiement_ArchiveGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the T_Paiement_Archive model
+   */
+  readonly fields: T_Paiement_ArchiveFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for T_Paiement_Archive.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__T_Paiement_ArchiveClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    T_Entite<T extends T_Paiement_Archive$T_EntiteArgs<ExtArgs> = {}>(args?: Subset<T, T_Paiement_Archive$T_EntiteArgs<ExtArgs>>): Prisma__T_EntiteClient<$Result.GetResult<Prisma.$T_EntitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the T_Paiement_Archive model
+   */
+  interface T_Paiement_ArchiveFieldRefs {
+    readonly IdPaiement: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly CodePaiement: FieldRef<"T_Paiement_Archive", 'String'>
+    readonly IdUserFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly IdTypePaiementFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly MontantPaiement: FieldRef<"T_Paiement_Archive", 'Decimal'>
+    readonly IdStatutPaiementFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly DatePaiement: FieldRef<"T_Paiement_Archive", 'DateTime'>
+    readonly ObsPaiement: FieldRef<"T_Paiement_Archive", 'String'>
+    readonly ValidePaiement: FieldRef<"T_Paiement_Archive", 'Boolean'>
+    readonly IdDeviseFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly IdPayeurFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly IdTypeMouvementFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly DateArchivage: FieldRef<"T_Paiement_Archive", 'DateTime'>
+    readonly IdEntiteFk: FieldRef<"T_Paiement_Archive", 'Int'>
+    readonly IdPaiementArchive: FieldRef<"T_Paiement_Archive", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * T_Paiement_Archive findUnique
+   */
+  export type T_Paiement_ArchiveFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Paiement_Archive to fetch.
+     */
+    where: T_Paiement_ArchiveWhereUniqueInput
+  }
+
+  /**
+   * T_Paiement_Archive findUniqueOrThrow
+   */
+  export type T_Paiement_ArchiveFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Paiement_Archive to fetch.
+     */
+    where: T_Paiement_ArchiveWhereUniqueInput
+  }
+
+  /**
+   * T_Paiement_Archive findFirst
+   */
+  export type T_Paiement_ArchiveFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Paiement_Archive to fetch.
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Paiement_Archives to fetch.
+     */
+    orderBy?: T_Paiement_ArchiveOrderByWithRelationInput | T_Paiement_ArchiveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for T_Paiement_Archives.
+     */
+    cursor?: T_Paiement_ArchiveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Paiement_Archives from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Paiement_Archives.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of T_Paiement_Archives.
+     */
+    distinct?: T_Paiement_ArchiveScalarFieldEnum | T_Paiement_ArchiveScalarFieldEnum[]
+  }
+
+  /**
+   * T_Paiement_Archive findFirstOrThrow
+   */
+  export type T_Paiement_ArchiveFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Paiement_Archive to fetch.
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Paiement_Archives to fetch.
+     */
+    orderBy?: T_Paiement_ArchiveOrderByWithRelationInput | T_Paiement_ArchiveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for T_Paiement_Archives.
+     */
+    cursor?: T_Paiement_ArchiveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Paiement_Archives from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Paiement_Archives.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of T_Paiement_Archives.
+     */
+    distinct?: T_Paiement_ArchiveScalarFieldEnum | T_Paiement_ArchiveScalarFieldEnum[]
+  }
+
+  /**
+   * T_Paiement_Archive findMany
+   */
+  export type T_Paiement_ArchiveFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter, which T_Paiement_Archives to fetch.
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of T_Paiement_Archives to fetch.
+     */
+    orderBy?: T_Paiement_ArchiveOrderByWithRelationInput | T_Paiement_ArchiveOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing T_Paiement_Archives.
+     */
+    cursor?: T_Paiement_ArchiveWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` T_Paiement_Archives from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` T_Paiement_Archives.
+     */
+    skip?: number
+    distinct?: T_Paiement_ArchiveScalarFieldEnum | T_Paiement_ArchiveScalarFieldEnum[]
+  }
+
+  /**
+   * T_Paiement_Archive create
+   */
+  export type T_Paiement_ArchiveCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * The data needed to create a T_Paiement_Archive.
+     */
+    data?: XOR<T_Paiement_ArchiveCreateInput, T_Paiement_ArchiveUncheckedCreateInput>
+  }
+
+  /**
+   * T_Paiement_Archive createMany
+   */
+  export type T_Paiement_ArchiveCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many T_Paiement_Archives.
+     */
+    data: T_Paiement_ArchiveCreateManyInput | T_Paiement_ArchiveCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * T_Paiement_Archive createManyAndReturn
+   */
+  export type T_Paiement_ArchiveCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * The data used to create many T_Paiement_Archives.
+     */
+    data: T_Paiement_ArchiveCreateManyInput | T_Paiement_ArchiveCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * T_Paiement_Archive update
+   */
+  export type T_Paiement_ArchiveUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * The data needed to update a T_Paiement_Archive.
+     */
+    data: XOR<T_Paiement_ArchiveUpdateInput, T_Paiement_ArchiveUncheckedUpdateInput>
+    /**
+     * Choose, which T_Paiement_Archive to update.
+     */
+    where: T_Paiement_ArchiveWhereUniqueInput
+  }
+
+  /**
+   * T_Paiement_Archive updateMany
+   */
+  export type T_Paiement_ArchiveUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update T_Paiement_Archives.
+     */
+    data: XOR<T_Paiement_ArchiveUpdateManyMutationInput, T_Paiement_ArchiveUncheckedUpdateManyInput>
+    /**
+     * Filter which T_Paiement_Archives to update
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * Limit how many T_Paiement_Archives to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * T_Paiement_Archive updateManyAndReturn
+   */
+  export type T_Paiement_ArchiveUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * The data used to update T_Paiement_Archives.
+     */
+    data: XOR<T_Paiement_ArchiveUpdateManyMutationInput, T_Paiement_ArchiveUncheckedUpdateManyInput>
+    /**
+     * Filter which T_Paiement_Archives to update
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * Limit how many T_Paiement_Archives to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * T_Paiement_Archive upsert
+   */
+  export type T_Paiement_ArchiveUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * The filter to search for the T_Paiement_Archive to update in case it exists.
+     */
+    where: T_Paiement_ArchiveWhereUniqueInput
+    /**
+     * In case the T_Paiement_Archive found by the `where` argument doesn't exist, create a new T_Paiement_Archive with this data.
+     */
+    create: XOR<T_Paiement_ArchiveCreateInput, T_Paiement_ArchiveUncheckedCreateInput>
+    /**
+     * In case the T_Paiement_Archive was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<T_Paiement_ArchiveUpdateInput, T_Paiement_ArchiveUncheckedUpdateInput>
+  }
+
+  /**
+   * T_Paiement_Archive delete
+   */
+  export type T_Paiement_ArchiveDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+    /**
+     * Filter which T_Paiement_Archive to delete.
+     */
+    where: T_Paiement_ArchiveWhereUniqueInput
+  }
+
+  /**
+   * T_Paiement_Archive deleteMany
+   */
+  export type T_Paiement_ArchiveDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which T_Paiement_Archives to delete
+     */
+    where?: T_Paiement_ArchiveWhereInput
+    /**
+     * Limit how many T_Paiement_Archives to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * T_Paiement_Archive.T_Entite
+   */
+  export type T_Paiement_Archive$T_EntiteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Entite
+     */
+    select?: T_EntiteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Entite
+     */
+    omit?: T_EntiteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_EntiteInclude<ExtArgs> | null
+    where?: T_EntiteWhereInput
+  }
+
+  /**
+   * T_Paiement_Archive without action
+   */
+  export type T_Paiement_ArchiveDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Paiement_Archive
+     */
+    select?: T_Paiement_ArchiveSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Paiement_Archive
+     */
+    omit?: T_Paiement_ArchiveOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_Paiement_ArchiveInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model T_Presence
    */
 
@@ -26120,6 +28649,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs<ExtArgs>
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Apprenant_T_Apprenant_IdUserFkToT_UtilisateursArgs<ExtArgs>
+    T_Chat?: boolean | T_Utilisateurs$T_ChatArgs<ExtArgs>
     T_Communication?: boolean | T_Utilisateurs$T_CommunicationArgs<ExtArgs>
     T_Enseignant?: boolean | T_Utilisateurs$T_EnseignantArgs<ExtArgs>
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Evaluations_T_Evaluations_IdCibleFkToT_UtilisateursArgs<ExtArgs>
@@ -26196,6 +28726,7 @@ export namespace Prisma {
   export type T_UtilisateursInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs<ExtArgs>
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Apprenant_T_Apprenant_IdUserFkToT_UtilisateursArgs<ExtArgs>
+    T_Chat?: boolean | T_Utilisateurs$T_ChatArgs<ExtArgs>
     T_Communication?: boolean | T_Utilisateurs$T_CommunicationArgs<ExtArgs>
     T_Enseignant?: boolean | T_Utilisateurs$T_EnseignantArgs<ExtArgs>
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: boolean | T_Utilisateurs$T_Evaluations_T_Evaluations_IdCibleFkToT_UtilisateursArgs<ExtArgs>
@@ -26223,6 +28754,7 @@ export namespace Prisma {
     objects: {
       T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs: Prisma.$T_ApprenantPayload<ExtArgs>[]
       T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs: Prisma.$T_ApprenantPayload<ExtArgs> | null
+      T_Chat: Prisma.$T_ChatPayload<ExtArgs>[]
       T_Communication: Prisma.$T_CommunicationPayload<ExtArgs>[]
       T_Enseignant: Prisma.$T_EnseignantPayload<ExtArgs>[]
       T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs: Prisma.$T_EvaluationsPayload<ExtArgs>[]
@@ -26647,6 +29179,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs<T extends T_Utilisateurs$T_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_Apprenant_T_Apprenant_IdParentApprenantFkToT_UtilisateursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_ApprenantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs<T extends T_Utilisateurs$T_Apprenant_T_Apprenant_IdUserFkToT_UtilisateursArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_Apprenant_T_Apprenant_IdUserFkToT_UtilisateursArgs<ExtArgs>>): Prisma__T_ApprenantClient<$Result.GetResult<Prisma.$T_ApprenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    T_Chat<T extends T_Utilisateurs$T_ChatArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_ChatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_ChatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Communication<T extends T_Utilisateurs$T_CommunicationArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_CommunicationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_CommunicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Enseignant<T extends T_Utilisateurs$T_EnseignantArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_EnseignantArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_EnseignantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs<T extends T_Utilisateurs$T_Evaluations_T_Evaluations_IdCibleFkToT_UtilisateursArgs<ExtArgs> = {}>(args?: Subset<T, T_Utilisateurs$T_Evaluations_T_Evaluations_IdCibleFkToT_UtilisateursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$T_EvaluationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -27141,6 +29674,30 @@ export namespace Prisma {
   }
 
   /**
+   * T_Utilisateurs.T_Chat
+   */
+  export type T_Utilisateurs$T_ChatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the T_Chat
+     */
+    select?: T_ChatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the T_Chat
+     */
+    omit?: T_ChatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: T_ChatInclude<ExtArgs> | null
+    where?: T_ChatWhereInput
+    orderBy?: T_ChatOrderByWithRelationInput | T_ChatOrderByWithRelationInput[]
+    cursor?: T_ChatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: T_ChatScalarFieldEnum | T_ChatScalarFieldEnum[]
+  }
+
+  /**
    * T_Utilisateurs.T_Communication
    */
   export type T_Utilisateurs$T_CommunicationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -27414,1031 +29971,6 @@ export namespace Prisma {
 
 
   /**
-   * Model VS_ApprenantAge
-   */
-
-  export type AggregateVS_ApprenantAge = {
-    _count: VS_ApprenantAgeCountAggregateOutputType | null
-    _avg: VS_ApprenantAgeAvgAggregateOutputType | null
-    _sum: VS_ApprenantAgeSumAggregateOutputType | null
-    _min: VS_ApprenantAgeMinAggregateOutputType | null
-    _max: VS_ApprenantAgeMaxAggregateOutputType | null
-  }
-
-  export type VS_ApprenantAgeAvgAggregateOutputType = {
-    nombre_apprenants: number | null
-    IdEntiteFk: number | null
-  }
-
-  export type VS_ApprenantAgeSumAggregateOutputType = {
-    nombre_apprenants: number | null
-    IdEntiteFk: number | null
-  }
-
-  export type VS_ApprenantAgeMinAggregateOutputType = {
-    tranche_age: string | null
-    nombre_apprenants: number | null
-    IdEntiteFk: number | null
-    NomEntite: string | null
-  }
-
-  export type VS_ApprenantAgeMaxAggregateOutputType = {
-    tranche_age: string | null
-    nombre_apprenants: number | null
-    IdEntiteFk: number | null
-    NomEntite: string | null
-  }
-
-  export type VS_ApprenantAgeCountAggregateOutputType = {
-    fakeId: number
-    tranche_age: number
-    nombre_apprenants: number
-    IdEntiteFk: number
-    NomEntite: number
-    _all: number
-  }
-
-
-  export type VS_ApprenantAgeAvgAggregateInputType = {
-    nombre_apprenants?: true
-    IdEntiteFk?: true
-  }
-
-  export type VS_ApprenantAgeSumAggregateInputType = {
-    nombre_apprenants?: true
-    IdEntiteFk?: true
-  }
-
-  export type VS_ApprenantAgeMinAggregateInputType = {
-    tranche_age?: true
-    nombre_apprenants?: true
-    IdEntiteFk?: true
-    NomEntite?: true
-  }
-
-  export type VS_ApprenantAgeMaxAggregateInputType = {
-    tranche_age?: true
-    nombre_apprenants?: true
-    IdEntiteFk?: true
-    NomEntite?: true
-  }
-
-  export type VS_ApprenantAgeCountAggregateInputType = {
-    fakeId?: true
-    tranche_age?: true
-    nombre_apprenants?: true
-    IdEntiteFk?: true
-    NomEntite?: true
-    _all?: true
-  }
-
-  export type VS_ApprenantAgeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which VS_ApprenantAge to aggregate.
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VS_ApprenantAges to fetch.
-     */
-    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: VS_ApprenantAgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VS_ApprenantAges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VS_ApprenantAges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned VS_ApprenantAges
-    **/
-    _count?: true | VS_ApprenantAgeCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: VS_ApprenantAgeAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: VS_ApprenantAgeSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: VS_ApprenantAgeMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: VS_ApprenantAgeMaxAggregateInputType
-  }
-
-  export type GetVS_ApprenantAgeAggregateType<T extends VS_ApprenantAgeAggregateArgs> = {
-        [P in keyof T & keyof AggregateVS_ApprenantAge]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateVS_ApprenantAge[P]>
-      : GetScalarType<T[P], AggregateVS_ApprenantAge[P]>
-  }
-
-
-
-
-  export type VS_ApprenantAgeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VS_ApprenantAgeWhereInput
-    orderBy?: VS_ApprenantAgeOrderByWithAggregationInput | VS_ApprenantAgeOrderByWithAggregationInput[]
-    by: VS_ApprenantAgeScalarFieldEnum[] | VS_ApprenantAgeScalarFieldEnum
-    having?: VS_ApprenantAgeScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: VS_ApprenantAgeCountAggregateInputType | true
-    _avg?: VS_ApprenantAgeAvgAggregateInputType
-    _sum?: VS_ApprenantAgeSumAggregateInputType
-    _min?: VS_ApprenantAgeMinAggregateInputType
-    _max?: VS_ApprenantAgeMaxAggregateInputType
-  }
-
-  export type VS_ApprenantAgeGroupByOutputType = {
-    fakeId: number
-    tranche_age: string
-    nombre_apprenants: number
-    IdEntiteFk: number
-    NomEntite: string
-    _count: VS_ApprenantAgeCountAggregateOutputType | null
-    _avg: VS_ApprenantAgeAvgAggregateOutputType | null
-    _sum: VS_ApprenantAgeSumAggregateOutputType | null
-    _min: VS_ApprenantAgeMinAggregateOutputType | null
-    _max: VS_ApprenantAgeMaxAggregateOutputType | null
-  }
-
-  type GetVS_ApprenantAgeGroupByPayload<T extends VS_ApprenantAgeGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<VS_ApprenantAgeGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof VS_ApprenantAgeGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], VS_ApprenantAgeGroupByOutputType[P]>
-            : GetScalarType<T[P], VS_ApprenantAgeGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type VS_ApprenantAgeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    tranche_age?: boolean
-    nombre_apprenants?: boolean
-    IdEntiteFk?: boolean
-    NomEntite?: boolean
-  }, ExtArgs["result"]["vS_ApprenantAge"]>
-
-  export type VS_ApprenantAgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    fakeId?: boolean
-    tranche_age?: boolean
-    nombre_apprenants?: boolean
-    IdEntiteFk?: boolean
-    NomEntite?: boolean
-  }, ExtArgs["result"]["vS_ApprenantAge"]>
-
-  export type VS_ApprenantAgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    fakeId?: boolean
-    tranche_age?: boolean
-    nombre_apprenants?: boolean
-    IdEntiteFk?: boolean
-    NomEntite?: boolean
-  }, ExtArgs["result"]["vS_ApprenantAge"]>
-
-  export type VS_ApprenantAgeSelectScalar = {
-    tranche_age?: boolean
-    nombre_apprenants?: boolean
-    IdEntiteFk?: boolean
-    NomEntite?: boolean
-  }
-
-  export type VS_ApprenantAgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tranche_age" | "nombre_apprenants" | "IdEntiteFk" | "NomEntite", ExtArgs["result"]["vS_ApprenantAge"]>
-
-  export type $VS_ApprenantAgePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "VS_ApprenantAge"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      tranche_age: string
-      nombre_apprenants: number
-      IdEntiteFk: number
-      NomEntite: string
-    }, ExtArgs["result"]["vS_ApprenantAge"]>
-    composites: {}
-  }
-
-  type VS_ApprenantAgeGetPayload<S extends boolean | null | undefined | VS_ApprenantAgeDefaultArgs> = $Result.GetResult<Prisma.$VS_ApprenantAgePayload, S>
-
-  type VS_ApprenantAgeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VS_ApprenantAgeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VS_ApprenantAgeCountAggregateInputType | true
-    }
-
-  export interface VS_ApprenantAgeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VS_ApprenantAge'], meta: { name: 'VS_ApprenantAge' } }
-    /**
-     * Find zero or one VS_ApprenantAge that matches the filter.
-     * @param {VS_ApprenantAgeFindUniqueArgs} args - Arguments to find a VS_ApprenantAge
-     * @example
-     * // Get one VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends VS_ApprenantAgeFindUniqueArgs>(args: SelectSubset<T, VS_ApprenantAgeFindUniqueArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one VS_ApprenantAge that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {VS_ApprenantAgeFindUniqueOrThrowArgs} args - Arguments to find a VS_ApprenantAge
-     * @example
-     * // Get one VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends VS_ApprenantAgeFindUniqueOrThrowArgs>(args: SelectSubset<T, VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first VS_ApprenantAge that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeFindFirstArgs} args - Arguments to find a VS_ApprenantAge
-     * @example
-     * // Get one VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends VS_ApprenantAgeFindFirstArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindFirstArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first VS_ApprenantAge that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeFindFirstOrThrowArgs} args - Arguments to find a VS_ApprenantAge
-     * @example
-     * // Get one VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends VS_ApprenantAgeFindFirstOrThrowArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more VS_ApprenantAges that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all VS_ApprenantAges
-     * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany()
-     * 
-     * // Get first 10 VS_ApprenantAges
-     * const vS_ApprenantAges = await prisma.vS_ApprenantAge.findMany({ take: 10 })
-     * 
-     * // Only select the `tranche_age`
-     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.findMany({ select: { tranche_age: true } })
-     * 
-     */
-    findMany<T extends VS_ApprenantAgeFindManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a VS_ApprenantAge.
-     * @param {VS_ApprenantAgeCreateArgs} args - Arguments to create a VS_ApprenantAge.
-     * @example
-     * // Create one VS_ApprenantAge
-     * const VS_ApprenantAge = await prisma.vS_ApprenantAge.create({
-     *   data: {
-     *     // ... data to create a VS_ApprenantAge
-     *   }
-     * })
-     * 
-     */
-    create<T extends VS_ApprenantAgeCreateArgs>(args: SelectSubset<T, VS_ApprenantAgeCreateArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many VS_ApprenantAges.
-     * @param {VS_ApprenantAgeCreateManyArgs} args - Arguments to create many VS_ApprenantAges.
-     * @example
-     * // Create many VS_ApprenantAges
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends VS_ApprenantAgeCreateManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many VS_ApprenantAges and returns the data saved in the database.
-     * @param {VS_ApprenantAgeCreateManyAndReturnArgs} args - Arguments to create many VS_ApprenantAges.
-     * @example
-     * // Create many VS_ApprenantAges
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many VS_ApprenantAges and only return the `tranche_age`
-     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.createManyAndReturn({
-     *   select: { tranche_age: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends VS_ApprenantAgeCreateManyAndReturnArgs>(args?: SelectSubset<T, VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a VS_ApprenantAge.
-     * @param {VS_ApprenantAgeDeleteArgs} args - Arguments to delete one VS_ApprenantAge.
-     * @example
-     * // Delete one VS_ApprenantAge
-     * const VS_ApprenantAge = await prisma.vS_ApprenantAge.delete({
-     *   where: {
-     *     // ... filter to delete one VS_ApprenantAge
-     *   }
-     * })
-     * 
-     */
-    delete<T extends VS_ApprenantAgeDeleteArgs>(args: SelectSubset<T, VS_ApprenantAgeDeleteArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one VS_ApprenantAge.
-     * @param {VS_ApprenantAgeUpdateArgs} args - Arguments to update one VS_ApprenantAge.
-     * @example
-     * // Update one VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends VS_ApprenantAgeUpdateArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more VS_ApprenantAges.
-     * @param {VS_ApprenantAgeDeleteManyArgs} args - Arguments to filter VS_ApprenantAges to delete.
-     * @example
-     * // Delete a few VS_ApprenantAges
-     * const { count } = await prisma.vS_ApprenantAge.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends VS_ApprenantAgeDeleteManyArgs>(args?: SelectSubset<T, VS_ApprenantAgeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more VS_ApprenantAges.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many VS_ApprenantAges
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends VS_ApprenantAgeUpdateManyArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more VS_ApprenantAges and returns the data updated in the database.
-     * @param {VS_ApprenantAgeUpdateManyAndReturnArgs} args - Arguments to update many VS_ApprenantAges.
-     * @example
-     * // Update many VS_ApprenantAges
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more VS_ApprenantAges and only return the `tranche_age`
-     * const vS_ApprenantAgeWithTranche_ageOnly = await prisma.vS_ApprenantAge.updateManyAndReturn({
-     *   select: { tranche_age: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends VS_ApprenantAgeUpdateManyAndReturnArgs>(args: SelectSubset<T, VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one VS_ApprenantAge.
-     * @param {VS_ApprenantAgeUpsertArgs} args - Arguments to update or create a VS_ApprenantAge.
-     * @example
-     * // Update or create a VS_ApprenantAge
-     * const vS_ApprenantAge = await prisma.vS_ApprenantAge.upsert({
-     *   create: {
-     *     // ... data to create a VS_ApprenantAge
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the VS_ApprenantAge we want to update
-     *   }
-     * })
-     */
-    upsert<T extends VS_ApprenantAgeUpsertArgs>(args: SelectSubset<T, VS_ApprenantAgeUpsertArgs<ExtArgs>>): Prisma__VS_ApprenantAgeClient<$Result.GetResult<Prisma.$VS_ApprenantAgePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of VS_ApprenantAges.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeCountArgs} args - Arguments to filter VS_ApprenantAges to count.
-     * @example
-     * // Count the number of VS_ApprenantAges
-     * const count = await prisma.vS_ApprenantAge.count({
-     *   where: {
-     *     // ... the filter for the VS_ApprenantAges we want to count
-     *   }
-     * })
-    **/
-    count<T extends VS_ApprenantAgeCountArgs>(
-      args?: Subset<T, VS_ApprenantAgeCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], VS_ApprenantAgeCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a VS_ApprenantAge.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends VS_ApprenantAgeAggregateArgs>(args: Subset<T, VS_ApprenantAgeAggregateArgs>): Prisma.PrismaPromise<GetVS_ApprenantAgeAggregateType<T>>
-
-    /**
-     * Group by VS_ApprenantAge.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {VS_ApprenantAgeGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends VS_ApprenantAgeGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VS_ApprenantAgeGroupByArgs['orderBy'] }
-        : { orderBy?: VS_ApprenantAgeGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, VS_ApprenantAgeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVS_ApprenantAgeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the VS_ApprenantAge model
-   */
-  readonly fields: VS_ApprenantAgeFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for VS_ApprenantAge.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__VS_ApprenantAgeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the VS_ApprenantAge model
-   */
-  interface VS_ApprenantAgeFieldRefs {
-    readonly tranche_age: FieldRef<"VS_ApprenantAge", 'String'>
-    readonly nombre_apprenants: FieldRef<"VS_ApprenantAge", 'Int'>
-    readonly IdEntiteFk: FieldRef<"VS_ApprenantAge", 'Int'>
-    readonly NomEntite: FieldRef<"VS_ApprenantAge", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * VS_ApprenantAge findUnique
-   */
-  export type VS_ApprenantAgeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter, which VS_ApprenantAge to fetch.
-     */
-    where: VS_ApprenantAgeWhereUniqueInput
-  }
-
-  /**
-   * VS_ApprenantAge findUniqueOrThrow
-   */
-  export type VS_ApprenantAgeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter, which VS_ApprenantAge to fetch.
-     */
-    where: VS_ApprenantAgeWhereUniqueInput
-  }
-
-  /**
-   * VS_ApprenantAge findFirst
-   */
-  export type VS_ApprenantAgeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter, which VS_ApprenantAge to fetch.
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VS_ApprenantAges to fetch.
-     */
-    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for VS_ApprenantAges.
-     */
-    cursor?: VS_ApprenantAgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VS_ApprenantAges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VS_ApprenantAges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of VS_ApprenantAges.
-     */
-    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
-  }
-
-  /**
-   * VS_ApprenantAge findFirstOrThrow
-   */
-  export type VS_ApprenantAgeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter, which VS_ApprenantAge to fetch.
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VS_ApprenantAges to fetch.
-     */
-    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for VS_ApprenantAges.
-     */
-    cursor?: VS_ApprenantAgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VS_ApprenantAges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VS_ApprenantAges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of VS_ApprenantAges.
-     */
-    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
-  }
-
-  /**
-   * VS_ApprenantAge findMany
-   */
-  export type VS_ApprenantAgeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter, which VS_ApprenantAges to fetch.
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of VS_ApprenantAges to fetch.
-     */
-    orderBy?: VS_ApprenantAgeOrderByWithRelationInput | VS_ApprenantAgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing VS_ApprenantAges.
-     */
-    cursor?: VS_ApprenantAgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` VS_ApprenantAges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` VS_ApprenantAges.
-     */
-    skip?: number
-    distinct?: VS_ApprenantAgeScalarFieldEnum | VS_ApprenantAgeScalarFieldEnum[]
-  }
-
-  /**
-   * VS_ApprenantAge create
-   */
-  export type VS_ApprenantAgeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * The data needed to create a VS_ApprenantAge.
-     */
-    data: XOR<VS_ApprenantAgeCreateInput, VS_ApprenantAgeUncheckedCreateInput>
-  }
-
-  /**
-   * VS_ApprenantAge createMany
-   */
-  export type VS_ApprenantAgeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many VS_ApprenantAges.
-     */
-    data: VS_ApprenantAgeCreateManyInput | VS_ApprenantAgeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * VS_ApprenantAge createManyAndReturn
-   */
-  export type VS_ApprenantAgeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * The data used to create many VS_ApprenantAges.
-     */
-    data: VS_ApprenantAgeCreateManyInput | VS_ApprenantAgeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * VS_ApprenantAge update
-   */
-  export type VS_ApprenantAgeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * The data needed to update a VS_ApprenantAge.
-     */
-    data: XOR<VS_ApprenantAgeUpdateInput, VS_ApprenantAgeUncheckedUpdateInput>
-    /**
-     * Choose, which VS_ApprenantAge to update.
-     */
-    where: VS_ApprenantAgeWhereUniqueInput
-  }
-
-  /**
-   * VS_ApprenantAge updateMany
-   */
-  export type VS_ApprenantAgeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update VS_ApprenantAges.
-     */
-    data: XOR<VS_ApprenantAgeUpdateManyMutationInput, VS_ApprenantAgeUncheckedUpdateManyInput>
-    /**
-     * Filter which VS_ApprenantAges to update
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * Limit how many VS_ApprenantAges to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * VS_ApprenantAge updateManyAndReturn
-   */
-  export type VS_ApprenantAgeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * The data used to update VS_ApprenantAges.
-     */
-    data: XOR<VS_ApprenantAgeUpdateManyMutationInput, VS_ApprenantAgeUncheckedUpdateManyInput>
-    /**
-     * Filter which VS_ApprenantAges to update
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * Limit how many VS_ApprenantAges to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * VS_ApprenantAge upsert
-   */
-  export type VS_ApprenantAgeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * The filter to search for the VS_ApprenantAge to update in case it exists.
-     */
-    where: VS_ApprenantAgeWhereUniqueInput
-    /**
-     * In case the VS_ApprenantAge found by the `where` argument doesn't exist, create a new VS_ApprenantAge with this data.
-     */
-    create: XOR<VS_ApprenantAgeCreateInput, VS_ApprenantAgeUncheckedCreateInput>
-    /**
-     * In case the VS_ApprenantAge was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<VS_ApprenantAgeUpdateInput, VS_ApprenantAgeUncheckedUpdateInput>
-  }
-
-  /**
-   * VS_ApprenantAge delete
-   */
-  export type VS_ApprenantAgeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-    /**
-     * Filter which VS_ApprenantAge to delete.
-     */
-    where: VS_ApprenantAgeWhereUniqueInput
-  }
-
-  /**
-   * VS_ApprenantAge deleteMany
-   */
-  export type VS_ApprenantAgeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which VS_ApprenantAges to delete
-     */
-    where?: VS_ApprenantAgeWhereInput
-    /**
-     * Limit how many VS_ApprenantAges to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * VS_ApprenantAge without action
-   */
-  export type VS_ApprenantAgeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the VS_ApprenantAge
-     */
-    select?: VS_ApprenantAgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the VS_ApprenantAge
-     */
-    omit?: VS_ApprenantAgeOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -28524,6 +30056,17 @@ export namespace Prisma {
   };
 
   export type T_CategorieGeneriqueScalarFieldEnum = (typeof T_CategorieGeneriqueScalarFieldEnum)[keyof typeof T_CategorieGeneriqueScalarFieldEnum]
+
+
+  export const T_ChatScalarFieldEnum: {
+    IdChat: 'IdChat',
+    TextChat: 'TextChat',
+    ChatFile: 'ChatFile',
+    ChatLink: 'ChatLink',
+    AuthorIdFk: 'AuthorIdFk'
+  };
+
+  export type T_ChatScalarFieldEnum = (typeof T_ChatScalarFieldEnum)[keyof typeof T_ChatScalarFieldEnum]
 
 
   export const T_CommunicationScalarFieldEnum: {
@@ -28675,6 +30218,27 @@ export namespace Prisma {
   export type T_PaiementScalarFieldEnum = (typeof T_PaiementScalarFieldEnum)[keyof typeof T_PaiementScalarFieldEnum]
 
 
+  export const T_Paiement_ArchiveScalarFieldEnum: {
+    IdPaiement: 'IdPaiement',
+    CodePaiement: 'CodePaiement',
+    IdUserFk: 'IdUserFk',
+    IdTypePaiementFk: 'IdTypePaiementFk',
+    MontantPaiement: 'MontantPaiement',
+    IdStatutPaiementFk: 'IdStatutPaiementFk',
+    DatePaiement: 'DatePaiement',
+    ObsPaiement: 'ObsPaiement',
+    ValidePaiement: 'ValidePaiement',
+    IdDeviseFk: 'IdDeviseFk',
+    IdPayeurFk: 'IdPayeurFk',
+    IdTypeMouvementFk: 'IdTypeMouvementFk',
+    DateArchivage: 'DateArchivage',
+    IdEntiteFk: 'IdEntiteFk',
+    IdPaiementArchive: 'IdPaiementArchive'
+  };
+
+  export type T_Paiement_ArchiveScalarFieldEnum = (typeof T_Paiement_ArchiveScalarFieldEnum)[keyof typeof T_Paiement_ArchiveScalarFieldEnum]
+
+
   export const T_PresenceScalarFieldEnum: {
     IdPresence: 'IdPresence',
     IdControleurFk: 'IdControleurFk',
@@ -28717,17 +30281,6 @@ export namespace Prisma {
   };
 
   export type T_UtilisateursScalarFieldEnum = (typeof T_UtilisateursScalarFieldEnum)[keyof typeof T_UtilisateursScalarFieldEnum]
-
-
-  export const VS_ApprenantAgeScalarFieldEnum: {
-    fakeId: 'fakeId',
-    tranche_age: 'tranche_age',
-    nombre_apprenants: 'nombre_apprenants',
-    IdEntiteFk: 'IdEntiteFk',
-    NomEntite: 'NomEntite'
-  };
-
-  export type VS_ApprenantAgeScalarFieldEnum = (typeof VS_ApprenantAgeScalarFieldEnum)[keyof typeof VS_ApprenantAgeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -29279,6 +30832,63 @@ export namespace Prisma {
     ValideCategorieGenerique?: BoolWithAggregatesFilter<"T_CategorieGenerique"> | boolean
   }
 
+  export type T_ChatWhereInput = {
+    AND?: T_ChatWhereInput | T_ChatWhereInput[]
+    OR?: T_ChatWhereInput[]
+    NOT?: T_ChatWhereInput | T_ChatWhereInput[]
+    IdChat?: IntFilter<"T_Chat"> | number
+    TextChat?: StringNullableFilter<"T_Chat"> | string | null
+    ChatFile?: StringNullableFilter<"T_Chat"> | string | null
+    ChatLink?: StringNullableFilter<"T_Chat"> | string | null
+    AuthorIdFk?: IntNullableFilter<"T_Chat"> | number | null
+    T_Utilisateurs?: XOR<T_UtilisateursNullableScalarRelationFilter, T_UtilisateursWhereInput> | null
+  }
+
+  export type T_ChatOrderByWithRelationInput = {
+    IdChat?: SortOrder
+    TextChat?: SortOrderInput | SortOrder
+    ChatFile?: SortOrderInput | SortOrder
+    ChatLink?: SortOrderInput | SortOrder
+    AuthorIdFk?: SortOrderInput | SortOrder
+    T_Utilisateurs?: T_UtilisateursOrderByWithRelationInput
+  }
+
+  export type T_ChatWhereUniqueInput = Prisma.AtLeast<{
+    IdChat?: number
+    AND?: T_ChatWhereInput | T_ChatWhereInput[]
+    OR?: T_ChatWhereInput[]
+    NOT?: T_ChatWhereInput | T_ChatWhereInput[]
+    TextChat?: StringNullableFilter<"T_Chat"> | string | null
+    ChatFile?: StringNullableFilter<"T_Chat"> | string | null
+    ChatLink?: StringNullableFilter<"T_Chat"> | string | null
+    AuthorIdFk?: IntNullableFilter<"T_Chat"> | number | null
+    T_Utilisateurs?: XOR<T_UtilisateursNullableScalarRelationFilter, T_UtilisateursWhereInput> | null
+  }, "IdChat">
+
+  export type T_ChatOrderByWithAggregationInput = {
+    IdChat?: SortOrder
+    TextChat?: SortOrderInput | SortOrder
+    ChatFile?: SortOrderInput | SortOrder
+    ChatLink?: SortOrderInput | SortOrder
+    AuthorIdFk?: SortOrderInput | SortOrder
+    _count?: T_ChatCountOrderByAggregateInput
+    _avg?: T_ChatAvgOrderByAggregateInput
+    _max?: T_ChatMaxOrderByAggregateInput
+    _min?: T_ChatMinOrderByAggregateInput
+    _sum?: T_ChatSumOrderByAggregateInput
+  }
+
+  export type T_ChatScalarWhereWithAggregatesInput = {
+    AND?: T_ChatScalarWhereWithAggregatesInput | T_ChatScalarWhereWithAggregatesInput[]
+    OR?: T_ChatScalarWhereWithAggregatesInput[]
+    NOT?: T_ChatScalarWhereWithAggregatesInput | T_ChatScalarWhereWithAggregatesInput[]
+    IdChat?: IntWithAggregatesFilter<"T_Chat"> | number
+    TextChat?: StringNullableWithAggregatesFilter<"T_Chat"> | string | null
+    ChatFile?: StringNullableWithAggregatesFilter<"T_Chat"> | string | null
+    ChatLink?: StringNullableWithAggregatesFilter<"T_Chat"> | string | null
+    AuthorIdFk?: IntNullableWithAggregatesFilter<"T_Chat"> | number | null
+  }
+
   export type T_CommunicationWhereInput = {
     AND?: T_CommunicationWhereInput | T_CommunicationWhereInput[]
     OR?: T_CommunicationWhereInput[]
@@ -29654,6 +31264,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceListRelationFilter
     T_Login?: T_LoginListRelationFilter
     T_Paiement?: T_PaiementListRelationFilter
+    T_Paiement_Archive?: T_Paiement_ArchiveListRelationFilter
     T_Presence?: T_PresenceListRelationFilter
     T_Salle?: T_SalleListRelationFilter
     T_Utilisateurs?: T_UtilisateursListRelationFilter
@@ -29682,6 +31293,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceOrderByRelationAggregateInput
     T_Login?: T_LoginOrderByRelationAggregateInput
     T_Paiement?: T_PaiementOrderByRelationAggregateInput
+    T_Paiement_Archive?: T_Paiement_ArchiveOrderByRelationAggregateInput
     T_Presence?: T_PresenceOrderByRelationAggregateInput
     T_Salle?: T_SalleOrderByRelationAggregateInput
     T_Utilisateurs?: T_UtilisateursOrderByRelationAggregateInput
@@ -29713,6 +31325,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceListRelationFilter
     T_Login?: T_LoginListRelationFilter
     T_Paiement?: T_PaiementListRelationFilter
+    T_Paiement_Archive?: T_Paiement_ArchiveListRelationFilter
     T_Presence?: T_PresenceListRelationFilter
     T_Salle?: T_SalleListRelationFilter
     T_Utilisateurs?: T_UtilisateursListRelationFilter
@@ -30227,6 +31840,113 @@ export namespace Prisma {
     IdEntiteFk?: IntNullableWithAggregatesFilter<"T_Paiement"> | number | null
   }
 
+  export type T_Paiement_ArchiveWhereInput = {
+    AND?: T_Paiement_ArchiveWhereInput | T_Paiement_ArchiveWhereInput[]
+    OR?: T_Paiement_ArchiveWhereInput[]
+    NOT?: T_Paiement_ArchiveWhereInput | T_Paiement_ArchiveWhereInput[]
+    IdPaiement?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    CodePaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    IdUserFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypePaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    MontantPaiement?: DecimalNullableFilter<"T_Paiement_Archive"> | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DatePaiement?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    ObsPaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    ValidePaiement?: BoolNullableFilter<"T_Paiement_Archive"> | boolean | null
+    IdDeviseFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdPayeurFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypeMouvementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DateArchivage?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    IdEntiteFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdPaiementArchive?: IntFilter<"T_Paiement_Archive"> | number
+    T_Entite?: XOR<T_EntiteNullableScalarRelationFilter, T_EntiteWhereInput> | null
+  }
+
+  export type T_Paiement_ArchiveOrderByWithRelationInput = {
+    IdPaiement?: SortOrderInput | SortOrder
+    CodePaiement?: SortOrderInput | SortOrder
+    IdUserFk?: SortOrderInput | SortOrder
+    IdTypePaiementFk?: SortOrderInput | SortOrder
+    MontantPaiement?: SortOrderInput | SortOrder
+    IdStatutPaiementFk?: SortOrderInput | SortOrder
+    DatePaiement?: SortOrderInput | SortOrder
+    ObsPaiement?: SortOrderInput | SortOrder
+    ValidePaiement?: SortOrderInput | SortOrder
+    IdDeviseFk?: SortOrderInput | SortOrder
+    IdPayeurFk?: SortOrderInput | SortOrder
+    IdTypeMouvementFk?: SortOrderInput | SortOrder
+    DateArchivage?: SortOrderInput | SortOrder
+    IdEntiteFk?: SortOrderInput | SortOrder
+    IdPaiementArchive?: SortOrder
+    T_Entite?: T_EntiteOrderByWithRelationInput
+  }
+
+  export type T_Paiement_ArchiveWhereUniqueInput = Prisma.AtLeast<{
+    IdPaiementArchive?: number
+    AND?: T_Paiement_ArchiveWhereInput | T_Paiement_ArchiveWhereInput[]
+    OR?: T_Paiement_ArchiveWhereInput[]
+    NOT?: T_Paiement_ArchiveWhereInput | T_Paiement_ArchiveWhereInput[]
+    IdPaiement?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    CodePaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    IdUserFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypePaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    MontantPaiement?: DecimalNullableFilter<"T_Paiement_Archive"> | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DatePaiement?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    ObsPaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    ValidePaiement?: BoolNullableFilter<"T_Paiement_Archive"> | boolean | null
+    IdDeviseFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdPayeurFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypeMouvementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DateArchivage?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    IdEntiteFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    T_Entite?: XOR<T_EntiteNullableScalarRelationFilter, T_EntiteWhereInput> | null
+  }, "IdPaiementArchive">
+
+  export type T_Paiement_ArchiveOrderByWithAggregationInput = {
+    IdPaiement?: SortOrderInput | SortOrder
+    CodePaiement?: SortOrderInput | SortOrder
+    IdUserFk?: SortOrderInput | SortOrder
+    IdTypePaiementFk?: SortOrderInput | SortOrder
+    MontantPaiement?: SortOrderInput | SortOrder
+    IdStatutPaiementFk?: SortOrderInput | SortOrder
+    DatePaiement?: SortOrderInput | SortOrder
+    ObsPaiement?: SortOrderInput | SortOrder
+    ValidePaiement?: SortOrderInput | SortOrder
+    IdDeviseFk?: SortOrderInput | SortOrder
+    IdPayeurFk?: SortOrderInput | SortOrder
+    IdTypeMouvementFk?: SortOrderInput | SortOrder
+    DateArchivage?: SortOrderInput | SortOrder
+    IdEntiteFk?: SortOrderInput | SortOrder
+    IdPaiementArchive?: SortOrder
+    _count?: T_Paiement_ArchiveCountOrderByAggregateInput
+    _avg?: T_Paiement_ArchiveAvgOrderByAggregateInput
+    _max?: T_Paiement_ArchiveMaxOrderByAggregateInput
+    _min?: T_Paiement_ArchiveMinOrderByAggregateInput
+    _sum?: T_Paiement_ArchiveSumOrderByAggregateInput
+  }
+
+  export type T_Paiement_ArchiveScalarWhereWithAggregatesInput = {
+    AND?: T_Paiement_ArchiveScalarWhereWithAggregatesInput | T_Paiement_ArchiveScalarWhereWithAggregatesInput[]
+    OR?: T_Paiement_ArchiveScalarWhereWithAggregatesInput[]
+    NOT?: T_Paiement_ArchiveScalarWhereWithAggregatesInput | T_Paiement_ArchiveScalarWhereWithAggregatesInput[]
+    IdPaiement?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    CodePaiement?: StringNullableWithAggregatesFilter<"T_Paiement_Archive"> | string | null
+    IdUserFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    IdTypePaiementFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    MontantPaiement?: DecimalNullableWithAggregatesFilter<"T_Paiement_Archive"> | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    DatePaiement?: DateTimeNullableWithAggregatesFilter<"T_Paiement_Archive"> | Date | string | null
+    ObsPaiement?: StringNullableWithAggregatesFilter<"T_Paiement_Archive"> | string | null
+    ValidePaiement?: BoolNullableWithAggregatesFilter<"T_Paiement_Archive"> | boolean | null
+    IdDeviseFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    IdPayeurFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    IdTypeMouvementFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    DateArchivage?: DateTimeNullableWithAggregatesFilter<"T_Paiement_Archive"> | Date | string | null
+    IdEntiteFk?: IntNullableWithAggregatesFilter<"T_Paiement_Archive"> | number | null
+    IdPaiementArchive?: IntWithAggregatesFilter<"T_Paiement_Archive"> | number
+  }
+
   export type T_PresenceWhereInput = {
     AND?: T_PresenceWhereInput | T_PresenceWhereInput[]
     OR?: T_PresenceWhereInput[]
@@ -30376,6 +32096,7 @@ export namespace Prisma {
     Is_Admin?: BoolFilter<"T_Utilisateurs"> | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantListRelationFilter
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: XOR<T_ApprenantNullableScalarRelationFilter, T_ApprenantWhereInput> | null
+    T_Chat?: T_ChatListRelationFilter
     T_Communication?: T_CommunicationListRelationFilter
     T_Enseignant?: T_EnseignantListRelationFilter
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsListRelationFilter
@@ -30407,6 +32128,7 @@ export namespace Prisma {
     Is_Admin?: SortOrder
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantOrderByRelationAggregateInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantOrderByWithRelationInput
+    T_Chat?: T_ChatOrderByRelationAggregateInput
     T_Communication?: T_CommunicationOrderByRelationAggregateInput
     T_Enseignant?: T_EnseignantOrderByRelationAggregateInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsOrderByRelationAggregateInput
@@ -30441,6 +32163,7 @@ export namespace Prisma {
     Is_Admin?: BoolFilter<"T_Utilisateurs"> | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantListRelationFilter
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: XOR<T_ApprenantNullableScalarRelationFilter, T_ApprenantWhereInput> | null
+    T_Chat?: T_ChatListRelationFilter
     T_Communication?: T_CommunicationListRelationFilter
     T_Enseignant?: T_EnseignantListRelationFilter
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsListRelationFilter
@@ -30496,55 +32219,6 @@ export namespace Prisma {
     IdEntiteFk?: IntNullableWithAggregatesFilter<"T_Utilisateurs"> | number | null
     Is_staff?: BoolWithAggregatesFilter<"T_Utilisateurs"> | boolean
     Is_Admin?: BoolWithAggregatesFilter<"T_Utilisateurs"> | boolean
-  }
-
-  export type VS_ApprenantAgeWhereInput = {
-    AND?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
-    OR?: VS_ApprenantAgeWhereInput[]
-    NOT?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
-    tranche_age?: StringFilter<"VS_ApprenantAge"> | string
-    nombre_apprenants?: IntFilter<"VS_ApprenantAge"> | number
-    IdEntiteFk?: IntFilter<"VS_ApprenantAge"> | number
-    NomEntite?: StringFilter<"VS_ApprenantAge"> | string
-  }
-
-  export type VS_ApprenantAgeOrderByWithRelationInput = {
-    tranche_age?: SortOrder
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-    NomEntite?: SortOrder
-  }
-
-  export type VS_ApprenantAgeWhereUniqueInput = Prisma.AtLeast<{
-    AND?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
-    OR?: VS_ApprenantAgeWhereInput[]
-    NOT?: VS_ApprenantAgeWhereInput | VS_ApprenantAgeWhereInput[]
-    tranche_age?: StringFilter<"VS_ApprenantAge"> | string
-    nombre_apprenants?: IntFilter<"VS_ApprenantAge"> | number
-    IdEntiteFk?: IntFilter<"VS_ApprenantAge"> | number
-    NomEntite?: StringFilter<"VS_ApprenantAge"> | string
-  }, "fakeId">
-
-  export type VS_ApprenantAgeOrderByWithAggregationInput = {
-    tranche_age?: SortOrder
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-    NomEntite?: SortOrder
-    _count?: VS_ApprenantAgeCountOrderByAggregateInput
-    _avg?: VS_ApprenantAgeAvgOrderByAggregateInput
-    _max?: VS_ApprenantAgeMaxOrderByAggregateInput
-    _min?: VS_ApprenantAgeMinOrderByAggregateInput
-    _sum?: VS_ApprenantAgeSumOrderByAggregateInput
-  }
-
-  export type VS_ApprenantAgeScalarWhereWithAggregatesInput = {
-    AND?: VS_ApprenantAgeScalarWhereWithAggregatesInput | VS_ApprenantAgeScalarWhereWithAggregatesInput[]
-    OR?: VS_ApprenantAgeScalarWhereWithAggregatesInput[]
-    NOT?: VS_ApprenantAgeScalarWhereWithAggregatesInput | VS_ApprenantAgeScalarWhereWithAggregatesInput[]
-    tranche_age?: StringWithAggregatesFilter<"VS_ApprenantAge"> | string
-    nombre_apprenants?: IntWithAggregatesFilter<"VS_ApprenantAge"> | number
-    IdEntiteFk?: IntWithAggregatesFilter<"VS_ApprenantAge"> | number
-    NomEntite?: StringWithAggregatesFilter<"VS_ApprenantAge"> | string
   }
 
   export type T_ActiviteParticipantsCreateInput = {
@@ -30921,6 +32595,58 @@ export namespace Prisma {
     ValideCategorieGenerique?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type T_ChatCreateInput = {
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
+    T_Utilisateurs?: T_UtilisateursCreateNestedOneWithoutT_ChatInput
+  }
+
+  export type T_ChatUncheckedCreateInput = {
+    IdChat?: number
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
+    AuthorIdFk?: number | null
+  }
+
+  export type T_ChatUpdateInput = {
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+    T_Utilisateurs?: T_UtilisateursUpdateOneWithoutT_ChatNestedInput
+  }
+
+  export type T_ChatUncheckedUpdateInput = {
+    IdChat?: IntFieldUpdateOperationsInput | number
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+    AuthorIdFk?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type T_ChatCreateManyInput = {
+    IdChat?: number
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
+    AuthorIdFk?: number | null
+  }
+
+  export type T_ChatUpdateManyMutationInput = {
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type T_ChatUncheckedUpdateManyInput = {
+    IdChat?: IntFieldUpdateOperationsInput | number
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+    AuthorIdFk?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type T_CommunicationCreateInput = {
     ContenuCommunication?: string | null
     DateCommunication?: Date | string
@@ -31267,6 +32993,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -31294,6 +33021,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -31320,6 +33048,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -31347,6 +33076,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -31846,6 +33576,128 @@ export namespace Prisma {
     IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type T_Paiement_ArchiveCreateInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+    T_Entite?: T_EntiteCreateNestedOneWithoutT_Paiement_ArchiveInput
+  }
+
+  export type T_Paiement_ArchiveUncheckedCreateInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+    IdEntiteFk?: number | null
+    IdPaiementArchive?: number
+  }
+
+  export type T_Paiement_ArchiveUpdateInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    T_Entite?: T_EntiteUpdateOneWithoutT_Paiement_ArchiveNestedInput
+  }
+
+  export type T_Paiement_ArchiveUncheckedUpdateInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPaiementArchive?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type T_Paiement_ArchiveCreateManyInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+    IdEntiteFk?: number | null
+    IdPaiementArchive?: number
+  }
+
+  export type T_Paiement_ArchiveUpdateManyMutationInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type T_Paiement_ArchiveUncheckedUpdateManyInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPaiementArchive?: IntFieldUpdateOperationsInput | number
+  }
+
   export type T_PresenceCreateInput = {
     DatePresence: Date | string
     ValidePresence?: boolean
@@ -31969,6 +33821,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -32000,6 +33853,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -32026,6 +33880,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -32057,6 +33912,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -32117,55 +33973,6 @@ export namespace Prisma {
     IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
     Is_staff?: BoolFieldUpdateOperationsInput | boolean
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type VS_ApprenantAgeCreateInput = {
-    tranche_age: string
-    nombre_apprenants: number
-    IdEntiteFk: number
-    NomEntite: string
-  }
-
-  export type VS_ApprenantAgeUncheckedCreateInput = {
-    tranche_age: string
-    nombre_apprenants: number
-    IdEntiteFk: number
-    NomEntite: string
-  }
-
-  export type VS_ApprenantAgeUpdateInput = {
-    tranche_age?: StringFieldUpdateOperationsInput | string
-    nombre_apprenants?: IntFieldUpdateOperationsInput | number
-    IdEntiteFk?: IntFieldUpdateOperationsInput | number
-    NomEntite?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type VS_ApprenantAgeUncheckedUpdateInput = {
-    tranche_age?: StringFieldUpdateOperationsInput | string
-    nombre_apprenants?: IntFieldUpdateOperationsInput | number
-    IdEntiteFk?: IntFieldUpdateOperationsInput | number
-    NomEntite?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type VS_ApprenantAgeCreateManyInput = {
-    tranche_age: string
-    nombre_apprenants: number
-    IdEntiteFk: number
-    NomEntite: string
-  }
-
-  export type VS_ApprenantAgeUpdateManyMutationInput = {
-    tranche_age?: StringFieldUpdateOperationsInput | string
-    nombre_apprenants?: IntFieldUpdateOperationsInput | number
-    IdEntiteFk?: IntFieldUpdateOperationsInput | number
-    NomEntite?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type VS_ApprenantAgeUncheckedUpdateManyInput = {
-    tranche_age?: StringFieldUpdateOperationsInput | string
-    nombre_apprenants?: IntFieldUpdateOperationsInput | number
-    IdEntiteFk?: IntFieldUpdateOperationsInput | number
-    NomEntite?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -32740,6 +34547,40 @@ export namespace Prisma {
     IdCategorieGenerique?: SortOrder
   }
 
+  export type T_ChatCountOrderByAggregateInput = {
+    IdChat?: SortOrder
+    TextChat?: SortOrder
+    ChatFile?: SortOrder
+    ChatLink?: SortOrder
+    AuthorIdFk?: SortOrder
+  }
+
+  export type T_ChatAvgOrderByAggregateInput = {
+    IdChat?: SortOrder
+    AuthorIdFk?: SortOrder
+  }
+
+  export type T_ChatMaxOrderByAggregateInput = {
+    IdChat?: SortOrder
+    TextChat?: SortOrder
+    ChatFile?: SortOrder
+    ChatLink?: SortOrder
+    AuthorIdFk?: SortOrder
+  }
+
+  export type T_ChatMinOrderByAggregateInput = {
+    IdChat?: SortOrder
+    TextChat?: SortOrder
+    ChatFile?: SortOrder
+    ChatLink?: SortOrder
+    AuthorIdFk?: SortOrder
+  }
+
+  export type T_ChatSumOrderByAggregateInput = {
+    IdChat?: SortOrder
+    AuthorIdFk?: SortOrder
+  }
+
   export type T_CommunicationCountOrderByAggregateInput = {
     IdCommunication?: SortOrder
     IdUserFk?: SortOrder
@@ -33033,6 +34874,12 @@ export namespace Prisma {
     none?: T_PaiementWhereInput
   }
 
+  export type T_Paiement_ArchiveListRelationFilter = {
+    every?: T_Paiement_ArchiveWhereInput
+    some?: T_Paiement_ArchiveWhereInput
+    none?: T_Paiement_ArchiveWhereInput
+  }
+
   export type T_PresenceListRelationFilter = {
     every?: T_PresenceWhereInput
     some?: T_PresenceWhereInput
@@ -33088,6 +34935,10 @@ export namespace Prisma {
   }
 
   export type T_PaiementOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type T_Paiement_ArchiveOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33489,6 +35340,86 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type T_Paiement_ArchiveCountOrderByAggregateInput = {
+    IdPaiement?: SortOrder
+    CodePaiement?: SortOrder
+    IdUserFk?: SortOrder
+    IdTypePaiementFk?: SortOrder
+    MontantPaiement?: SortOrder
+    IdStatutPaiementFk?: SortOrder
+    DatePaiement?: SortOrder
+    ObsPaiement?: SortOrder
+    ValidePaiement?: SortOrder
+    IdDeviseFk?: SortOrder
+    IdPayeurFk?: SortOrder
+    IdTypeMouvementFk?: SortOrder
+    DateArchivage?: SortOrder
+    IdEntiteFk?: SortOrder
+    IdPaiementArchive?: SortOrder
+  }
+
+  export type T_Paiement_ArchiveAvgOrderByAggregateInput = {
+    IdPaiement?: SortOrder
+    IdUserFk?: SortOrder
+    IdTypePaiementFk?: SortOrder
+    MontantPaiement?: SortOrder
+    IdStatutPaiementFk?: SortOrder
+    IdDeviseFk?: SortOrder
+    IdPayeurFk?: SortOrder
+    IdTypeMouvementFk?: SortOrder
+    IdEntiteFk?: SortOrder
+    IdPaiementArchive?: SortOrder
+  }
+
+  export type T_Paiement_ArchiveMaxOrderByAggregateInput = {
+    IdPaiement?: SortOrder
+    CodePaiement?: SortOrder
+    IdUserFk?: SortOrder
+    IdTypePaiementFk?: SortOrder
+    MontantPaiement?: SortOrder
+    IdStatutPaiementFk?: SortOrder
+    DatePaiement?: SortOrder
+    ObsPaiement?: SortOrder
+    ValidePaiement?: SortOrder
+    IdDeviseFk?: SortOrder
+    IdPayeurFk?: SortOrder
+    IdTypeMouvementFk?: SortOrder
+    DateArchivage?: SortOrder
+    IdEntiteFk?: SortOrder
+    IdPaiementArchive?: SortOrder
+  }
+
+  export type T_Paiement_ArchiveMinOrderByAggregateInput = {
+    IdPaiement?: SortOrder
+    CodePaiement?: SortOrder
+    IdUserFk?: SortOrder
+    IdTypePaiementFk?: SortOrder
+    MontantPaiement?: SortOrder
+    IdStatutPaiementFk?: SortOrder
+    DatePaiement?: SortOrder
+    ObsPaiement?: SortOrder
+    ValidePaiement?: SortOrder
+    IdDeviseFk?: SortOrder
+    IdPayeurFk?: SortOrder
+    IdTypeMouvementFk?: SortOrder
+    DateArchivage?: SortOrder
+    IdEntiteFk?: SortOrder
+    IdPaiementArchive?: SortOrder
+  }
+
+  export type T_Paiement_ArchiveSumOrderByAggregateInput = {
+    IdPaiement?: SortOrder
+    IdUserFk?: SortOrder
+    IdTypePaiementFk?: SortOrder
+    MontantPaiement?: SortOrder
+    IdStatutPaiementFk?: SortOrder
+    IdDeviseFk?: SortOrder
+    IdPayeurFk?: SortOrder
+    IdTypeMouvementFk?: SortOrder
+    IdEntiteFk?: SortOrder
+    IdPaiementArchive?: SortOrder
+  }
+
   export type T_PresenceCountOrderByAggregateInput = {
     IdPresence?: SortOrder
     IdControleurFk?: SortOrder
@@ -33573,6 +35504,16 @@ export namespace Prisma {
     isNot?: T_ApprenantWhereInput | null
   }
 
+  export type T_ChatListRelationFilter = {
+    every?: T_ChatWhereInput
+    some?: T_ChatWhereInput
+    none?: T_ChatWhereInput
+  }
+
+  export type T_ChatOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type T_UtilisateursCountOrderByAggregateInput = {
     IdUser?: SortOrder
     NomUser?: SortOrder
@@ -33636,37 +35577,6 @@ export namespace Prisma {
   export type T_UtilisateursSumOrderByAggregateInput = {
     IdUser?: SortOrder
     IdRoleFk?: SortOrder
-    IdEntiteFk?: SortOrder
-  }
-
-  export type VS_ApprenantAgeCountOrderByAggregateInput = {
-    tranche_age?: SortOrder
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-    NomEntite?: SortOrder
-  }
-
-  export type VS_ApprenantAgeAvgOrderByAggregateInput = {
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-  }
-
-  export type VS_ApprenantAgeMaxOrderByAggregateInput = {
-    tranche_age?: SortOrder
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-    NomEntite?: SortOrder
-  }
-
-  export type VS_ApprenantAgeMinOrderByAggregateInput = {
-    tranche_age?: SortOrder
-    nombre_apprenants?: SortOrder
-    IdEntiteFk?: SortOrder
-    NomEntite?: SortOrder
-  }
-
-  export type VS_ApprenantAgeSumOrderByAggregateInput = {
-    nombre_apprenants?: SortOrder
     IdEntiteFk?: SortOrder
   }
 
@@ -34028,6 +35938,22 @@ export namespace Prisma {
     update?: T_GeneriqueUpdateWithWhereUniqueWithoutT_CategorieGeneriqueInput | T_GeneriqueUpdateWithWhereUniqueWithoutT_CategorieGeneriqueInput[]
     updateMany?: T_GeneriqueUpdateManyWithWhereWithoutT_CategorieGeneriqueInput | T_GeneriqueUpdateManyWithWhereWithoutT_CategorieGeneriqueInput[]
     deleteMany?: T_GeneriqueScalarWhereInput | T_GeneriqueScalarWhereInput[]
+  }
+
+  export type T_UtilisateursCreateNestedOneWithoutT_ChatInput = {
+    create?: XOR<T_UtilisateursCreateWithoutT_ChatInput, T_UtilisateursUncheckedCreateWithoutT_ChatInput>
+    connectOrCreate?: T_UtilisateursCreateOrConnectWithoutT_ChatInput
+    connect?: T_UtilisateursWhereUniqueInput
+  }
+
+  export type T_UtilisateursUpdateOneWithoutT_ChatNestedInput = {
+    create?: XOR<T_UtilisateursCreateWithoutT_ChatInput, T_UtilisateursUncheckedCreateWithoutT_ChatInput>
+    connectOrCreate?: T_UtilisateursCreateOrConnectWithoutT_ChatInput
+    upsert?: T_UtilisateursUpsertWithoutT_ChatInput
+    disconnect?: T_UtilisateursWhereInput | boolean
+    delete?: T_UtilisateursWhereInput | boolean
+    connect?: T_UtilisateursWhereUniqueInput
+    update?: XOR<XOR<T_UtilisateursUpdateToOneWithWhereWithoutT_ChatInput, T_UtilisateursUpdateWithoutT_ChatInput>, T_UtilisateursUncheckedUpdateWithoutT_ChatInput>
   }
 
   export type T_EntiteCreateNestedOneWithoutT_CommunicationInput = {
@@ -34433,6 +36359,13 @@ export namespace Prisma {
     connect?: T_PaiementWhereUniqueInput | T_PaiementWhereUniqueInput[]
   }
 
+  export type T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput = {
+    create?: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput> | T_Paiement_ArchiveCreateWithoutT_EntiteInput[] | T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput[]
+    connectOrCreate?: T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput | T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput[]
+    createMany?: T_Paiement_ArchiveCreateManyT_EntiteInputEnvelope
+    connect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+  }
+
   export type T_PresenceCreateNestedManyWithoutT_EntiteInput = {
     create?: XOR<T_PresenceCreateWithoutT_EntiteInput, T_PresenceUncheckedCreateWithoutT_EntiteInput> | T_PresenceCreateWithoutT_EntiteInput[] | T_PresenceUncheckedCreateWithoutT_EntiteInput[]
     connectOrCreate?: T_PresenceCreateOrConnectWithoutT_EntiteInput | T_PresenceCreateOrConnectWithoutT_EntiteInput[]
@@ -34543,6 +36476,13 @@ export namespace Prisma {
     connectOrCreate?: T_PaiementCreateOrConnectWithoutT_EntiteInput | T_PaiementCreateOrConnectWithoutT_EntiteInput[]
     createMany?: T_PaiementCreateManyT_EntiteInputEnvelope
     connect?: T_PaiementWhereUniqueInput | T_PaiementWhereUniqueInput[]
+  }
+
+  export type T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput = {
+    create?: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput> | T_Paiement_ArchiveCreateWithoutT_EntiteInput[] | T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput[]
+    connectOrCreate?: T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput | T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput[]
+    createMany?: T_Paiement_ArchiveCreateManyT_EntiteInputEnvelope
+    connect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
   }
 
   export type T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput = {
@@ -34756,6 +36696,20 @@ export namespace Prisma {
     update?: T_PaiementUpdateWithWhereUniqueWithoutT_EntiteInput | T_PaiementUpdateWithWhereUniqueWithoutT_EntiteInput[]
     updateMany?: T_PaiementUpdateManyWithWhereWithoutT_EntiteInput | T_PaiementUpdateManyWithWhereWithoutT_EntiteInput[]
     deleteMany?: T_PaiementScalarWhereInput | T_PaiementScalarWhereInput[]
+  }
+
+  export type T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput = {
+    create?: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput> | T_Paiement_ArchiveCreateWithoutT_EntiteInput[] | T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput[]
+    connectOrCreate?: T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput | T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput[]
+    upsert?: T_Paiement_ArchiveUpsertWithWhereUniqueWithoutT_EntiteInput | T_Paiement_ArchiveUpsertWithWhereUniqueWithoutT_EntiteInput[]
+    createMany?: T_Paiement_ArchiveCreateManyT_EntiteInputEnvelope
+    set?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    disconnect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    delete?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    connect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    update?: T_Paiement_ArchiveUpdateWithWhereUniqueWithoutT_EntiteInput | T_Paiement_ArchiveUpdateWithWhereUniqueWithoutT_EntiteInput[]
+    updateMany?: T_Paiement_ArchiveUpdateManyWithWhereWithoutT_EntiteInput | T_Paiement_ArchiveUpdateManyWithWhereWithoutT_EntiteInput[]
+    deleteMany?: T_Paiement_ArchiveScalarWhereInput | T_Paiement_ArchiveScalarWhereInput[]
   }
 
   export type T_PresenceUpdateManyWithoutT_EntiteNestedInput = {
@@ -34980,6 +36934,20 @@ export namespace Prisma {
     update?: T_PaiementUpdateWithWhereUniqueWithoutT_EntiteInput | T_PaiementUpdateWithWhereUniqueWithoutT_EntiteInput[]
     updateMany?: T_PaiementUpdateManyWithWhereWithoutT_EntiteInput | T_PaiementUpdateManyWithWhereWithoutT_EntiteInput[]
     deleteMany?: T_PaiementScalarWhereInput | T_PaiementScalarWhereInput[]
+  }
+
+  export type T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput = {
+    create?: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput> | T_Paiement_ArchiveCreateWithoutT_EntiteInput[] | T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput[]
+    connectOrCreate?: T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput | T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput[]
+    upsert?: T_Paiement_ArchiveUpsertWithWhereUniqueWithoutT_EntiteInput | T_Paiement_ArchiveUpsertWithWhereUniqueWithoutT_EntiteInput[]
+    createMany?: T_Paiement_ArchiveCreateManyT_EntiteInputEnvelope
+    set?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    disconnect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    delete?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    connect?: T_Paiement_ArchiveWhereUniqueInput | T_Paiement_ArchiveWhereUniqueInput[]
+    update?: T_Paiement_ArchiveUpdateWithWhereUniqueWithoutT_EntiteInput | T_Paiement_ArchiveUpdateWithWhereUniqueWithoutT_EntiteInput[]
+    updateMany?: T_Paiement_ArchiveUpdateManyWithWhereWithoutT_EntiteInput | T_Paiement_ArchiveUpdateManyWithWhereWithoutT_EntiteInput[]
+    deleteMany?: T_Paiement_ArchiveScalarWhereInput | T_Paiement_ArchiveScalarWhereInput[]
   }
 
   export type T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput = {
@@ -36136,6 +38104,22 @@ export namespace Prisma {
     update?: XOR<XOR<T_UtilisateursUpdateToOneWithWhereWithoutT_Paiement_T_Paiement_IdUserFkToT_UtilisateursInput, T_UtilisateursUpdateWithoutT_Paiement_T_Paiement_IdUserFkToT_UtilisateursInput>, T_UtilisateursUncheckedUpdateWithoutT_Paiement_T_Paiement_IdUserFkToT_UtilisateursInput>
   }
 
+  export type T_EntiteCreateNestedOneWithoutT_Paiement_ArchiveInput = {
+    create?: XOR<T_EntiteCreateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedCreateWithoutT_Paiement_ArchiveInput>
+    connectOrCreate?: T_EntiteCreateOrConnectWithoutT_Paiement_ArchiveInput
+    connect?: T_EntiteWhereUniqueInput
+  }
+
+  export type T_EntiteUpdateOneWithoutT_Paiement_ArchiveNestedInput = {
+    create?: XOR<T_EntiteCreateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedCreateWithoutT_Paiement_ArchiveInput>
+    connectOrCreate?: T_EntiteCreateOrConnectWithoutT_Paiement_ArchiveInput
+    upsert?: T_EntiteUpsertWithoutT_Paiement_ArchiveInput
+    disconnect?: T_EntiteWhereInput | boolean
+    delete?: T_EntiteWhereInput | boolean
+    connect?: T_EntiteWhereUniqueInput
+    update?: XOR<XOR<T_EntiteUpdateToOneWithWhereWithoutT_Paiement_ArchiveInput, T_EntiteUpdateWithoutT_Paiement_ArchiveInput>, T_EntiteUncheckedUpdateWithoutT_Paiement_ArchiveInput>
+  }
+
   export type T_UtilisateursCreateNestedOneWithoutT_Presence_T_Presence_IdControleFkToT_UtilisateursInput = {
     create?: XOR<T_UtilisateursCreateWithoutT_Presence_T_Presence_IdControleFkToT_UtilisateursInput, T_UtilisateursUncheckedCreateWithoutT_Presence_T_Presence_IdControleFkToT_UtilisateursInput>
     connectOrCreate?: T_UtilisateursCreateOrConnectWithoutT_Presence_T_Presence_IdControleFkToT_UtilisateursInput
@@ -36227,6 +38211,13 @@ export namespace Prisma {
     connect?: T_ApprenantWhereUniqueInput
   }
 
+  export type T_ChatCreateNestedManyWithoutT_UtilisateursInput = {
+    create?: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput> | T_ChatCreateWithoutT_UtilisateursInput[] | T_ChatUncheckedCreateWithoutT_UtilisateursInput[]
+    connectOrCreate?: T_ChatCreateOrConnectWithoutT_UtilisateursInput | T_ChatCreateOrConnectWithoutT_UtilisateursInput[]
+    createMany?: T_ChatCreateManyT_UtilisateursInputEnvelope
+    connect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+  }
+
   export type T_CommunicationCreateNestedManyWithoutT_UtilisateursInput = {
     create?: XOR<T_CommunicationCreateWithoutT_UtilisateursInput, T_CommunicationUncheckedCreateWithoutT_UtilisateursInput> | T_CommunicationCreateWithoutT_UtilisateursInput[] | T_CommunicationUncheckedCreateWithoutT_UtilisateursInput[]
     connectOrCreate?: T_CommunicationCreateOrConnectWithoutT_UtilisateursInput | T_CommunicationCreateOrConnectWithoutT_UtilisateursInput[]
@@ -36315,6 +38306,13 @@ export namespace Prisma {
     connect?: T_ApprenantWhereUniqueInput
   }
 
+  export type T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput = {
+    create?: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput> | T_ChatCreateWithoutT_UtilisateursInput[] | T_ChatUncheckedCreateWithoutT_UtilisateursInput[]
+    connectOrCreate?: T_ChatCreateOrConnectWithoutT_UtilisateursInput | T_ChatCreateOrConnectWithoutT_UtilisateursInput[]
+    createMany?: T_ChatCreateManyT_UtilisateursInputEnvelope
+    connect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+  }
+
   export type T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput = {
     create?: XOR<T_CommunicationCreateWithoutT_UtilisateursInput, T_CommunicationUncheckedCreateWithoutT_UtilisateursInput> | T_CommunicationCreateWithoutT_UtilisateursInput[] | T_CommunicationUncheckedCreateWithoutT_UtilisateursInput[]
     connectOrCreate?: T_CommunicationCreateOrConnectWithoutT_UtilisateursInput | T_CommunicationCreateOrConnectWithoutT_UtilisateursInput[]
@@ -36400,6 +38398,20 @@ export namespace Prisma {
     delete?: T_ApprenantWhereInput | boolean
     connect?: T_ApprenantWhereUniqueInput
     update?: XOR<XOR<T_ApprenantUpdateToOneWithWhereWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput, T_ApprenantUpdateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput>, T_ApprenantUncheckedUpdateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput>
+  }
+
+  export type T_ChatUpdateManyWithoutT_UtilisateursNestedInput = {
+    create?: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput> | T_ChatCreateWithoutT_UtilisateursInput[] | T_ChatUncheckedCreateWithoutT_UtilisateursInput[]
+    connectOrCreate?: T_ChatCreateOrConnectWithoutT_UtilisateursInput | T_ChatCreateOrConnectWithoutT_UtilisateursInput[]
+    upsert?: T_ChatUpsertWithWhereUniqueWithoutT_UtilisateursInput | T_ChatUpsertWithWhereUniqueWithoutT_UtilisateursInput[]
+    createMany?: T_ChatCreateManyT_UtilisateursInputEnvelope
+    set?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    disconnect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    delete?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    connect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    update?: T_ChatUpdateWithWhereUniqueWithoutT_UtilisateursInput | T_ChatUpdateWithWhereUniqueWithoutT_UtilisateursInput[]
+    updateMany?: T_ChatUpdateManyWithWhereWithoutT_UtilisateursInput | T_ChatUpdateManyWithWhereWithoutT_UtilisateursInput[]
+    deleteMany?: T_ChatScalarWhereInput | T_ChatScalarWhereInput[]
   }
 
   export type T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput = {
@@ -36570,6 +38582,20 @@ export namespace Prisma {
     delete?: T_ApprenantWhereInput | boolean
     connect?: T_ApprenantWhereUniqueInput
     update?: XOR<XOR<T_ApprenantUpdateToOneWithWhereWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput, T_ApprenantUpdateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput>, T_ApprenantUncheckedUpdateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput>
+  }
+
+  export type T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput = {
+    create?: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput> | T_ChatCreateWithoutT_UtilisateursInput[] | T_ChatUncheckedCreateWithoutT_UtilisateursInput[]
+    connectOrCreate?: T_ChatCreateOrConnectWithoutT_UtilisateursInput | T_ChatCreateOrConnectWithoutT_UtilisateursInput[]
+    upsert?: T_ChatUpsertWithWhereUniqueWithoutT_UtilisateursInput | T_ChatUpsertWithWhereUniqueWithoutT_UtilisateursInput[]
+    createMany?: T_ChatCreateManyT_UtilisateursInputEnvelope
+    set?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    disconnect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    delete?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    connect?: T_ChatWhereUniqueInput | T_ChatWhereUniqueInput[]
+    update?: T_ChatUpdateWithWhereUniqueWithoutT_UtilisateursInput | T_ChatUpdateWithWhereUniqueWithoutT_UtilisateursInput[]
+    updateMany?: T_ChatUpdateManyWithWhereWithoutT_UtilisateursInput | T_ChatUpdateManyWithWhereWithoutT_UtilisateursInput[]
+    deleteMany?: T_ChatScalarWhereInput | T_ChatScalarWhereInput[]
   }
 
   export type T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput = {
@@ -37090,6 +39116,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -37116,6 +39143,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -37225,6 +39253,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -37251,6 +39280,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -37329,6 +39359,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -37355,6 +39386,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -37459,6 +39491,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -37485,6 +39518,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -37533,6 +39567,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -37559,6 +39594,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -37583,6 +39619,7 @@ export namespace Prisma {
     Is_staff?: boolean
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -37613,6 +39650,7 @@ export namespace Prisma {
     Is_staff?: boolean
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -37643,6 +39681,7 @@ export namespace Prisma {
     Is_staff?: boolean
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -37673,6 +39712,7 @@ export namespace Prisma {
     Is_staff?: boolean
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -37796,6 +39836,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -37822,6 +39863,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -37852,6 +39894,7 @@ export namespace Prisma {
     Is_staff?: BoolFieldUpdateOperationsInput | boolean
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -37882,6 +39925,7 @@ export namespace Prisma {
     Is_staff?: BoolFieldUpdateOperationsInput | boolean
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -37918,6 +39962,7 @@ export namespace Prisma {
     Is_staff?: BoolFieldUpdateOperationsInput | boolean
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -37948,6 +39993,7 @@ export namespace Prisma {
     Is_staff?: BoolFieldUpdateOperationsInput | boolean
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -38045,6 +40091,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -38071,6 +40118,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -38112,6 +40160,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -38138,6 +40187,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -38223,6 +40273,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -38249,6 +40300,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -38356,6 +40408,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -38382,6 +40435,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -38480,6 +40534,136 @@ export namespace Prisma {
     IdCategorieGeneriqueFk?: IntNullableFilter<"T_Generique"> | number | null
   }
 
+  export type T_UtilisateursCreateWithoutT_ChatInput = {
+    NomUser: string
+    PrenomUser: string
+    EmailUser: string
+    MotdepasseUser: string
+    PhoneUser?: string | null
+    DatecreationUser?: Date | string | null
+    ValideUser?: boolean
+    SexeUser: string
+    DateModificationUser?: Date | string
+    UrlPhoto?: string | null
+    Is_staff?: boolean
+    Is_Admin?: boolean
+    T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
+    T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
+    T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
+    T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
+    T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
+    T_Login?: T_LoginCreateNestedManyWithoutT_UtilisateursInput
+    T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs?: T_PaiementCreateNestedManyWithoutT_Utilisateurs_T_Paiement_IdPayeurFkToT_UtilisateursInput
+    T_Paiement_T_Paiement_IdUserFkToT_Utilisateurs?: T_PaiementCreateNestedManyWithoutT_Utilisateurs_T_Paiement_IdUserFkToT_UtilisateursInput
+    T_Presence_T_Presence_IdControleFkToT_Utilisateurs?: T_PresenceCreateNestedManyWithoutT_Utilisateurs_T_Presence_IdControleFkToT_UtilisateursInput
+    T_Presence_T_Presence_IdControleurFkToT_Utilisateurs?: T_PresenceCreateNestedManyWithoutT_Utilisateurs_T_Presence_IdControleurFkToT_UtilisateursInput
+    T_Entite?: T_EntiteCreateNestedOneWithoutT_UtilisateursInput
+    T_Generique?: T_GeneriqueCreateNestedOneWithoutT_UtilisateursInput
+  }
+
+  export type T_UtilisateursUncheckedCreateWithoutT_ChatInput = {
+    IdUser?: number
+    NomUser: string
+    PrenomUser: string
+    EmailUser: string
+    MotdepasseUser: string
+    PhoneUser?: string | null
+    DatecreationUser?: Date | string | null
+    IdRoleFk?: number | null
+    ValideUser?: boolean
+    SexeUser: string
+    DateModificationUser?: Date | string
+    UrlPhoto?: string | null
+    IdEntiteFk?: number | null
+    Is_staff?: boolean
+    Is_Admin?: boolean
+    T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
+    T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
+    T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
+    T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
+    T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
+    T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_UtilisateursInput
+    T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs?: T_PaiementUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Paiement_IdPayeurFkToT_UtilisateursInput
+    T_Paiement_T_Paiement_IdUserFkToT_Utilisateurs?: T_PaiementUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Paiement_IdUserFkToT_UtilisateursInput
+    T_Presence_T_Presence_IdControleFkToT_Utilisateurs?: T_PresenceUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Presence_IdControleFkToT_UtilisateursInput
+    T_Presence_T_Presence_IdControleurFkToT_Utilisateurs?: T_PresenceUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Presence_IdControleurFkToT_UtilisateursInput
+  }
+
+  export type T_UtilisateursCreateOrConnectWithoutT_ChatInput = {
+    where: T_UtilisateursWhereUniqueInput
+    create: XOR<T_UtilisateursCreateWithoutT_ChatInput, T_UtilisateursUncheckedCreateWithoutT_ChatInput>
+  }
+
+  export type T_UtilisateursUpsertWithoutT_ChatInput = {
+    update: XOR<T_UtilisateursUpdateWithoutT_ChatInput, T_UtilisateursUncheckedUpdateWithoutT_ChatInput>
+    create: XOR<T_UtilisateursCreateWithoutT_ChatInput, T_UtilisateursUncheckedCreateWithoutT_ChatInput>
+    where?: T_UtilisateursWhereInput
+  }
+
+  export type T_UtilisateursUpdateToOneWithWhereWithoutT_ChatInput = {
+    where?: T_UtilisateursWhereInput
+    data: XOR<T_UtilisateursUpdateWithoutT_ChatInput, T_UtilisateursUncheckedUpdateWithoutT_ChatInput>
+  }
+
+  export type T_UtilisateursUpdateWithoutT_ChatInput = {
+    NomUser?: StringFieldUpdateOperationsInput | string
+    PrenomUser?: StringFieldUpdateOperationsInput | string
+    EmailUser?: StringFieldUpdateOperationsInput | string
+    MotdepasseUser?: StringFieldUpdateOperationsInput | string
+    PhoneUser?: NullableStringFieldUpdateOperationsInput | string | null
+    DatecreationUser?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ValideUser?: BoolFieldUpdateOperationsInput | boolean
+    SexeUser?: StringFieldUpdateOperationsInput | string
+    DateModificationUser?: DateTimeFieldUpdateOperationsInput | Date | string
+    UrlPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    Is_staff?: BoolFieldUpdateOperationsInput | boolean
+    Is_Admin?: BoolFieldUpdateOperationsInput | boolean
+    T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
+    T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
+    T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
+    T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
+    T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
+    T_Login?: T_LoginUpdateManyWithoutT_UtilisateursNestedInput
+    T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs?: T_PaiementUpdateManyWithoutT_Utilisateurs_T_Paiement_IdPayeurFkToT_UtilisateursNestedInput
+    T_Paiement_T_Paiement_IdUserFkToT_Utilisateurs?: T_PaiementUpdateManyWithoutT_Utilisateurs_T_Paiement_IdUserFkToT_UtilisateursNestedInput
+    T_Presence_T_Presence_IdControleFkToT_Utilisateurs?: T_PresenceUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleFkToT_UtilisateursNestedInput
+    T_Presence_T_Presence_IdControleurFkToT_Utilisateurs?: T_PresenceUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleurFkToT_UtilisateursNestedInput
+    T_Entite?: T_EntiteUpdateOneWithoutT_UtilisateursNestedInput
+    T_Generique?: T_GeneriqueUpdateOneWithoutT_UtilisateursNestedInput
+  }
+
+  export type T_UtilisateursUncheckedUpdateWithoutT_ChatInput = {
+    IdUser?: IntFieldUpdateOperationsInput | number
+    NomUser?: StringFieldUpdateOperationsInput | string
+    PrenomUser?: StringFieldUpdateOperationsInput | string
+    EmailUser?: StringFieldUpdateOperationsInput | string
+    MotdepasseUser?: StringFieldUpdateOperationsInput | string
+    PhoneUser?: NullableStringFieldUpdateOperationsInput | string | null
+    DatecreationUser?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdRoleFk?: NullableIntFieldUpdateOperationsInput | number | null
+    ValideUser?: BoolFieldUpdateOperationsInput | boolean
+    SexeUser?: StringFieldUpdateOperationsInput | string
+    DateModificationUser?: DateTimeFieldUpdateOperationsInput | Date | string
+    UrlPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
+    Is_staff?: BoolFieldUpdateOperationsInput | boolean
+    Is_Admin?: BoolFieldUpdateOperationsInput | boolean
+    T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
+    T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
+    T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
+    T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
+    T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
+    T_Login?: T_LoginUncheckedUpdateManyWithoutT_UtilisateursNestedInput
+    T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs?: T_PaiementUncheckedUpdateManyWithoutT_Utilisateurs_T_Paiement_IdPayeurFkToT_UtilisateursNestedInput
+    T_Paiement_T_Paiement_IdUserFkToT_Utilisateurs?: T_PaiementUncheckedUpdateManyWithoutT_Utilisateurs_T_Paiement_IdUserFkToT_UtilisateursNestedInput
+    T_Presence_T_Presence_IdControleFkToT_Utilisateurs?: T_PresenceUncheckedUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleFkToT_UtilisateursNestedInput
+    T_Presence_T_Presence_IdControleurFkToT_Utilisateurs?: T_PresenceUncheckedUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleurFkToT_UtilisateursNestedInput
+  }
+
   export type T_EntiteCreateWithoutT_CommunicationInput = {
     NomEntite: string
     PhoneEntite?: string | null
@@ -38500,6 +40684,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -38526,6 +40711,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -38611,6 +40797,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -38641,6 +40828,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -38687,6 +40875,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -38713,6 +40902,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -38810,6 +41000,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -38840,6 +41031,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -38900,6 +41092,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -38926,6 +41119,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -39123,6 +41317,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -39149,6 +41344,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -39306,6 +41502,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -39332,6 +41529,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -39493,6 +41691,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -39519,6 +41718,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -39802,6 +42002,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -39828,6 +42029,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -39853,6 +42055,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -39883,6 +42086,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -40118,6 +42322,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -40144,6 +42349,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -40175,6 +42381,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -40205,6 +42412,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -40737,6 +42945,49 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type T_Paiement_ArchiveCreateWithoutT_EntiteInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+  }
+
+  export type T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+    IdPaiementArchive?: number
+  }
+
+  export type T_Paiement_ArchiveCreateOrConnectWithoutT_EntiteInput = {
+    where: T_Paiement_ArchiveWhereUniqueInput
+    create: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput>
+  }
+
+  export type T_Paiement_ArchiveCreateManyT_EntiteInputEnvelope = {
+    data: T_Paiement_ArchiveCreateManyT_EntiteInput | T_Paiement_ArchiveCreateManyT_EntiteInput[]
+    skipDuplicates?: boolean
+  }
+
   export type T_PresenceCreateWithoutT_EntiteInput = {
     DatePresence: Date | string
     ValidePresence?: boolean
@@ -40800,6 +43051,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -40829,6 +43081,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -41269,6 +43522,43 @@ export namespace Prisma {
     IdEntiteFk?: IntNullableFilter<"T_Paiement"> | number | null
   }
 
+  export type T_Paiement_ArchiveUpsertWithWhereUniqueWithoutT_EntiteInput = {
+    where: T_Paiement_ArchiveWhereUniqueInput
+    update: XOR<T_Paiement_ArchiveUpdateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedUpdateWithoutT_EntiteInput>
+    create: XOR<T_Paiement_ArchiveCreateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedCreateWithoutT_EntiteInput>
+  }
+
+  export type T_Paiement_ArchiveUpdateWithWhereUniqueWithoutT_EntiteInput = {
+    where: T_Paiement_ArchiveWhereUniqueInput
+    data: XOR<T_Paiement_ArchiveUpdateWithoutT_EntiteInput, T_Paiement_ArchiveUncheckedUpdateWithoutT_EntiteInput>
+  }
+
+  export type T_Paiement_ArchiveUpdateManyWithWhereWithoutT_EntiteInput = {
+    where: T_Paiement_ArchiveScalarWhereInput
+    data: XOR<T_Paiement_ArchiveUpdateManyMutationInput, T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteInput>
+  }
+
+  export type T_Paiement_ArchiveScalarWhereInput = {
+    AND?: T_Paiement_ArchiveScalarWhereInput | T_Paiement_ArchiveScalarWhereInput[]
+    OR?: T_Paiement_ArchiveScalarWhereInput[]
+    NOT?: T_Paiement_ArchiveScalarWhereInput | T_Paiement_ArchiveScalarWhereInput[]
+    IdPaiement?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    CodePaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    IdUserFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypePaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    MontantPaiement?: DecimalNullableFilter<"T_Paiement_Archive"> | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DatePaiement?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    ObsPaiement?: StringNullableFilter<"T_Paiement_Archive"> | string | null
+    ValidePaiement?: BoolNullableFilter<"T_Paiement_Archive"> | boolean | null
+    IdDeviseFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdPayeurFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdTypeMouvementFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    DateArchivage?: DateTimeNullableFilter<"T_Paiement_Archive"> | Date | string | null
+    IdEntiteFk?: IntNullableFilter<"T_Paiement_Archive"> | number | null
+    IdPaiementArchive?: IntFilter<"T_Paiement_Archive"> | number
+  }
+
   export type T_PresenceUpsertWithWhereUniqueWithoutT_EntiteInput = {
     where: T_PresenceWhereUniqueInput
     update: XOR<T_PresenceUpdateWithoutT_EntiteInput, T_PresenceUncheckedUpdateWithoutT_EntiteInput>
@@ -41376,6 +43666,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -41406,6 +43697,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursInput
@@ -41501,6 +43793,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -41527,6 +43820,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -41552,6 +43846,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -41582,6 +43877,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -41683,6 +43979,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -41713,6 +44010,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdEvaluateurFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdEvaluateurFkToT_UtilisateursNestedInput
@@ -41820,6 +44118,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -41846,6 +44145,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -41877,6 +44177,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -41907,6 +44208,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -42281,6 +44583,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -42307,6 +44610,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -42665,6 +44969,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -42694,6 +44999,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -43099,6 +45405,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -43125,6 +45432,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -43226,6 +45534,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -43252,6 +45561,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -43343,6 +45653,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsCreateNestedManyWithoutT_EntiteInput
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -43369,6 +45680,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -43454,6 +45766,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -43484,6 +45797,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -43530,6 +45844,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUpdateManyWithoutT_EntiteNestedInput
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -43556,6 +45871,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -43653,6 +45969,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -43683,6 +46000,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -43773,6 +46091,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsCreateNestedManyWithoutT_EntiteInput
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
@@ -43799,6 +46118,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
@@ -43824,6 +46144,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -43854,6 +46175,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44064,6 +46386,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44094,6 +46417,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44206,6 +46530,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUpdateManyWithoutT_EntiteNestedInput
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -44232,6 +46557,7 @@ export namespace Prisma {
     T_Evaluations?: T_EvaluationsUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -44263,6 +46589,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44293,6 +46620,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44527,6 +46855,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44557,6 +46886,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44565,6 +46895,128 @@ export namespace Prisma {
     T_Paiement_T_Paiement_IdPayeurFkToT_Utilisateurs?: T_PaiementUncheckedUpdateManyWithoutT_Utilisateurs_T_Paiement_IdPayeurFkToT_UtilisateursNestedInput
     T_Presence_T_Presence_IdControleFkToT_Utilisateurs?: T_PresenceUncheckedUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleFkToT_UtilisateursNestedInput
     T_Presence_T_Presence_IdControleurFkToT_Utilisateurs?: T_PresenceUncheckedUpdateManyWithoutT_Utilisateurs_T_Presence_IdControleurFkToT_UtilisateursNestedInput
+  }
+
+  export type T_EntiteCreateWithoutT_Paiement_ArchiveInput = {
+    NomEntite: string
+    PhoneEntite?: string | null
+    EmailEntite: string
+    AdresseEntite?: string | null
+    DateCreationEntite?: Date | string | null
+    ValideEntite?: boolean | null
+    T_ActiviteParticipants?: T_ActiviteParticipantsCreateNestedManyWithoutT_EntiteInput
+    T_ActivitesParascolaires?: T_ActivitesParascolairesCreateNestedManyWithoutT_EntiteInput
+    T_Apprenant?: T_ApprenantCreateNestedManyWithoutT_EntiteInput
+    T_Audit_Log?: T_Audit_LogCreateNestedManyWithoutT_EntiteInput
+    T_Caisse?: T_CaisseCreateNestedManyWithoutT_EntiteInput
+    T_Communication?: T_CommunicationCreateNestedManyWithoutT_EntiteInput
+    T_Cours?: T_CoursCreateNestedManyWithoutT_EntiteInput
+    T_EmploisTemps?: T_EmploisTempsCreateNestedManyWithoutT_EntiteInput
+    T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_EntiteInput
+    T_Generique?: T_GeneriqueCreateNestedOneWithoutT_EntiteInput
+    T_Evaluations?: T_EvaluationsCreateNestedManyWithoutT_EntiteInput
+    T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
+    T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
+    T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
+    T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
+    T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
+  }
+
+  export type T_EntiteUncheckedCreateWithoutT_Paiement_ArchiveInput = {
+    IdEntite?: number
+    NomEntite: string
+    PhoneEntite?: string | null
+    EmailEntite: string
+    AdresseEntite?: string | null
+    DateCreationEntite?: Date | string | null
+    IdTypeEntiteFk?: number | null
+    ValideEntite?: boolean | null
+    T_ActiviteParticipants?: T_ActiviteParticipantsUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_ActivitesParascolaires?: T_ActivitesParascolairesUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Apprenant?: T_ApprenantUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Audit_Log?: T_Audit_LogUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Caisse?: T_CaisseUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Cours?: T_CoursUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_EmploisTemps?: T_EmploisTempsUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Evaluations?: T_EvaluationsUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
+  }
+
+  export type T_EntiteCreateOrConnectWithoutT_Paiement_ArchiveInput = {
+    where: T_EntiteWhereUniqueInput
+    create: XOR<T_EntiteCreateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedCreateWithoutT_Paiement_ArchiveInput>
+  }
+
+  export type T_EntiteUpsertWithoutT_Paiement_ArchiveInput = {
+    update: XOR<T_EntiteUpdateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedUpdateWithoutT_Paiement_ArchiveInput>
+    create: XOR<T_EntiteCreateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedCreateWithoutT_Paiement_ArchiveInput>
+    where?: T_EntiteWhereInput
+  }
+
+  export type T_EntiteUpdateToOneWithWhereWithoutT_Paiement_ArchiveInput = {
+    where?: T_EntiteWhereInput
+    data: XOR<T_EntiteUpdateWithoutT_Paiement_ArchiveInput, T_EntiteUncheckedUpdateWithoutT_Paiement_ArchiveInput>
+  }
+
+  export type T_EntiteUpdateWithoutT_Paiement_ArchiveInput = {
+    NomEntite?: StringFieldUpdateOperationsInput | string
+    PhoneEntite?: NullableStringFieldUpdateOperationsInput | string | null
+    EmailEntite?: StringFieldUpdateOperationsInput | string
+    AdresseEntite?: NullableStringFieldUpdateOperationsInput | string | null
+    DateCreationEntite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ValideEntite?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    T_ActiviteParticipants?: T_ActiviteParticipantsUpdateManyWithoutT_EntiteNestedInput
+    T_ActivitesParascolaires?: T_ActivitesParascolairesUpdateManyWithoutT_EntiteNestedInput
+    T_Apprenant?: T_ApprenantUpdateManyWithoutT_EntiteNestedInput
+    T_Audit_Log?: T_Audit_LogUpdateManyWithoutT_EntiteNestedInput
+    T_Caisse?: T_CaisseUpdateManyWithoutT_EntiteNestedInput
+    T_Communication?: T_CommunicationUpdateManyWithoutT_EntiteNestedInput
+    T_Cours?: T_CoursUpdateManyWithoutT_EntiteNestedInput
+    T_EmploisTemps?: T_EmploisTempsUpdateManyWithoutT_EntiteNestedInput
+    T_Enseignant?: T_EnseignantUpdateManyWithoutT_EntiteNestedInput
+    T_Generique?: T_GeneriqueUpdateOneWithoutT_EntiteNestedInput
+    T_Evaluations?: T_EvaluationsUpdateManyWithoutT_EntiteNestedInput
+    T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
+    T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
+    T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
+    T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
+  }
+
+  export type T_EntiteUncheckedUpdateWithoutT_Paiement_ArchiveInput = {
+    IdEntite?: IntFieldUpdateOperationsInput | number
+    NomEntite?: StringFieldUpdateOperationsInput | string
+    PhoneEntite?: NullableStringFieldUpdateOperationsInput | string | null
+    EmailEntite?: StringFieldUpdateOperationsInput | string
+    AdresseEntite?: NullableStringFieldUpdateOperationsInput | string | null
+    DateCreationEntite?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdTypeEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
+    ValideEntite?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    T_ActiviteParticipants?: T_ActiviteParticipantsUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_ActivitesParascolaires?: T_ActivitesParascolairesUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Apprenant?: T_ApprenantUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Audit_Log?: T_Audit_LogUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Caisse?: T_CaisseUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Cours?: T_CoursUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_EmploisTemps?: T_EmploisTempsUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Evaluations?: T_EvaluationsUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
   }
 
   export type T_UtilisateursCreateWithoutT_Presence_T_Presence_IdControleFkToT_UtilisateursInput = {
@@ -44582,6 +47034,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44612,6 +47065,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44642,6 +47096,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44672,6 +47127,7 @@ export namespace Prisma {
     Is_Admin?: boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedCreateNestedOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput
+    T_Chat?: T_ChatUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Communication?: T_CommunicationUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Enseignant?: T_EnseignantUncheckedCreateNestedManyWithoutT_UtilisateursInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedCreateNestedManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursInput
@@ -44708,6 +47164,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
   }
@@ -44734,6 +47191,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
   }
@@ -44829,6 +47287,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44859,6 +47318,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44895,6 +47355,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44925,6 +47386,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -44967,6 +47429,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
   }
@@ -44993,6 +47456,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
   }
@@ -45084,6 +47548,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursCreateNestedManyWithoutT_EntiteInput
   }
@@ -45110,6 +47575,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Utilisateurs?: T_UtilisateursUncheckedCreateNestedManyWithoutT_EntiteInput
   }
@@ -45151,6 +47617,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
   }
@@ -45177,6 +47644,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
   }
@@ -45240,6 +47708,29 @@ export namespace Prisma {
   export type T_ApprenantCreateOrConnectWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput = {
     where: T_ApprenantWhereUniqueInput
     create: XOR<T_ApprenantCreateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput, T_ApprenantUncheckedCreateWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursInput>
+  }
+
+  export type T_ChatCreateWithoutT_UtilisateursInput = {
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
+  }
+
+  export type T_ChatUncheckedCreateWithoutT_UtilisateursInput = {
+    IdChat?: number
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
+  }
+
+  export type T_ChatCreateOrConnectWithoutT_UtilisateursInput = {
+    where: T_ChatWhereUniqueInput
+    create: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput>
+  }
+
+  export type T_ChatCreateManyT_UtilisateursInputEnvelope = {
+    data: T_ChatCreateManyT_UtilisateursInput | T_ChatCreateManyT_UtilisateursInput[]
+    skipDuplicates?: boolean
   }
 
   export type T_CommunicationCreateWithoutT_UtilisateursInput = {
@@ -45558,6 +48049,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleCreateNestedManyWithoutT_EntiteInput
   }
@@ -45584,6 +48076,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Login?: T_LoginUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Paiement?: T_PaiementUncheckedCreateNestedManyWithoutT_EntiteInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Presence?: T_PresenceUncheckedCreateNestedManyWithoutT_EntiteInput
     T_Salle?: T_SalleUncheckedCreateNestedManyWithoutT_EntiteInput
   }
@@ -45701,6 +48194,33 @@ export namespace Prisma {
     IdNiveauApprenantFk?: NullableIntFieldUpdateOperationsInput | number | null
     IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
     T_ActiviteParticipants?: T_ActiviteParticipantsUncheckedUpdateManyWithoutT_ApprenantNestedInput
+  }
+
+  export type T_ChatUpsertWithWhereUniqueWithoutT_UtilisateursInput = {
+    where: T_ChatWhereUniqueInput
+    update: XOR<T_ChatUpdateWithoutT_UtilisateursInput, T_ChatUncheckedUpdateWithoutT_UtilisateursInput>
+    create: XOR<T_ChatCreateWithoutT_UtilisateursInput, T_ChatUncheckedCreateWithoutT_UtilisateursInput>
+  }
+
+  export type T_ChatUpdateWithWhereUniqueWithoutT_UtilisateursInput = {
+    where: T_ChatWhereUniqueInput
+    data: XOR<T_ChatUpdateWithoutT_UtilisateursInput, T_ChatUncheckedUpdateWithoutT_UtilisateursInput>
+  }
+
+  export type T_ChatUpdateManyWithWhereWithoutT_UtilisateursInput = {
+    where: T_ChatScalarWhereInput
+    data: XOR<T_ChatUpdateManyMutationInput, T_ChatUncheckedUpdateManyWithoutT_UtilisateursInput>
+  }
+
+  export type T_ChatScalarWhereInput = {
+    AND?: T_ChatScalarWhereInput | T_ChatScalarWhereInput[]
+    OR?: T_ChatScalarWhereInput[]
+    NOT?: T_ChatScalarWhereInput | T_ChatScalarWhereInput[]
+    IdChat?: IntFilter<"T_Chat"> | number
+    TextChat?: StringNullableFilter<"T_Chat"> | string | null
+    ChatFile?: StringNullableFilter<"T_Chat"> | string | null
+    ChatLink?: StringNullableFilter<"T_Chat"> | string | null
+    AuthorIdFk?: IntNullableFilter<"T_Chat"> | number | null
   }
 
   export type T_CommunicationUpsertWithWhereUniqueWithoutT_UtilisateursInput = {
@@ -45879,6 +48399,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
   }
@@ -45905,6 +48426,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
   }
@@ -46325,6 +48847,23 @@ export namespace Prisma {
     IdDeviseFk: number
     IdPayeurFk?: number | null
     IdTypeMouvementFk?: number | null
+  }
+
+  export type T_Paiement_ArchiveCreateManyT_EntiteInput = {
+    IdPaiement?: number | null
+    CodePaiement?: string | null
+    IdUserFk?: number | null
+    IdTypePaiementFk?: number | null
+    MontantPaiement?: Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: number | null
+    DatePaiement?: Date | string | null
+    ObsPaiement?: string | null
+    ValidePaiement?: boolean | null
+    IdDeviseFk?: number | null
+    IdPayeurFk?: number | null
+    IdTypeMouvementFk?: number | null
+    DateArchivage?: Date | string | null
+    IdPaiementArchive?: number
   }
 
   export type T_PresenceCreateManyT_EntiteInput = {
@@ -46760,6 +49299,56 @@ export namespace Prisma {
     IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type T_Paiement_ArchiveUpdateWithoutT_EntiteInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type T_Paiement_ArchiveUncheckedUpdateWithoutT_EntiteInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdPaiementArchive?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteInput = {
+    IdPaiement?: NullableIntFieldUpdateOperationsInput | number | null
+    CodePaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    IdUserFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypePaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    MontantPaiement?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    IdStatutPaiementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DatePaiement?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ObsPaiement?: NullableStringFieldUpdateOperationsInput | string | null
+    ValidePaiement?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IdDeviseFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdPayeurFk?: NullableIntFieldUpdateOperationsInput | number | null
+    IdTypeMouvementFk?: NullableIntFieldUpdateOperationsInput | number | null
+    DateArchivage?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IdPaiementArchive?: IntFieldUpdateOperationsInput | number
+  }
+
   export type T_PresenceUpdateWithoutT_EntiteInput = {
     DatePresence?: DateTimeFieldUpdateOperationsInput | Date | string
     ValidePresence?: BoolFieldUpdateOperationsInput | boolean
@@ -46818,6 +49407,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -46847,6 +49437,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -47398,6 +49989,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUpdateManyWithoutT_EntiteNestedInput
@@ -47424,6 +50016,7 @@ export namespace Prisma {
     T_Licence?: T_LicenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Login?: T_LoginUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Paiement?: T_PaiementUncheckedUpdateManyWithoutT_EntiteNestedInput
+    T_Paiement_Archive?: T_Paiement_ArchiveUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Presence?: T_PresenceUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Salle?: T_SalleUncheckedUpdateManyWithoutT_EntiteNestedInput
     T_Utilisateurs?: T_UtilisateursUncheckedUpdateManyWithoutT_EntiteNestedInput
@@ -47788,6 +50381,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -47817,6 +50411,7 @@ export namespace Prisma {
     Is_Admin?: BoolFieldUpdateOperationsInput | boolean
     T_Apprenant_T_Apprenant_IdParentApprenantFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateManyWithoutT_Utilisateurs_T_Apprenant_IdParentApprenantFkToT_UtilisateursNestedInput
     T_Apprenant_T_Apprenant_IdUserFkToT_Utilisateurs?: T_ApprenantUncheckedUpdateOneWithoutT_Utilisateurs_T_Apprenant_IdUserFkToT_UtilisateursNestedInput
+    T_Chat?: T_ChatUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Communication?: T_CommunicationUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Enseignant?: T_EnseignantUncheckedUpdateManyWithoutT_UtilisateursNestedInput
     T_Evaluations_T_Evaluations_IdCibleFkToT_Utilisateurs?: T_EvaluationsUncheckedUpdateManyWithoutT_Utilisateurs_T_Evaluations_IdCibleFkToT_UtilisateursNestedInput
@@ -47854,6 +50449,13 @@ export namespace Prisma {
     AgeApprenant?: number | null
     IdNiveauApprenantFk?: number | null
     IdEntiteFk?: number | null
+  }
+
+  export type T_ChatCreateManyT_UtilisateursInput = {
+    IdChat?: number
+    TextChat?: string | null
+    ChatFile?: string | null
+    ChatLink?: string | null
   }
 
   export type T_CommunicationCreateManyT_UtilisateursInput = {
@@ -47993,6 +50595,26 @@ export namespace Prisma {
     AgeApprenant?: NullableIntFieldUpdateOperationsInput | number | null
     IdNiveauApprenantFk?: NullableIntFieldUpdateOperationsInput | number | null
     IdEntiteFk?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type T_ChatUpdateWithoutT_UtilisateursInput = {
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type T_ChatUncheckedUpdateWithoutT_UtilisateursInput = {
+    IdChat?: IntFieldUpdateOperationsInput | number
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type T_ChatUncheckedUpdateManyWithoutT_UtilisateursInput = {
+    IdChat?: IntFieldUpdateOperationsInput | number
+    TextChat?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatFile?: NullableStringFieldUpdateOperationsInput | string | null
+    ChatLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type T_CommunicationUpdateWithoutT_UtilisateursInput = {
