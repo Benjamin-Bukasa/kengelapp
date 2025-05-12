@@ -93,12 +93,23 @@ const loginWithGoogle = async (req, res) => {
 // inscription
 const register = async (req, res) => {
   const { NomUser, PrenomUser, EmailUser, MotdepasseUser, SexeUser } = req.body;
+
   try {
     if (!NomUser || !PrenomUser || !EmailUser || !MotdepasseUser || !SexeUser) {
       return res.status(400).json({ message: "Tous les champs sont obligatoires" });
     }
 
+    // Vérifie si l'utilisateur existe déjà
+    const existingUser = await prisma.t_Utilisateurs.findUnique({
+      where: { EmailUser }
+    });
+
+    if (existingUser) {
+      return res.status(409).json({ message: "Cet email est déjà utilisé" });
+    }
+
     const hashedPassword = await bcrypt.hash(MotdepasseUser, 10);
+
     const newUser = await prisma.t_Utilisateurs.create({
       data: {
         NomUser,
@@ -114,6 +125,7 @@ const register = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 // utilisateur connecté
 const currentUser = async (req, res) => {
