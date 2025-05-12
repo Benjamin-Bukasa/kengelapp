@@ -4,6 +4,7 @@ const router = express.Router();
 const crudController = require('../controllers/crud.controller');
 const getPrismaModels = require('../utils/getPrismaModels');
 const viewsController = require('../controllers/views.controller');
+const verifyToken = require('../middlewares/verifyToken');
 
 const models = getPrismaModels(); // ['T_Apprenant', 'T_Entite', ...]
 
