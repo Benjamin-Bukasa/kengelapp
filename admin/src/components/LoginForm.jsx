@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-
 import useAuthStore from '../store/authStore';
+
 import logo from "../images/logoKengelapp.png";
 import logoGoogle from "../images/logoGoogle.png";
 
@@ -19,6 +18,7 @@ const LoginForm = () => {
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  // Connexion manuelle
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -35,24 +35,29 @@ const LoginForm = () => {
       });
 
       const token = res.data.token;
+      console.log("Token reçu après login :", token);
 
       const userRes = await axios.get("http://localhost:5000/kengelapp/auth/me", {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
 
       login(token, userRes.data, seSouvenir);
       navigate("/dashboard");
 
     } catch (err) {
+      console.error("Erreur login :", err.response?.data || err.message);
       setError("Email ou mot de passe incorrect.");
     }
   };
 
+  // Connexion via Google
   const loginWithGoogle = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
         const tokenGoogle = tokenResponse.access_token;
-        console.log("Token Google reçu :", tokenResponse);
+        console.log("Token Google reçu :", tokenGoogle);
 
         const res = await axios.post("http://localhost:5000/kengelapp/auth/login/google", {
           token: tokenGoogle
@@ -61,6 +66,7 @@ const LoginForm = () => {
         login(res.data.token, res.data.user, true);
         navigate("/dashboard");
       } catch (err) {
+        console.error("Erreur Google login :", err.response?.data || err.message);
         setError("Échec de la connexion via Google.");
       }
     },

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import Ads from './Sidebar/ads'
 import { Link } from 'react-router-dom'
-import logo from "../images/logoKengelapp.png"
+// import logo from "../images/logoKengelapp.png"
 import { 
   House, 
   CircleChevronLeft,

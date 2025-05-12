@@ -1,22 +1,18 @@
 const express = require('express');
 const Router = express.Router();
-const { login, register,currentUser,loginWithGoogle } = require('../controllers/auth.js');
-const verifyToken = require('../middlewares/auth.js');
+const { login, register, currentUser, loginWithGoogle } = require('../controllers/auth');
+const verifyToken = require('../middlewares/auth');
 
-
-// Route to handle user login
+// Connexion manuelle
 Router.post('/auth/login', login);
 
-// Route to handle Google login
+// Connexion Google
 Router.post('/auth/login/google', loginWithGoogle);
 
-// Route to handle user registration
+// Inscription
 Router.post('/auth/register', register);
 
-// Route to get the current user
-// This route is protected and requires a valid token
+// Récupérer l'utilisateur connecté
 Router.get('/auth/me', verifyToken, currentUser);
 
-
-// Export the router
 module.exports = Router;
