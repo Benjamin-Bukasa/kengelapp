@@ -1,4 +1,4 @@
-import { useOpen } from '../store'
+import { useOpen } from '../store/store'
 import UserBadge from './Rightbar/UserBadge'
 import UserOptions from './Rightbar/UserOptions'
 

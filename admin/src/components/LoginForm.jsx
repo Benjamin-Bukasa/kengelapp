@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { useGoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+
 import useAuthStore from '../store/authStore';
 import logo from "../images/logoKengelapp.png";
 import logoGoogle from "../images/logoGoogle.png";
@@ -44,6 +47,27 @@ const LoginForm = () => {
       setError("Email ou mot de passe incorrect.");
     }
   };
+
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const tokenGoogle = tokenResponse.access_token;
+        console.log("Token Google reçu :", tokenResponse);
+
+        const res = await axios.post("http://localhost:5000/kengelapp/auth/login/google", {
+          token: tokenGoogle
+        });
+
+        login(res.data.token, res.data.user, true);
+        navigate("/dashboard");
+      } catch (err) {
+        setError("Échec de la connexion via Google.");
+      }
+    },
+    onError: () => {
+      setError("Erreur de connexion avec Google.");
+    },
+  });
 
   return (
     <div className='flex justify-between items-center w-full overflow-hidden'>
@@ -103,7 +127,11 @@ const LoginForm = () => {
 
           <p className="w-full text-center text-gray-500">ou continuer avec</p>
 
-          <button type="button" className="w-full flex items-center justify-center gap-4 border border-black px-5 py-2.5 font-semibold text-md text-center rounded-lg">
+          <button
+            type="button"
+            onClick={() => loginWithGoogle()}
+            className="w-full flex items-center justify-center gap-4 border border-black px-5 py-2.5 font-semibold text-md text-center rounded-lg"
+          >
             <img src={logoGoogle} alt="Google" className="w-5" />
             <span>Mon compte Google</span>
           </button>

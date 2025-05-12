@@ -1,6 +1,6 @@
 import React from 'react'
 import { Search, Bell, Settings, EllipsisVertical } from 'lucide-react'
-import { useOpen } from '../store'
+import { useOpen } from '../store/store'
 
 const Navbar = () => {
 
